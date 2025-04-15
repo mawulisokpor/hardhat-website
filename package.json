@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "ts-node --transpileOnly --skipProject scripts/prepare-error-list.ts",
+    "prebuild": "bash scripts/clone-and-build-hardhat.sh && ts-node --transpileOnly --skipProject scripts/prepare-error-list.ts",
     "dev": "next-remote-watch ./src/content",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
     "build:test": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint src -f unix"
+    "lint": "eslint src -f unix",
+    "postinstall": "bash scripts/clone-and-build-hardhat.sh"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.7",

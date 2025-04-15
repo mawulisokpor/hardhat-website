@@ -114,6 +114,7 @@ export const replacePlaceholders = (content: string) => {
         "..",
         "..",
         "..",
+        "websites-version-of-hardhat",
         "packages",
         "hardhat-core",
         "package.json"
