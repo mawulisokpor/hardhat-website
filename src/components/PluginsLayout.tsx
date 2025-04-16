@@ -33,7 +33,6 @@ const Main = styled.main`
   background-color: ${tm(({ colors }) => colors.neutral0)};
   width: 100%;
   position: relative;
-  transition: background-color ease-in-out 0.25s;
 
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.neutral0)};
