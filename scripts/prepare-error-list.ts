@@ -3,9 +3,10 @@ import {
   ErrorDescriptor,
   ERRORS,
   getErrorCode,
-} from '../../packages/hardhat-website/src/internal/core/errors-list';
-import * as fs from 'fs';
-import * as path from 'path';
+} from "../../websites-version-of-hardhat/packages/hardhat-core/internal/core/errors-list";
+import * as fs from "fs";
+import * as path from "path";
+
 
 interface Redirect {
   source: string;

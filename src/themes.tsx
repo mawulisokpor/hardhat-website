@@ -8,6 +8,7 @@ export enum ThemesEnum {
   DARK = "DARK",
   AUTO = "AUTO",
 }
+
 export const breakpoints = {
   xxs: 320,
   xs: 360,
@@ -19,6 +20,10 @@ export const breakpoints = {
   laptop: 1280,
   desktop: 1700,
 };
+
+// The total effective heigh of the Header componet, which is used to configure different other components
+// This value is 136px if using the usual Banner, and 168px with the AlphaBanner.
+export const headerTotalHeight = "168px" as const;
 
 export const media = {
   xxs: `@media screen and (min-width: ${breakpoints.xxs}px)`,

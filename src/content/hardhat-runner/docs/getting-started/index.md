@@ -5,6 +5,16 @@ description: Getting started with Hardhat, a development environment to compile,
 
 ## Overview
 
+:::tip
+
+**🚀 Hardhat 3 alpha release is out!**
+
+This new major version introduces Solidity tests, a rewrite of performance critical components in Rust, adds multichain support across the board, implements OP Stack simulation, revamps the build system, modernizes our TS CLI and plugin system, and a lot more.
+
+Hardhat 3 is a complete overhaul. This is an alpha release and there’s still a lot of work ahead towards stability, but you can already take it for a spin. [Learn more.](/hardhat3-alpha)
+
+:::
+
 Hardhat is a development environment for Ethereum software. It consists of different components for editing, compiling, debugging and deploying your smart contracts and dApps, all of which work together to create a complete development environment.
 
 Hardhat Runner is the main component you interact with when using Hardhat. It's a flexible and extensible task runner that helps you manage and automate the recurring tasks inherent to developing smart contracts and dApps.
@@ -147,7 +157,7 @@ The list of available tasks includes the built-in ones and also those that came 
 
 Next, if you take a look in the `contracts/` folder, you'll see `Lock.sol`:
 
-<<< @/../packages/hardhat-core/sample-projects/javascript/contracts/Lock.sol
+<<< @/../websites-version-of-hardhat/packages/hardhat-core/sample-projects/javascript/contracts/Lock.sol
 
 To compile it, simply run:
 
@@ -167,13 +177,13 @@ If you take a look in the `test/` folder, you'll see a test file:
 
 :::tab{value="TypeScript"}
 
-<<< @/../packages/hardhat-core/sample-projects/typescript/test/Lock.ts
+<<< @/../websites-version-of-hardhat/packages/hardhat-core/sample-projects/typescript/test/Lock.ts
 
 :::
 
 :::tab{value="JavaScript"}
 
-<<< @/../packages/hardhat-core/sample-projects/javascript/test/Lock.js
+<<< @/../websites-version-of-hardhat/packages/hardhat-core/sample-projects/javascript/test/Lock.js
 
 :::
 
@@ -255,13 +265,13 @@ Inside the `ignition/modules` folder you will find a file with the following cod
 
 :::tab{value="TypeScript"}
 
-<<< @/../packages/hardhat-core/sample-projects/typescript/ignition/modules/Lock.ts
+<<< @/../websites-version-of-hardhat/packages/hardhat-core/sample-projects/typescript/ignition/modules/Lock.ts
 
 :::
 
 :::tab{value="JavaScript"}
 
-<<< @/../packages/hardhat-core/sample-projects/javascript/ignition/modules/Lock.js
+<<< @/../websites-version-of-hardhat/packages/hardhat-core/sample-projects/javascript/ignition/modules/Lock.js
 
 :::
 

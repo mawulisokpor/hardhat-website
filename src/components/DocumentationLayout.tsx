@@ -1,31 +1,43 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { styled } from 'linaria/react';
-import { useRouter } from 'next/router';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import SEO from './SEO';
-import DocsNavigation from './DocsNavigation';
-import Banner, { DefaultBanner } from './ui/Banner';
-import { tm, tmSelectors, tmDark, media, ThemeProvider } from '../themes';
-import { DefaultBannerProps } from './ui/types';
-import { FooterNavigation, IDocumentationSidebarStructure, ISeo } from './types';
-import Sidebar from './Sidebar';
-import { menuItemsList, socialsItems, bannerContent } from '../config';
-import MobileSidebarMenu from './MobileSidebarMenu';
-import DocumentationFooter from './DocumentationFooter';
-import Title from './mdxComponents/Title';
-import Paragraph from './mdxComponents/Paragraph';
-import CodeBlocks from './mdxComponents/CodeBlocks';
-import Admonition from './mdxComponents/Admonition';
-import UnorderedList from './mdxComponents/UnorderedList';
-import HorizontalRule from './mdxComponents/HorizontalRule';
-import MDLink from './mdxComponents/MDLink';
-import Table from './mdxComponents/Table';
-import MDImage from './mdxComponents/MDImage';
-import OrderedList from './mdxComponents/OrderedList';
-import TabsGroup from './mdxComponents/TabsGroup';
-import Tab from './mdxComponents/Tab';
-import GDPRNotice from './GDPRNotice';
+import React, { useEffect, useRef, useState } from "react";
+import { styled } from "linaria/react";
+import { useRouter } from "next/router";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+
+import SEO from "./SEO";
+import DocsNavigation from "./DocsNavigation";
+import {
+  tm,
+  tmSelectors,
+  tmDark,
+  media,
+  ThemeProvider,
+  headerTotalHeight,
+} from "../themes";
+import {
+  FooterNavigation,
+  IDocumentationSidebarStructure,
+  ISeo,
+} from "./types";
+import Sidebar from "./Sidebar";
+import { menuItemsList, socialsItems } from "../config";
+import MobileSidebarMenu from "./MobileSidebarMenu";
+import DocumentationFooter from "./DocumentationFooter";
+import Title from "./mdxComponents/Title";
+import Paragraph from "./mdxComponents/Paragraph";
+import CodeBlocks from "./mdxComponents/CodeBlocks";
+import Admonition from "./mdxComponents/Admonition";
+import UnorderedList from "./mdxComponents/UnorderedList";
+import HorizontalRule from "./mdxComponents/HorizontalRule";
+import MDLink from "./mdxComponents/MDLink";
+import Table from "./mdxComponents/Table";
+import MDImage from "./mdxComponents/MDImage";
+import OrderedList from "./mdxComponents/OrderedList";
+import TabsGroup from "./mdxComponents/TabsGroup";
+import Tab from "./mdxComponents/Tab";
+import GDPRNotice from "./GDPRNotice";
+import AlphaBanner from "./ui/AlphaBanner";
+
 
 const Container = styled.div`
   position: relative;
@@ -41,6 +53,7 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
+
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-start;
@@ -83,9 +96,11 @@ export const SidebarContainer = styled.aside<{ isSidebarOpen: boolean }>`
   flex-direction: column;
   width: min(366px, 100%);
   position: fixed;
-  top: 120px;
-  left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0px' : '-120vw')};
-  height: calc(100vh - 120px);
+
+  top: ${headerTotalHeight};
+  left: ${({ isSidebarOpen }) => (isSidebarOpen ? "0px" : "-120vw")};
+  height: calc(100vh - ${headerTotalHeight});
+
   display: flex;
   overflow-y: auto;
   transition: all ease-out 0.25s;
@@ -192,7 +207,7 @@ const View = styled.section`
   justify-content: space-between;
   padding-top: 24px;
   width: 100%;
-  height: calc(100vh - 136px);
+  height: calc(100vh - ${headerTotalHeight});
   overflow-y: scroll;
   scroll-behavior: smooth;
   ${media.laptop} {
@@ -287,12 +302,14 @@ const DocumentationLayout = ({ mdxSource, seo, sidebarLayout, footerNavigation }
   return (
     <ThemeProvider>
       <Container>
+
         <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
-          <Banner
-            content={bannerContent}
-            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
+          <DocsNavigation
+            isSidebarOpen={isSidebarOpen}
+            onSidebarOpen={setIsSidebarOpen}
           />
-          <DocsNavigation isSidebarOpen={isSidebarOpen} onSidebarOpen={setIsSidebarOpen} />
+          <AlphaBanner />
+
         </Header>
 
         <SEO seo={seo} />

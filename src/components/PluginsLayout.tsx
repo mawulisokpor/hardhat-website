@@ -1,16 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { styled } from 'linaria/react';
-import { useRouter } from 'next/router';
 
-import SEO from './SEO';
-import DocsNavigation from './DocsNavigation';
-import Banner, { DefaultBanner } from './ui/Banner';
-import { tm, tmSelectors, tmDark, media, ThemeProvider } from '../themes';
-import { DefaultBannerProps } from './ui/types';
-import { IDocumentationSidebarStructure, ISeo } from './types';
-import { bannerContent, menuItemsList, socialsItems } from '../config';
-import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
-import MobileSidebarMenu from './MobileSidebarMenu';
+import React, { useEffect, useRef, useState } from "react";
+import { styled } from "linaria/react";
+import { useRouter } from "next/router";
+
+import SEO from "./SEO";
+import DocsNavigation from "./DocsNavigation";
+import {
+  tm,
+  tmSelectors,
+  tmDark,
+  media,
+  ThemeProvider,
+  headerTotalHeight,
+} from "../themes";
+import { IDocumentationSidebarStructure, ISeo } from "./types";
+import { menuItemsList, socialsItems } from "../config";
+import {
+  Header,
+  MobileSidebarMenuMask,
+  SidebarContainer,
+} from "./DocumentationLayout";
+import MobileSidebarMenu from "./MobileSidebarMenu";
+import AlphaBanner from "./ui/AlphaBanner";
+
 
 const Container = styled.div`
   position: relative;
@@ -56,7 +68,7 @@ const View = styled.section`
   align-items: center;
   padding-top: 24px;
   width: 100%;
-  height: calc(100vh - 136px);
+  height: calc(100vh - ${headerTotalHeight});
   overflow-y: scroll;
 `;
 const Content = styled.section`
@@ -129,12 +141,14 @@ const PluginsLayout = ({ children, seo, sidebarLayout }: Props) => {
   return (
     <ThemeProvider>
       <Container>
+
         <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
-          <Banner
-            content={bannerContent}
-            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
+          <DocsNavigation
+            isSidebarOpen={isSidebarOpen}
+            onSidebarOpen={setIsSidebarOpen}
           />
-          <DocsNavigation isSidebarOpen={isSidebarOpen} onSidebarOpen={setIsSidebarOpen} />
+          <AlphaBanner />
+
         </Header>
 
         <SEO seo={seo} />

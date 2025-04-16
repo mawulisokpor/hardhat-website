@@ -72,7 +72,12 @@ const getPluginReadmeFilename = (pluginSlug: string): string => {
     .replace(/nomiclabs-/, "")
     .replace(/nomicfoundation-/, "");
   const rootPath = process.cwd().toString();
-  const filename = path.join(rootPath, "../packages/", folderName, "README.md");
+  const filename = path.join(
+    rootPath,
+    "../websites-version-of-hardhat/packages/",
+    folderName,
+    "README.md"
+  );
   return filename;
 };
 

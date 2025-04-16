@@ -98,7 +98,19 @@ export const replacePlaceholders = (content: string) => {
   const recommendedSolcVersion = '0.8.28';
   const latestPragma = '^0.8.0';
   const hardhatPackageJson = fs
-    .readFileSync(path.resolve(__dirname, '..', '..', '..', '..', 'hardhat-website', 'package.json'))
+    .readFileSync(
+      path.resolve(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        "..",
+        "websites-version-of-hardhat",
+        "packages",
+        "hardhat-core",
+        "package.json"
+      )
+    )
     .toString();
   const hardhatVersion = JSON.parse(hardhatPackageJson).version;
 
