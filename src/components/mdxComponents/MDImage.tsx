@@ -39,19 +39,40 @@ const calcImgWidth = ({ isShellBdg, isHardhatBdg }) => {
   return null;
 };
 
+// Parse classes from alt text in format "alt#class1 class2"
+const parseAltAndClasses = (altText: string): { alt: string, classes: string | null } => {
+  if (!altText || !altText.includes('#')) {
+    return { alt: altText, classes: null };
+  }
+  
+  const [alt, ...classParts] = altText.split('#');
+  const classes = classParts.join('#'); // Rejoin in case there were multiple # in the alt text
+  
+  return { 
+    alt: alt.trim(), 
+    classes: classes.trim() || null 
+  };
+};
+
 const MDImage = ({ src, alt }: Props) => {
-  const isHardhatBdg = isHardhatBadge(alt);
+  const { alt: cleanAlt, classes: customClasses } = parseAltAndClasses(alt);
+  const isHardhatBdg = isHardhatBadge(cleanAlt);
   const isShellBdg = isShellBadge(src);
+
+  const containerClassName = [
+    isHardhatBdg ? "hardhat-badge" : "",
+    customClasses
+  ].filter(Boolean).join(" ") || null;
 
   return (
     <ImageContainer
       width={calcImgWidth({ isHardhatBdg, isShellBdg })}
-      className={isHardhatBdg ? "hardhat-badge" : null}
+      className={containerClassName}
     >
       <Image
         className="md-img"
         src={src}
-        alt={alt}
+        alt={cleanAlt}
         width="100%"
         height="100%"
         quality={100}

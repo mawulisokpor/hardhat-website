@@ -23,4 +23,4 @@ Finally, show us some love by starring [our repository on GitHub!](https://githu
 
 Happy hacking!
 
-![](/cool-hardhat.png)
+![Test alt#test-class-1 test-class-2](/cool-hardhat.png)
