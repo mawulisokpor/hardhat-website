@@ -1,13 +1,13 @@
-import React from "react";
-import { styled } from "linaria/react";
-import Image from "next/image";
-import Section from "../Section";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
-import LandingContainer from "../LandingContainer";
+import React from 'react';
+import { styled } from 'linaria/react';
+import Image from 'next/image';
+import Section from '../Section';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
+import LandingContainer from '../LandingContainer';
 
-import { CTAType } from "../ui/types";
-import ArrowRight from "../../assets/icons/arrow-right";
-import BracketsImage from "../../assets/why-we/Brackets";
+import { CTAType } from '../ui/types';
+import ArrowRight from '../../assets/icons/arrow-right';
+import BracketsImage from '../../assets/why-we/Brackets';
 
 type Props = {
   content: { title: string; news: NewsType[] };
@@ -337,8 +337,9 @@ const NewsLink = styled.a`
     height: 12px;
     display: inline-block;
     margin-left: 4px;
-    top: 2px;
+    top: 1px;
     position: relative;
+    vertical-align: top;
   }
   &:hover {
     color: #ccb200 !important;
@@ -373,24 +374,28 @@ const NewsLink = styled.a`
     .icon {
       width: 16px;
       height: 16px;
+      top: 1px;
     }
   }
   ${media.desktop} {
     font-size: 16px;
+    .icon {
+      top: 2px;
+    }
   }
 `;
 const NewsCard = ({ title, text, cta, imageUrl }: NewsType) => {
   return (
     <News>
-      <NewsHeader className="news-header">
+      <NewsHeader className='news-header'>
         {imageUrl && (
           <NewsImage>
             <Image src={imageUrl} alt={title} />
           </NewsImage>
         )}
-        <NewsTitle className="news-title">{title}</NewsTitle>
+        <NewsTitle className='news-title'>{title}</NewsTitle>
       </NewsHeader>
-      <NewsContent className="news-content">
+      <NewsContent className='news-content'>
         <NewsText>{text}</NewsText>
         <NewsLink href={cta.url}>
           <span>{cta.title}</span>
@@ -409,7 +414,7 @@ const WhatIsNewBlock = ({ content }: Props) => {
     <Section clearPadding>
       <Container>
         <LandingContainer>
-          <Brackets className="brackets-top">
+          <Brackets className='brackets-top'>
             <BracketsImage />
           </Brackets>
           <Title>{content.title}</Title>
@@ -418,7 +423,7 @@ const WhatIsNewBlock = ({ content }: Props) => {
               <NewsCard key={item.title} {...item} />
             ))}
           </ListNews>
-          <Brackets className="brackets-bottom">
+          <Brackets className='brackets-bottom'>
             <BracketsImage />
           </Brackets>
         </LandingContainer>

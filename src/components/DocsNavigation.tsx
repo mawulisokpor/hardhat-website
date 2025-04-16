@@ -1,15 +1,15 @@
-import React, { FC, useContext } from "react";
-import { styled } from "linaria/react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { FC, useContext } from 'react';
+import { styled } from 'linaria/react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { media, ThemeContext, tm, tmDark, tmSelectors } from "../themes";
-import logo from "../assets/hardhat-logo.svg";
-import darkLogo from "../assets/hardhat-logo-dark.svg";
-import Hamburger from "./ui/Hamburger";
-import DesktopMenu from "./ui/DesktopMenu";
-import { menuItemsList, socialsItems } from "../config";
-import ThemeSwitchButton from "./ThemeSwitchButton";
+import { media, ThemeContext, tm, tmDark, tmSelectors } from '../themes';
+import logo from '../assets/hardhat-logo.svg';
+import darkLogo from '../assets/hardhat-logo-dark.svg';
+import Hamburger from './ui/Hamburger';
+import DesktopMenu from './ui/DesktopMenu';
+import { menuItemsList, socialsItems } from '../config';
+import ThemeSwitchButton from './ThemeSwitchButton';
 
 interface Props {
   isSidebarOpen: boolean;
@@ -28,8 +28,8 @@ const NavigationStyled = styled.nav`
 
   background-color: ${tm(({ colors }) => colors.neutral0)};
   z-index: 10;
-  &.is-at-top {
-    background-color: transparent !important;
+  &:not(.is-sidebar-open).is-at-top {
+    background-color: transparent;
   }
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.neutral0)};
@@ -112,24 +112,20 @@ const HamburgerWrapper = styled.div`
   }
 `;
 
-const DocsNavigation: FC<Props> = ({
-  isSidebarOpen,
-  onSidebarOpen,
-  className,
-}) => {
+const DocsNavigation: FC<Props> = ({ isSidebarOpen, onSidebarOpen, className }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <NavigationStyled data-theme={theme} className={className}>
       <ControlsContainer>
         <HamburgerLogoWrapper>
-          <Link href="/" passHref>
-            <LogoContainer aria-label="home page">
-              <span className="light-logo">
-                <Image src={logo} alt="logo" />
+          <Link href='/' passHref>
+            <LogoContainer aria-label='home page'>
+              <span className='light-logo'>
+                <Image src={logo} alt='logo' />
               </span>
-              <span className="dark-logo">
-                <Image src={darkLogo} alt="logo" />
+              <span className='dark-logo'>
+                <Image src={darkLogo} alt='logo' />
               </span>
             </LogoContainer>
           </Link>
@@ -138,10 +134,7 @@ const DocsNavigation: FC<Props> = ({
         <DesktopMenu menuItems={menuItemsList} socialsItems={socialsItems} />
         <ThemeSwitchButton />
         <HamburgerWrapper>
-          <Hamburger
-            isOpen={isSidebarOpen}
-            onClick={() => onSidebarOpen(!isSidebarOpen)}
-          />
+          <Hamburger isOpen={isSidebarOpen} onClick={() => onSidebarOpen(!isSidebarOpen)} />
         </HamburgerWrapper>
       </ControlsContainer>
     </NavigationStyled>

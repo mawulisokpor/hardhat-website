@@ -1,24 +1,24 @@
-import React from "react";
-import { styled } from "linaria/react";
-import Image from "next/image";
-import Section from "../Section";
-import CTA from "../ui/CTA";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
-import { CTAType } from "../ui/types";
+import React from 'react';
+import { styled } from 'linaria/react';
+import Image from 'next/image';
+import Section from '../Section';
+import CTA from '../ui/CTA';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
+import { CTAType } from '../ui/types';
 
-import LandingContainer from "../LandingContainer";
-import heroGraphicDesktop from "../../assets/hero/hero.png";
-import heroGraphicTablet from "../../assets/hero/heroTablet.png";
-import heroGraphicMobile from "../../assets/hero/heroMobile.png";
+import LandingContainer from '../LandingContainer';
+import heroGraphicDesktop from '../../assets/hero/hero.png';
+import heroGraphicTablet from '../../assets/hero/heroTablet.png';
+import heroGraphicMobile from '../../assets/hero/heroMobile.png';
 
-import heroGraphicDesktopDark from "../../assets/hero/heroDark.png";
-import heroGraphicDarkTablet from "../../assets/hero/heroDarkTablet.png";
-import heroGraphicDarkMobile from "../../assets/hero/heroDarkMobile.png";
+import heroGraphicDesktopDark from '../../assets/hero/heroDark.png';
+import heroGraphicDarkTablet from '../../assets/hero/heroDarkTablet.png';
+import heroGraphicDarkMobile from '../../assets/hero/heroDarkMobile.png';
 
-import heroTexture from "../../assets/hero/hero-texture.svg";
-import heroDarkTexture from "../../assets/hero/heroDark-texture.svg";
+import heroTexture from '../../assets/hero/hero-texture.svg';
+import heroDarkTexture from '../../assets/hero/heroDark-texture.svg';
 
-import useWindowSize from "../../hooks/useWindowSize";
+import useWindowSize from '../../hooks/useWindowSize';
 
 interface Props {
   content: {
@@ -55,12 +55,13 @@ const Container = styled.div<{ bgImage: string; bgImageDark: string }>`
   ${media.tablet} {
     padding: 70px 0 20px;
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+
       background-image: ${(props) => `url(${props.bgImage})`};
       background-size: auto 100%;
       background-position: top center;
@@ -231,7 +232,7 @@ const BlockTitle = styled.h2`
   margin: 0 auto;
   flex: none;
   &:after {
-    content: "_";
+    content: '_';
     display: inline;
     color: #edcf00;
   }
@@ -303,7 +304,7 @@ const HeroBlock = ({ content }: Props) => {
             <TagLine dangerouslySetInnerHTML={{ __html: content.tagline }} />
             <Title>{content.title}</Title>
 
-            <CTA href={content.cta.url} variant="lg">
+            <CTA href={content.cta.url} variant='lg'>
               {content.cta.title}
             </CTA>
           </Content>
@@ -311,31 +312,16 @@ const HeroBlock = ({ content }: Props) => {
           <Block>
             <BlockTitle>Ready to use out of the box</BlockTitle>
             <BlockText>
-              Hardhat includes everything you need for Solidity smart contract
-              development. Testing, deployment, gas analysis, code coverage,
-              code verification, and more.
+              Hardhat includes everything you need for Solidity smart contract development. Testing, deployment, gas
+              analysis, code coverage, code verification, and more.
             </BlockText>
           </Block>
         </LandingContainer>
-        <GraphicContainer className="light">
-          <Image
-            src={imageSrc}
-            alt=""
-            role="presentation"
-            quality={100}
-            layout="intrinsic"
-            priority
-          />
+        <GraphicContainer className='light'>
+          <Image src={imageSrc} alt='' role='presentation' quality={100} layout='intrinsic' priority />
         </GraphicContainer>
-        <GraphicContainer className="dark">
-          <Image
-            src={imageDarkSrc}
-            alt=""
-            role="presentation"
-            quality={100}
-            layout="intrinsic"
-            priority
-          />
+        <GraphicContainer className='dark'>
+          <Image src={imageDarkSrc} alt='' role='presentation' quality={100} layout='intrinsic' priority />
         </GraphicContainer>
       </Container>
     </Section>

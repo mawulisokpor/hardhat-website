@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "linaria/react";
+import React, { useEffect, useState } from 'react';
+import { styled } from 'linaria/react';
 
-import SEO from "./SEO";
-import LandingFooter from "./LandingFooter";
-import Banner, { DefaultBanner } from "./ui/Banner";
-import { media, ThemeProvider, tm, tmDark, tmSelectors } from "../themes";
-import { DefaultBannerProps } from "./ui/types";
-import { bannerContent, menuItemsList, socialsItems } from "../config";
-import GDPRNotice from "./GDPRNotice";
-import DocsNavigation from "./DocsNavigation";
-import {
-  Header,
-  MobileSidebarMenuMask,
-  SidebarContainer,
-} from "./DocumentationLayout";
-import MobileSidebarMenu from "./MobileSidebarMenu";
-import { IDocumentationSidebarStructure, ISeo } from "./types";
+import SEO from './SEO';
+import LandingFooter from './LandingFooter';
+import Banner, { DefaultBanner } from './ui/Banner';
+import { media, ThemeProvider, tm, tmDark, tmSelectors } from '../themes';
+import { DefaultBannerProps } from './ui/types';
+import { bannerContent, menuItemsList, socialsItems } from '../config';
+import GDPRNotice from './GDPRNotice';
+import DocsNavigation from './DocsNavigation';
+import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
+import MobileSidebarMenu from './MobileSidebarMenu';
+import { IDocumentationSidebarStructure, ISeo } from './types';
 
 const Container = styled.div`
   position: relative;
@@ -25,7 +21,6 @@ const Container = styled.div`
   align-items: center;
   -webkit-font-smoothing: antialiased;
   background-color: ${tm(({ colors }) => colors.neutral0)};
-  transition: all ease-in-out 0.25s;
   min-width: 320px;
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.neutral0)};
@@ -57,15 +52,15 @@ const LandingLayout = ({ children, seo, sidebarLayout }: Props) => {
   const [isScrolledTop, setIsScrolledTop] = useState(true);
 
   useEffect(() => {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     if (!body) return;
 
     if (isSidebarOpen) {
       // Disable scroll
-      body.style.overflow = "hidden";
+      body.style.overflow = 'hidden';
     } else {
       // Enable scroll
-      body.style.overflow = "auto";
+      body.style.overflow = 'auto';
     }
   }, [isSidebarOpen]);
 
@@ -81,28 +76,26 @@ const LandingLayout = ({ children, seo, sidebarLayout }: Props) => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("click", handleClick);
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('click', handleClick);
     handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("click", handleClick);
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('click', handleClick);
     };
   }, [isSidebarOpen]);
 
   return (
     <ThemeProvider>
-      <Container className="landing">
-        <Header className={`${isSidebarOpen ? "is-sidebar-open" : ""} `}>
+      <Container className='landing'>
+        <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''} `}>
           <Banner
             content={bannerContent}
-            renderContent={({ content }: DefaultBannerProps) => (
-              <DefaultBanner content={content} />
-            )}
+            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
           />
           <DocsNavigation
-            className={`${isScrolledTop ? "is-at-top" : ""}`}
+            className={`${isScrolledTop ? 'is-at-top' : ''} ${isSidebarOpen ? 'is-sidebar-open' : ''}`}
             isSidebarOpen={isSidebarOpen}
             onSidebarOpen={setIsSidebarOpen}
           />

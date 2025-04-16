@@ -1,6 +1,6 @@
-import React from "react";
-import { styled } from "linaria/react";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
+import React from 'react';
+import { styled } from 'linaria/react';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
 
 const A = styled.a`
   display: inline-flex;
@@ -38,6 +38,21 @@ const A = styled.a`
     }
   }
 
+  &:active {
+    background-color: ${tm(({ colors }) => colors.gray7)};
+    color: ${tm(({ colors }) => colors.accent800)};
+    ${tmSelectors.dark} {
+      background-color: ${tm(({ colors }) => colors.yellow200)};
+      color: ${tm(({ colors }) => colors.gray9)};
+    }
+    ${media.mqDark} {
+      ${tmSelectors.auto} {
+        background-color: ${tm(({ colors }) => colors.yellow200)};
+        color: ${tm(({ colors }) => colors.gray9)};
+      }
+    }
+  }
+
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.accent800)};
     color: ${tm(({ colors }) => colors.gray9)};
@@ -70,7 +85,8 @@ const A = styled.a`
       }
     }
 
-    &:hover {
+    &:hover,
+    &:active {
       border-color: ${tm(({ colors }) => colors.gray8b)};
       color: ${tm(({ colors }) => colors.gray8b)};
       outline: 1px solid ${tm(({ colors }) => colors.gray8b)};
@@ -89,6 +105,10 @@ const A = styled.a`
           outline: 1px solid ${tm(({ colors }) => colors.gray5)};
         }
       }
+    }
+    &:active {
+      border-color: ${tm(({ colors }) => colors.gray5)};
+      outline: 1px solid ${tm(({ colors }) => colors.gray5)};
     }
   }
   &.primary {
@@ -137,18 +157,16 @@ type Props = React.PropsWithChildren<{
   href?: string;
   variant?: string;
   disabled?: boolean;
-  onClick?:
-    | (() => void)
-    | React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: (() => void) | React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }>;
 
-const CTA = ({ children, href, variant = "", onClick, disabled }: Props) => {
-  if ((href === "" || href === undefined || href === null) && !onClick) {
-    throw new Error("CTA should have a href prop or a onClick prop");
+const CTA = ({ children, href, variant = '', onClick, disabled }: Props) => {
+  if ((href === '' || href === undefined || href === null) && !onClick) {
+    throw new Error('CTA should have a href prop or a onClick prop');
   }
   return (
     <A
-      as={onClick ? "button" : "a"}
+      as={onClick ? 'button' : 'a'}
       className={variant}
       href={href ?? undefined}
       onClick={onClick ?? undefined}

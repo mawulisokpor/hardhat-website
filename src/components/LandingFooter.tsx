@@ -1,12 +1,12 @@
-import React from "react";
-import { styled } from "linaria/react";
-import Image from "next/image";
-import Link from "next/link";
-import ethereumFoundationLogo from "../assets/nomic-foundation-logo.svg";
-import ethereumFoundationLogoDark from "../assets/nomic-foundation-logo-dark.svg";
-import { media, tm, tmDark, tmSelectors } from "../themes";
-import { PRIVACY_POLICY_PATH } from "../config";
-import LandingContainer from "./LandingContainer";
+import React from 'react';
+import { styled } from 'linaria/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import ethereumFoundationLogo from '../assets/nomic-foundation-logo.svg';
+import ethereumFoundationLogoDark from '../assets/nomic-foundation-logo-dark.svg';
+import { media, tm, tmDark, tmSelectors } from '../themes';
+import { PRIVACY_POLICY_PATH } from '../config';
+import LandingContainer from './LandingContainer';
 
 // background-color: ${tm(({ colors }) => colors.neutral900)};
 const Footer = styled.footer`
@@ -132,12 +132,12 @@ const LandingFooter = () => {
       <LandingContainer>
         <Wrapper>
           <SupportedBy>
-            <SupportedByTitle>Build by</SupportedByTitle>
-            <Logo className="light">
-              <Image src={ethereumFoundationLogo} alt="logo" />
+            <SupportedByTitle>Built by</SupportedByTitle>
+            <Logo className='light'>
+              <Image src={ethereumFoundationLogo} alt='logo' />
             </Logo>
-            <Logo className="dark">
-              <Image src={ethereumFoundationLogoDark} alt="logo" />
+            <Logo className='dark'>
+              <Image src={ethereumFoundationLogoDark} alt='logo' />
             </Logo>
           </SupportedBy>
           <Subtitle>

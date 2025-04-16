@@ -1,8 +1,8 @@
-import React from "react";
-import { styled } from "linaria/react";
-import { breakpoints, media, tm, tmDark, tmSelectors } from "../../themes";
-import useWindowSize, { WindowSizeState } from "../../hooks/useWindowSize";
-import { BannerProps, DefaultBannerProps } from "./types";
+import React from 'react';
+import { styled } from 'linaria/react';
+import { breakpoints, media, tm, tmDark, tmSelectors } from '../../themes';
+import useWindowSize, { WindowSizeState } from '../../hooks/useWindowSize';
+import { BannerProps, DefaultBannerProps } from './types';
 
 const BannerContainer = styled.section`
   font-family: SourceCodePro, sans-serif;
@@ -65,7 +65,7 @@ const BracesContainer = styled.div`
       padding: 0px 16px;
     }
     ${media.laptop} {
-      font-size: 20px;
+      font-size: 16px;
     }
   }
   ${media.tablet} {
@@ -101,21 +101,15 @@ const getBracesCount = (windowSize: WindowSizeState) => {
   return 3;
 };
 
-const BracesAnimation: React.FC<React.PropsWithChildren<{}>> = ({
-  children,
-}) => {
+const BracesAnimation: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const windowSize = useWindowSize();
   const bracesCount = getBracesCount(windowSize);
 
   const bracesString = Array(bracesCount)
-    .fill(">")
+    .fill('>')
     .map((brace: string, index: number) => {
       return (
-        <Brace
-          key={index}
-          fullAnimationDuration={bracesCount * 0.5}
-          braceNumber={index + 1}
-        >
+        <Brace key={index} fullAnimationDuration={bracesCount * 0.5} braceNumber={index + 1}>
           {brace}
         </Brace>
       );
@@ -123,9 +117,9 @@ const BracesAnimation: React.FC<React.PropsWithChildren<{}>> = ({
 
   return (
     <BracesContainer>
-      <div className="braces reversed">{bracesString}</div>
-      <div className="text">{children}</div>
-      <div className="braces ">{bracesString}</div>
+      <div className='braces reversed'>{bracesString}</div>
+      <div className='text'>{children}</div>
+      <div className='braces '>{bracesString}</div>
     </BracesContainer>
   );
 };
@@ -136,7 +130,7 @@ export const DefaultBanner = ({ content }: DefaultBannerProps) => {
 
 const Banner = ({ content, renderContent }: BannerProps) => {
   return (
-    <a target="_blank" rel="noreferrer" href={content.href}>
+    <a target='_blank' rel='noreferrer' href={content.href}>
       <BannerContainer>{renderContent({ content })}</BannerContainer>
     </a>
   );
