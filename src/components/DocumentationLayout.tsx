@@ -1,43 +1,32 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { styled } from 'linaria/react';
+import { useRouter } from 'next/router';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import React, { useEffect, useRef, useState } from "react";
-import { styled } from "linaria/react";
-import { useRouter } from "next/router";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import SEO from './SEO';
+import DocsNavigation from './DocsNavigation';
+import { tm, tmSelectors, tmDark, media, ThemeProvider, headerTotalHeight } from '../themes';
+import { FooterNavigation, IDocumentationSidebarStructure, ISeo } from './types';
+import Sidebar from './Sidebar';
+import { bannerContent, menuItemsList, socialsItems } from '../config';
+import MobileSidebarMenu from './MobileSidebarMenu';
+import DocumentationFooter from './DocumentationFooter';
+import Title from './mdxComponents/Title';
+import Paragraph from './mdxComponents/Paragraph';
+import CodeBlocks from './mdxComponents/CodeBlocks';
+import Admonition from './mdxComponents/Admonition';
+import UnorderedList from './mdxComponents/UnorderedList';
+import HorizontalRule from './mdxComponents/HorizontalRule';
+import MDLink from './mdxComponents/MDLink';
+import Table from './mdxComponents/Table';
+import MDImage from './mdxComponents/MDImage';
+import OrderedList from './mdxComponents/OrderedList';
+import TabsGroup from './mdxComponents/TabsGroup';
+import Tab from './mdxComponents/Tab';
+import GDPRNotice from './GDPRNotice';
 
-import SEO from "./SEO";
-import DocsNavigation from "./DocsNavigation";
-import {
-  tm,
-  tmSelectors,
-  tmDark,
-  media,
-  ThemeProvider,
-  headerTotalHeight,
-} from "../themes";
-import {
-  FooterNavigation,
-  IDocumentationSidebarStructure,
-  ISeo,
-} from "./types";
-import Sidebar from "./Sidebar";
-import { menuItemsList, socialsItems } from "../config";
-import MobileSidebarMenu from "./MobileSidebarMenu";
-import DocumentationFooter from "./DocumentationFooter";
-import Title from "./mdxComponents/Title";
-import Paragraph from "./mdxComponents/Paragraph";
-import CodeBlocks from "./mdxComponents/CodeBlocks";
-import Admonition from "./mdxComponents/Admonition";
-import UnorderedList from "./mdxComponents/UnorderedList";
-import HorizontalRule from "./mdxComponents/HorizontalRule";
-import MDLink from "./mdxComponents/MDLink";
-import Table from "./mdxComponents/Table";
-import MDImage from "./mdxComponents/MDImage";
-import OrderedList from "./mdxComponents/OrderedList";
-import TabsGroup from "./mdxComponents/TabsGroup";
-import Tab from "./mdxComponents/Tab";
-import GDPRNotice from "./GDPRNotice";
-import AlphaBanner from "./ui/AlphaBanner";
-
+import Banner, { DefaultBanner } from './ui/Banner';
+import { DefaultBannerProps } from './ui/types';
 
 const Container = styled.div`
   position: relative;
@@ -53,7 +42,6 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-start;
@@ -86,7 +74,7 @@ export const MobileSidebarMenuMask = styled.div`
   width: 100%;
   left: -100%;
   top: 0;
-  transition: all 0.25s ease-in-out;
+  transition: left 0.25s ease-in-out;
   &[data-open='true'] {
     left: 0;
   }
@@ -98,12 +86,12 @@ export const SidebarContainer = styled.aside<{ isSidebarOpen: boolean }>`
   position: fixed;
 
   top: ${headerTotalHeight};
-  left: ${({ isSidebarOpen }) => (isSidebarOpen ? "0px" : "-120vw")};
-  height: calc(100vh - ${headerTotalHeight});
+  left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0px' : '-120vw')};
+  height: calc(100svh - ${headerTotalHeight});
 
   display: flex;
   overflow-y: auto;
-  transition: all ease-out 0.25s;
+  transition: left ease-out 0.25s;
   z-index: 50;
   background-color: ${tm(({ colors }) => colors.neutral0)};
 
@@ -207,9 +195,7 @@ const View = styled.section`
   justify-content: space-between;
   padding-top: 24px;
   width: 100%;
-  height: calc(100vh - ${headerTotalHeight});
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+
   ${media.laptop} {
     padding-left: 366px;
   }
@@ -217,7 +203,7 @@ const View = styled.section`
 const Content = styled.section`
   width: 100%;
   max-width: 774px;
-  padding: 0 34px;
+  padding: 0 16px;
   color: ${tm(({ colors }) => colors.neutral900)};
 
   & h2 + p {
@@ -234,6 +220,9 @@ const Content = styled.section`
     ${tmSelectors.auto} {
       color: ${tmDark(({ colors }) => colors.neutral900)};
     }
+  }
+  ${media.tablet} {
+    padding: 0 44px;
   }
 `;
 
@@ -302,14 +291,12 @@ const DocumentationLayout = ({ mdxSource, seo, sidebarLayout, footerNavigation }
   return (
     <ThemeProvider>
       <Container>
-
         <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
-          <DocsNavigation
-            isSidebarOpen={isSidebarOpen}
-            onSidebarOpen={setIsSidebarOpen}
+          <Banner
+            content={bannerContent}
+            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
           />
-          <AlphaBanner />
-
+          <DocsNavigation isSidebarOpen={isSidebarOpen} onSidebarOpen={setIsSidebarOpen} />
         </Header>
 
         <SEO seo={seo} />

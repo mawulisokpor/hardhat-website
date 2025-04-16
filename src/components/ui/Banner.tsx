@@ -10,18 +10,18 @@ const BannerContainer = styled.section`
   z-index: 100;
   width: 100%;
   height: 40px;
+  padding: 6px 8px 8px;
   display: flex;
-  padding: 8px 8px;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   background-color: ${tm(({ colors }) => colors.gray8b)};
   color: ${tm(({ colors }) => colors.neutral0)};
 
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: 0.044em;
-  white-space: nowrap;
+  letter-spacing: 0.02em;
+
   cursor: pointer;
   & span {
     margin-right: 2px;
@@ -37,27 +37,32 @@ const BannerContainer = styled.section`
       color: ${tmDark(({ colors }) => colors.neutral0)};
     }
   }
+  ${media.xs} {
+    letter-spacing: 0.044em;
+  }
 `;
 
 const BracesContainer = styled.div`
-  display: flex;
-
-  flex-wrap: nowrap;
-  align-items: center;
   font-size: 10px;
+  line-height: 14px;
   & > .braces {
     color: ${tm(({ colors }) => colors.accent900)};
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     transition: color ease-out 0.5s;
-    margin: 0 8px;
     vertical-align: middle;
+    &:first-child {
+      margin-right: 8px;
+    }
+    &:last-child {
+      margin-left: 8px;
+    }
   }
-  & .reversed {
-    transform: rotate(180deg);
-  }
+
   & .text {
     font-size: 10px;
-
+    display: inline;
+    vertical-align: middle;
     ${media.tablet} {
       font-size: 12px;
     }
@@ -105,21 +110,23 @@ const BracesAnimation: React.FC<React.PropsWithChildren<{}>> = ({ children }) =>
   const windowSize = useWindowSize();
   const bracesCount = getBracesCount(windowSize);
 
-  const bracesString = Array(bracesCount)
-    .fill('>')
-    .map((brace: string, index: number) => {
-      return (
+  const createBraces = (symbol: string) =>
+    Array(bracesCount)
+      .fill(symbol)
+      .map((brace: string, index: number) => (
         <Brace key={index} fullAnimationDuration={bracesCount * 0.5} braceNumber={index + 1}>
           {brace}
         </Brace>
-      );
-    });
+      ));
+
+  const bracesNormal = createBraces('>');
+  const bracesReversed = createBraces('<');
 
   return (
     <BracesContainer>
-      <div className='braces reversed'>{bracesString}</div>
+      <div className='braces '>{bracesReversed}</div>
       <div className='text'>{children}</div>
-      <div className='braces '>{bracesString}</div>
+      <div className='braces'>{bracesNormal}</div>
     </BracesContainer>
   );
 };

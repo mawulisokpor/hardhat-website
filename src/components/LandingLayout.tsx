@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from 'linaria/react';
 
-import SEO from "./SEO";
-import LandingFooter from "./LandingFooter";
-import {
-  headerTotalHeight,
-  media,
-  ThemeProvider,
-  tm,
-  tmDark,
-  tmSelectors,
-} from "../themes";
-import { menuItemsList, socialsItems } from "../config";
-import GDPRNotice from "./GDPRNotice";
-import DocsNavigation from "./DocsNavigation";
-import {
-  Header,
-  MobileSidebarMenuMask,
-  SidebarContainer,
-} from "./DocumentationLayout";
-import MobileSidebarMenu from "./MobileSidebarMenu";
-import { IDocumentationSidebarStructure, ISeo } from "./types";
-import AlphaBanner from "./ui/AlphaBanner";
-
+import SEO from './SEO';
+import LandingFooter from './LandingFooter';
+import { headerTotalHeight, media, ThemeProvider, tm, tmDark, tmSelectors } from '../themes';
+import { bannerContent, menuItemsList, socialsItems } from '../config';
+import GDPRNotice from './GDPRNotice';
+import DocsNavigation from './DocsNavigation';
+import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
+import MobileSidebarMenu from './MobileSidebarMenu';
+import { IDocumentationSidebarStructure, ISeo } from './types';
+import Banner, { DefaultBanner } from './ui/Banner';
+import { DefaultBannerProps } from './ui/types';
 
 const Container = styled.div`
   position: relative;
@@ -45,7 +34,7 @@ const Container = styled.div`
 
 const Main = styled.main`
   overflow-x: clip;
-  padding-top: ${headerTotalHeight};
+
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -100,16 +89,17 @@ const LandingLayout = ({ children, seo, sidebarLayout }: Props) => {
 
   return (
     <ThemeProvider>
-
-      <Container className="landing">
+      <Container className='landing'>
         <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''} `}>
-
+          <Banner
+            content={bannerContent}
+            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
+          />
           <DocsNavigation
             className={`${isScrolledTop ? 'is-at-top' : ''} ${isSidebarOpen ? 'is-sidebar-open' : ''}`}
             isSidebarOpen={isSidebarOpen}
             onSidebarOpen={setIsSidebarOpen}
           />
-          <AlphaBanner />
         </Header>
 
         <SEO seo={seo} />

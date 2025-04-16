@@ -1,24 +1,17 @@
-import React, {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { styled } from "linaria/react";
-import { headerTotalHeight, media, tm, tmDark, tmSelectors } from "../themes";
-import Sidebar from "./Sidebar";
-import { menuItemsList, socialsItems as defaultSocialItems } from "../config";
-import ExternalLinkIcon from "../assets/icons/external-link-icon";
-import { IDocumentationSidebarStructure } from "./types";
-import { MenuItemType, NavigationPagesPaths, SocialsEnum } from "./ui/types";
-import MobileMenuArrowForward from "../assets/icons/mobile-menu-arrow-forward";
-import { SocialsList } from "./ui/DesktopMenu";
-import ThemeSwitchButton from "./ThemeSwitchButton";
-import MobileMenuArrowBack from "../assets/icons/mobile-menu-arrow-back";
+import React, { Dispatch, FC, SetStateAction, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { styled } from 'linaria/react';
+import { headerTotalHeight, media, tm, tmDark, tmSelectors } from '../themes';
+import Sidebar from './Sidebar';
+import { menuItemsList, socialsItems as defaultSocialItems } from '../config';
+import ExternalLinkIcon from '../assets/icons/external-link-icon';
+import { IDocumentationSidebarStructure } from './types';
+import { MenuItemType, NavigationPagesPaths, SocialsEnum } from './ui/types';
+import MobileMenuArrowForward from '../assets/icons/mobile-menu-arrow-forward';
+import { SocialsList } from './ui/DesktopMenu';
+import ThemeSwitchButton from './ThemeSwitchButton';
+import MobileMenuArrowBack from '../assets/icons/mobile-menu-arrow-back';
 
 interface Props {
   sidebarElementsList: IDocumentationSidebarStructure;
@@ -98,20 +91,20 @@ const MenuItem = styled.li`
     text-transform: lowercase;
   }
 
-  &[data-current="true"] > a {
+  &[data-current='true'] > a {
     background-color: ${tm(({ colors }) => colors.gray6)};
     color: ${tm(({ colors }) => colors.gray1)};
   }
 
   ${tmSelectors.dark} {
-    &[data-current="true"] > a {
+    &[data-current='true'] > a {
       background-color: ${tmDark(({ colors }) => colors.gray6)};
       color: ${tmDark(({ colors }) => colors.neutral200)};
     }
   }
   ${media.mqDark} {
     ${tmSelectors.auto} {
-      &[data-current="true"] > a {
+      &[data-current='true'] > a {
         background-color: ${tmDark(({ colors }) => colors.gray6)};
         color: ${tmDark(({ colors }) => colors.neutral200)};
       }
@@ -148,15 +141,15 @@ const MobileMenuFooter = styled.div<{ isRelative?: boolean }>`
 const ModalContainer = styled.div<{ isModalOpen: boolean }>`
   display: flex;
   flex-direction: column;
-  height: calc(100vh - ${headerTotalHeight});
-  padding: 32px 0;
+  height: calc(100svh - ${headerTotalHeight});
+
   position: absolute;
   width: 100%;
   top: 0px;
   transition: all ease-out 0.25s;
   font-family: Roboto, sans-serif;
   z-index: 50;
-  left: ${({ isModalOpen }) => (isModalOpen ? "0px" : "-120vw")};
+  left: ${({ isModalOpen }) => (isModalOpen ? '0px' : '-120vw')};
   color: ${tm(({ colors }) => colors.neutral800)};
   background-color: ${tm(({ colors }) => colors.neutral0)};
 
@@ -274,10 +267,10 @@ const ToolsListItem = styled.li`
 const SocialItem = ({ name, href }: { name: SocialsEnum; href: string }) => {
   return (
     <MenuItem key={name}>
-      <a target="_blank" rel="noreferrer" href={href}>
+      <a target='_blank' rel='noreferrer' href={href}>
         {name.toLowerCase()}
       </a>
-      <ExternalLinkIcon style={{ fill: "none" }} />
+      <ExternalLinkIcon style={{ fill: 'none' }} />
     </MenuItem>
   );
 };
@@ -290,8 +283,7 @@ const getCurrentSection = ({
   currentLocation: string;
 }): NavigationPagesPaths => {
   if (isDocumentation) {
-    if (currentLocation.startsWith(NavigationPagesPaths.TUTORIAL))
-      return NavigationPagesPaths.TUTORIAL;
+    if (currentLocation.startsWith(NavigationPagesPaths.TUTORIAL)) return NavigationPagesPaths.TUTORIAL;
     return NavigationPagesPaths.DOCUMENTATION;
   }
   return currentLocation as NavigationPagesPaths;
@@ -304,9 +296,7 @@ const MobileSidebarMenuModal: FC<ModalProps> = ({
   closeSidebar,
   socialsItems,
 }) => {
-  const renderModalContent = (
-    selectedSection: NavigationPagesPaths | string
-  ) => {
+  const renderModalContent = (selectedSection: NavigationPagesPaths | string) => {
     if (selectedSection === NavigationPagesPaths.TOOLS) {
       return (
         <ToolsList>
@@ -315,9 +305,7 @@ const MobileSidebarMenuModal: FC<ModalProps> = ({
               <ToolsListItem key={subItem.href}>
                 <Link passHref scroll={false} href={subItem.href}>
                   {/* eslint-disable-next-line */}
-                  <a onClick={closeSidebar}>{`${subItem.prefix as string} ${
-                    subItem.label
-                  }`}</a>
+                  <a onClick={closeSidebar}>{`${subItem.prefix as string} ${subItem.label}`}</a>
                 </Link>
               </ToolsListItem>
             );
@@ -325,9 +313,7 @@ const MobileSidebarMenuModal: FC<ModalProps> = ({
         </ToolsList>
       );
     }
-    return (
-      <Sidebar elementsList={sidebarElementsList} closeSidebar={closeSidebar} />
-    );
+    return <Sidebar elementsList={sidebarElementsList} closeSidebar={closeSidebar} />;
   };
 
   return (
@@ -358,41 +344,29 @@ const MobileSidebarMenu: FC<Props> = ({
 }) => {
   const router = useRouter();
   const [modalState, setModalState] = useState<MenuItemType | null>(null);
-  const gitHubSocial = socialsItems.find(
-    (socialsItem) => socialsItem.name === SocialsEnum.GITHUB
-  );
+  const gitHubSocial = socialsItems.find((socialsItem) => socialsItem.name === SocialsEnum.GITHUB);
   const currentSection = getCurrentSection({
     isDocumentation,
     currentLocation: router?.asPath,
   });
   const isModal = useMemo(
     () =>
-      [
-        NavigationPagesPaths.DOCUMENTATION,
-        NavigationPagesPaths.TUTORIAL,
-        NavigationPagesPaths.TOOLS,
-      ].includes(currentSection),
+      [NavigationPagesPaths.DOCUMENTATION, NavigationPagesPaths.TUTORIAL, NavigationPagesPaths.TOOLS].includes(
+        currentSection
+      ),
     [currentSection]
   );
 
   useEffect(() => {
     if (isModal) {
-      setModalState(
-        menuItems.find((menuItem) => menuItem.href === currentSection) || null
-      );
+      setModalState(menuItems.find((menuItem) => menuItem.href === currentSection) || null);
     }
   }, [currentSection, menuItems, isModal]);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    menuItem: MenuItemType
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, menuItem: MenuItemType) => {
     if (
       menuItem.href === NavigationPagesPaths.TOOLS ||
-      ([
-        NavigationPagesPaths.DOCUMENTATION,
-        NavigationPagesPaths.TUTORIAL,
-      ].includes(currentSection) &&
+      ([NavigationPagesPaths.DOCUMENTATION, NavigationPagesPaths.TUTORIAL].includes(currentSection) &&
         currentSection === menuItem.href)
     ) {
       event.preventDefault();
@@ -418,10 +392,7 @@ const MobileSidebarMenu: FC<Props> = ({
                   onClick={(e) => {
                     if (
                       menuItem.href === NavigationPagesPaths.TOOLS ||
-                      ([
-                        NavigationPagesPaths.DOCUMENTATION,
-                        NavigationPagesPaths.TUTORIAL,
-                      ].includes(currentSection) &&
+                      ([NavigationPagesPaths.DOCUMENTATION, NavigationPagesPaths.TUTORIAL].includes(currentSection) &&
                         currentSection === menuItem.href)
                     ) {
                       e.preventDefault();
@@ -431,10 +402,9 @@ const MobileSidebarMenu: FC<Props> = ({
                   {menuItem.label}
                 </a>
               </Link>
-              {sidebarElementsList.length > 0 &&
-                currentSection === menuItem.href && (
-                  <MobileMenuArrowForward style={{ marginLeft: "auto" }} />
-                )}
+              {sidebarElementsList.length > 0 && currentSection === menuItem.href && (
+                <MobileMenuArrowForward style={{ marginLeft: 'auto' }} />
+              )}
             </MenuItem>
           );
         })}

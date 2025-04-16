@@ -1,28 +1,17 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { styled } from 'linaria/react';
+import { useRouter } from 'next/router';
 
-import React, { useEffect, useRef, useState } from "react";
-import { styled } from "linaria/react";
-import { useRouter } from "next/router";
-
-import SEO from "./SEO";
-import DocsNavigation from "./DocsNavigation";
-import {
-  tm,
-  tmSelectors,
-  tmDark,
-  media,
-  ThemeProvider,
-  headerTotalHeight,
-} from "../themes";
-import { IDocumentationSidebarStructure, ISeo } from "./types";
-import { menuItemsList, socialsItems } from "../config";
-import {
-  Header,
-  MobileSidebarMenuMask,
-  SidebarContainer,
-} from "./DocumentationLayout";
-import MobileSidebarMenu from "./MobileSidebarMenu";
-import AlphaBanner from "./ui/AlphaBanner";
-
+import SEO from './SEO';
+import DocsNavigation from './DocsNavigation';
+import { tm, tmSelectors, tmDark, media, ThemeProvider, headerTotalHeight } from '../themes';
+import { IDocumentationSidebarStructure, ISeo } from './types';
+import { bannerContent, menuItemsList, socialsItems } from '../config';
+import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
+import MobileSidebarMenu from './MobileSidebarMenu';
+import AlphaBanner from './ui/AlphaBanner';
+import Banner, { DefaultBanner } from './ui/Banner';
+import { DefaultBannerProps } from './ui/types';
 
 const Container = styled.div`
   position: relative;
@@ -141,14 +130,12 @@ const PluginsLayout = ({ children, seo, sidebarLayout }: Props) => {
   return (
     <ThemeProvider>
       <Container>
-
         <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
-          <DocsNavigation
-            isSidebarOpen={isSidebarOpen}
-            onSidebarOpen={setIsSidebarOpen}
+          <Banner
+            content={bannerContent}
+            renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
           />
-          <AlphaBanner />
-
+          <DocsNavigation isSidebarOpen={isSidebarOpen} onSidebarOpen={setIsSidebarOpen} />
         </Header>
 
         <SEO seo={seo} />
