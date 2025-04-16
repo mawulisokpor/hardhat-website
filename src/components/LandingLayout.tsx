@@ -3,7 +3,7 @@ import { styled } from 'linaria/react';
 
 import SEO from './SEO';
 import LandingFooter from './LandingFooter';
-import { headerTotalHeight, media, ThemeProvider, tm, tmDark, tmSelectors } from '../themes';
+import { media, ThemeProvider, tm, tmDark, tmSelectors } from '../themes';
 import { bannerContent, menuItemsList, socialsItems } from '../config';
 import GDPRNotice from './GDPRNotice';
 import DocsNavigation from './DocsNavigation';

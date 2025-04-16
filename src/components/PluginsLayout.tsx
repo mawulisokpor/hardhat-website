@@ -9,7 +9,6 @@ import { IDocumentationSidebarStructure, ISeo } from './types';
 import { bannerContent, menuItemsList, socialsItems } from '../config';
 import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
 import MobileSidebarMenu from './MobileSidebarMenu';
-import AlphaBanner from './ui/AlphaBanner';
 import Banner, { DefaultBanner } from './ui/Banner';
 import { DefaultBannerProps } from './ui/types';
 
