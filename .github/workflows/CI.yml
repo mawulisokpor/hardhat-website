@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: website
+      - name: Clone Hardhat's repo
+        uses: actions/checkout@v4
+        with:
+          repository: NomicFoundation/hardhat
+          path: websites-version-of-hardhat
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          run_install: false
+      - uses: actions/setup-node@v4
+        id: setup-node
+        with:
+          node-version: "22"
+          cache: "pnpm"
+          cache-dependency-path: |
+            website/pnpm-lock.yaml
+            websites-version-of-hardhat/pnpm-lock.yaml
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline
+        working-directory: website
+      - name: Lint the docs
+        run: pnpm lint
+        working-directory: website
+      - name: Build the docs
+        run: pnpm build
+        working-directory: website

@@ -10,7 +10,8 @@
     "postbuild": "next-sitemap",
     "build:test": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "eslint src -f unix",
+    "lint": "eslint src -f unix && pnpm prettier --check '**/*.{js,ts,tsx,md,yml,yaml}'",
+    "lint:fix": "eslint src -f unix --fix && pnpm prettier --write '**/*.{js,ts,tsx,md,yml,yaml}'",
     "postinstall": "bash scripts/clone-and-build-hardhat.sh"
   },
   "dependencies": {
