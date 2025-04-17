@@ -53,10 +53,10 @@ const StyledH2 = styled.h2`
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
   & .hash {
-    margin-left: -22px;
-
+    margin-left: -24px;
+    opacity: 0;
     cursor: pointer;
-    color: ${tm(({ colors }) => colors.accent700)};
+    color: ${tm(({ colors }) => colors.accent900)};
   }
   &:hover .hash {
     opacity: 1;
@@ -89,7 +89,7 @@ const StyledH3 = styled.h3`
     margin-right: 8px;
     opacity: 0;
     cursor: pointer;
-    color: ${tm(({ colors }) => colors.accent700)};
+    color: ${tm(({ colors }) => colors.accent900)};
   }
   &:hover .hash {
     opacity: 1;
@@ -130,7 +130,7 @@ const StyledH4 = styled.h4`
     margin-right: 4px;
     opacity: 0;
     cursor: pointer;
-    color: ${tm(({ colors }) => colors.accent700)};
+    color: ${tm(({ colors }) => colors.accent900)};
   }
   &:hover .hash {
     opacity: 1;
@@ -160,7 +160,7 @@ const StyledH5 = styled.h5`
     margin-right: 4px;
     opacity: 0;
     cursor: pointer;
-    color: ${tm(({ colors }) => colors.accent700)};
+    color: ${tm(({ colors }) => colors.accent900)};
   }
   &:hover .hash {
     opacity: 1;

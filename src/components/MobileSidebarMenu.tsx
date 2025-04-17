@@ -146,10 +146,11 @@ const ModalContainer = styled.div<{ isModalOpen: boolean }>`
   position: absolute;
   width: 100%;
   top: 0px;
-  transition: all ease-out 0.25s;
+  transition: transform ease-out 0.25s;
   font-family: Roboto, sans-serif;
   z-index: 50;
-  left: ${({ isModalOpen }) => (isModalOpen ? '0px' : '-120vw')};
+  left: 0;
+  transform: translateX(${({ isModalOpen }) => (isModalOpen ? '0px' : '-100%')});
   color: ${tm(({ colors }) => colors.neutral800)};
   background-color: ${tm(({ colors }) => colors.neutral0)};
 

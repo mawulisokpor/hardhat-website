@@ -38,7 +38,13 @@ const BannerContainer = styled.section`
     }
   }
   ${media.xs} {
-    letter-spacing: 0.044em;
+    letter-spacing: 0.03em;
+  }
+  ${media.tablet} {
+    letter-spacing: 0.04em;
+  }
+  ${media.laptop} {
+    letter-spacing: 0.05em;
   }
 `;
 
@@ -65,10 +71,9 @@ const BracesContainer = styled.div`
     vertical-align: middle;
     ${media.tablet} {
       font-size: 12px;
+      padding: 0px 33px;
     }
-    ${media.md} {
-      padding: 0px 16px;
-    }
+
     ${media.laptop} {
       font-size: 16px;
     }

@@ -85,12 +85,13 @@ export const SidebarContainer = styled.aside<{ isSidebarOpen: boolean }>`
   position: fixed;
 
   top: ${headerTotalHeight};
-  left: ${({ isSidebarOpen }) => (isSidebarOpen ? '0px' : '-120vw')};
+  left: 0;
+  transform: translateX(${({ isSidebarOpen }) => (isSidebarOpen ? '0px' : '-100%')});
   height: calc(100svh - ${headerTotalHeight});
 
   display: flex;
   overflow-y: auto;
-  transition: left ease-out 0.25s;
+  transition: transform ease-out 0.25s;
   z-index: 50;
   background-color: ${tm(({ colors }) => colors.neutral0)};
 

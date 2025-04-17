@@ -321,6 +321,7 @@ const NewsLink = styled.a`
   font-weight: 600;
   margin-top: auto;
   letter-spacing: 0.02em;
+  line-height: 22px;
 
   color: ${tm(({ colors }) => colors.gray8b)};
   span {
@@ -337,7 +338,7 @@ const NewsLink = styled.a`
     height: 12px;
     display: inline-block;
     margin-left: 4px;
-    top: 1px;
+    top: 5px;
     position: relative;
     vertical-align: top;
   }
@@ -374,13 +375,14 @@ const NewsLink = styled.a`
     .icon {
       width: 16px;
       height: 16px;
-      top: 1px;
+      top: 3px;
     }
   }
   ${media.desktop} {
     font-size: 16px;
+    line-height: 26px;
     .icon {
-      top: 2px;
+      top: 4px;
     }
   }
 `;
