@@ -96,7 +96,7 @@ export const SidebarContainer = styled.aside<{ isSidebarOpen: boolean }>`
   background-color: ${tm(({ colors }) => colors.neutral0)};
 
   ${media.laptop} {
-    left: 0;
+    transform: none;
   }
 
   .landing & {
