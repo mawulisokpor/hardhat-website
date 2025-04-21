@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { styled } from "linaria/react";
 import { media, tm, tmDark, tmSelectors } from "../../themes";
 import { generateTabsGroupType, GlobalTabsContext } from "../../global-tabs";
@@ -79,9 +79,13 @@ const StyledTabsGroup = styled.div<{ selectedTab: string }>`
 `;
 
 const TabsGroup = ({ children, options }: ITabsGroup) => {
+  const optionsArray = options.split(",").map((option) => option.trim());
   const { tabsState, changeTab } = useContext(GlobalTabsContext);
   const type = useMemo(() => generateTabsGroupType(options), [options]);
-  const selectedTab = tabsState[type];
+  const selectedTab =
+    tabsState[type] && optionsArray.includes(tabsState[type])
+      ? tabsState[type]
+      : optionsArray[0];
   const childrenWithProps = React.Children.map(children, (child) => {
     // Checking isValidElement is the safe way and avoids a typescript
     // error too.
@@ -91,26 +95,33 @@ const TabsGroup = ({ children, options }: ITabsGroup) => {
     return child;
   });
 
+  useEffect(() => {
+    if (
+      !tabsState[type] ||
+      (!optionsArray.includes(tabsState[type]) && selectedTab)
+    ) {
+      changeTab(type, selectedTab);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <StyledTabsGroup selectedTab={selectedTab}>
       <StyledTabsContainer>
-        {options
-          .split(",")
-          .map((option) => option.trim())
-          .map((option: string) => {
-            return (
-              <StyledTabButton
-                key={option}
-                data-selected={selectedTab === option}
-                value={option}
-                onClick={() => {
-                  changeTab(type, option);
-                }}
-              >
-                {option}
-              </StyledTabButton>
-            );
-          })}
+        {optionsArray.map((option: string) => {
+          return (
+            <StyledTabButton
+              key={option}
+              data-selected={selectedTab === option}
+              value={option}
+              onClick={() => {
+                changeTab(type, option);
+              }}
+            >
+              {option}
+            </StyledTabButton>
+          );
+        })}
       </StyledTabsContainer>
       {childrenWithProps}
     </StyledTabsGroup>

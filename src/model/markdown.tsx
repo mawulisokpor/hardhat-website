@@ -193,8 +193,6 @@ function validateTabs() {
         );
       }
     });
-    const tabsConfigPath = `${TEMP_PATH}tabsConfig.json`;
-    fs.writeFileSync(tabsConfigPath, JSON.stringify(initialTabsState));
   };
 }
 
