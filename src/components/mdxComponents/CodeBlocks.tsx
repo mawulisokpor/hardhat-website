@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "linaria/react";
 import { media, tm, tmDark, tmSelectors } from "../../themes";
 
@@ -58,6 +58,7 @@ const StyledPre = styled.pre`
   border-radius: 6px;
   overflow: auto;
   border: 1px solid ${tm(({ colors }) => colors.transparent)};
+  position: relative;
   & code {
     padding: 0;
     color: ${tm(({ colors }) => colors.preCodeColor)};
@@ -118,6 +119,56 @@ const ContentWrapper = styled.span`
   }
 `;
 
+const CopyButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: ${tm(({ colors }) => colors.codeBlockBackground)};
+  border: 1px solid ${tm(({ colors }) => colors.transparent)};
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s;
+  color: ${tm(({ colors }) => colors.preCodeColor)};
+  z-index: 10;
+  
+  &:hover {
+    opacity: 1;
+  }
+  
+  &[data-copied="true"] {
+    opacity: 1;
+    background: ${tm(({ colors }) => colors.gray7)};
+    color: white;
+  }
+  
+  ${tmSelectors.dark} {
+    background: ${tmDark(({ colors }) => colors.codeBlockBackground)};
+    border: 1px solid ${tmDark(({ colors }) => colors.codeBlockBorder || colors.transparent)};
+    color: ${tmDark(({ colors }) => colors.preCodeColor)};
+    
+    &[data-copied="true"] {
+      background: ${tmDark(({ colors }) => colors.gray7)};
+      color: white;
+    }
+  }
+  
+  ${media.mqDark} {
+    ${tmSelectors.auto} {
+      background: ${tmDark(({ colors }) => colors.codeBlockBackground)};
+      border: 1px solid ${tmDark(({ colors }) => colors.codeBlockBorder || colors.transparent)};
+      color: ${tmDark(({ colors }) => colors.preCodeColor)};
+      
+      &[data-copied="true"] {
+        background: ${tmDark(({ colors }) => colors.gray7)};
+        color: white;
+      }
+    }
+  }
+`;
+
 const Code = ({ children }: CodeProps) => {
   return (
     <StyledCode>
@@ -127,7 +178,29 @@ const Code = ({ children }: CodeProps) => {
 };
 
 const Pre = ({ children, className }: PreProps) => {
-  return <StyledPre className={className}>{children}</StyledPre>;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    const code = children.props.children;
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(err => {
+      console.error("Failed to copy text: ", err);
+    });
+  };
+
+  return (
+    <StyledPre className={className}>
+      <CopyButton
+        onClick={handleCopy}
+        data-copied={copied}
+      >
+        {copied ? "Copied!" : "Copy"}
+      </CopyButton>
+      {children}
+    </StyledPre>
+  );
 };
 
 const CodeBlocks = {
