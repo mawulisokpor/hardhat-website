@@ -96,6 +96,8 @@ const TabsGroup = ({ children, options }: ITabsGroup) => {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log({ optionsArray, type, selectedTab, curr: tabsState[type] });
     if (
       !tabsState[type] ||
       (!optionsArray.includes(tabsState[type]) && selectedTab)
