@@ -102,10 +102,11 @@ const TabsGroup = ({ children, options }: ITabsGroup) => {
       !tabsState[type] ||
       (!optionsArray.includes(tabsState[type]) && selectedTab)
     ) {
+      // eslint-disable-next-line no-console
+      console.log("change tab", type, selectedTab);
       changeTab(type, selectedTab);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [changeTab, optionsArray, selectedTab, tabsState, type]);
 
   return (
     <StyledTabsGroup selectedTab={selectedTab}>
