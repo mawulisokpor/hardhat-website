@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { useRouter } from "next/router";
 
 interface Props {
   seo: {
@@ -12,6 +13,14 @@ const commonTitlePart = ' | Ethereum development environment for professionals b
 
 const SEO = ({ seo }: Props) => {
   const title = `${seo.title}${commonTitlePart}`;
+  const router = useRouter();
+
+  const [asPath] = router.asPath.split(/[?#]/);
+  let canonicalPath = asPath.replace(/\.mdx?$/, '');
+  canonicalPath = canonicalPath.replace(/\/index$/, '');
+  if (canonicalPath === '') canonicalPath = '/';
+  const canonicalUrl = `https://hardhat.org${canonicalPath}`;
+
   return (
     <Head>
       <title>{title}</title>
@@ -23,8 +32,10 @@ const SEO = ({ seo }: Props) => {
       <meta property='og:title' content={title} />
       <meta property='og:description' content={seo.description} />
       <meta name='twitter:card' content='summary_large_image' />
+      <link rel='canonical' href={canonicalUrl} />
     </Head>
   );
 };
+
 
 export default SEO;

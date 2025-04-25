@@ -32,6 +32,17 @@ export const withIndexFile = (docPath: string[]): string => {
   return mdFilePath;
 };
 
+export const normilizePath = (docPath: string[]): string[] => {
+  if (!docPath || docPath.length === 0) return [];
+
+  const normalized = [...docPath];
+
+  const last = normalized[normalized.length - 1];
+  normalized[normalized.length - 1] = last.replace(/\.md$/, "");
+
+  return normalized;
+};
+
 export const withCodeElementWrapper = (
   content: string,
   extension: string = '',
@@ -277,6 +288,9 @@ export const getPathParamsByFile = (pathname: string): string[] => {
   const fileBase = pathname.replace(/\.mdx?$/, '');
   return withIndexURL(fileBase);
 };
+export const getPathParamsByFileMd = (pathname: string): string[] => {
+  return withIndexURL(pathname);
+};
 
 export const getHrefByFile = (pathname: string): string => {
   const params = getPathParamsByFile(pathname);
@@ -284,11 +298,20 @@ export const getHrefByFile = (pathname: string): string => {
 };
 
 export const getMDPaths = (): Array<{ params: { docPath: string[] } }> =>
-  getMDFiles().map((pathname) => ({
-    params: {
-      docPath: getPathParamsByFile(pathname),
-    },
-  }));
+  getMDFiles()
+    .map((pathname) => [
+      {
+        params: {
+          docPath: getPathParamsByFile(pathname),
+        },
+      },
+      {
+        params: {
+          docPath: getPathParamsByFileMd(pathname),
+        },
+      },
+    ])
+    .flat();
 
 export const getSidebarConfig = () => {
   try {

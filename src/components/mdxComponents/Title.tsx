@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react';
-import { styled } from 'linaria/react';
-import { media, tm, tmDark, tmSelectors } from '../../themes';
-import MDLink from './MDLink';
+import React, { ReactElement } from "react";
+import { styled } from "linaria/react";
+import GithubSlugger from "github-slugger";
+import { media, tm, tmDark, tmSelectors } from "../../themes";
+import MDLink from "./MDLink";
 
 export interface Props {
   children: ReactElement | string;
@@ -179,16 +180,20 @@ const StyledH5 = styled.h5`
   }
 `;
 
-const buildIdFromChildren = function getId(children: string | ReactElement): string {
-  if (typeof children === 'string') {
-    return children.toString().toLowerCase().replace(/\s+/g, '-');
+const slugger = new GithubSlugger();
+const buildIdFromChildren = function getId(
+  children: string | ReactElement
+): string {
+  if (typeof children === "string") {
+    slugger.reset();
+    return slugger.slug(children);
   }
   if (Array.isArray(children)) {
     return children
       .map((child) => {
         return getId(child);
       })
-      .join('-');
+      .join(" ");
   }
 
   return getId(children.props.children);
@@ -198,7 +203,7 @@ const H1 = ({ children }: Props): JSX.Element => {
   return (
     <StyledH1 id={buildIdFromChildren(children)}>
       <a href={`#${buildIdFromChildren(children)}`}>
-        <span className='hash'>#</span>
+        <span className="hash">#</span>
         {children}
       </a>
     </StyledH1>
@@ -209,17 +214,17 @@ const H2 = ({ children }: Props) => {
   return (
     <StyledH2 id={buildIdFromChildren(children)}>
       <a href={`#${buildIdFromChildren(children)}`}>
-        <span className='hash'>#</span> {children}
+        <span className="hash">#</span> {children}
       </a>
     </StyledH2>
   );
 };
 
 const H3 = ({ children }: Props) => {
-  if (typeof children !== 'string' && children.type === MDLink) {
+  if (typeof children !== "string" && children.type === MDLink) {
     return (
-      <StyledH3 id={children.props.href.replace(/^#/g, '')}>
-        <span className='hash'>#</span>
+      <StyledH3 id={children.props.href.replace(/^#/g, "")}>
+        <span className="hash">#</span>
         {children}
       </StyledH3>
     );
@@ -228,7 +233,7 @@ const H3 = ({ children }: Props) => {
   return (
     <StyledH3 id={buildIdFromChildren(children)}>
       <a href={`#${buildIdFromChildren(children)}`}>
-        <span className='hash'>#</span>
+        <span className="hash">#</span>
         {children}
       </a>
     </StyledH3>
@@ -239,7 +244,7 @@ const H4 = ({ children }: Props) => {
   return (
     <StyledH4 id={buildIdFromChildren(children)}>
       <a href={`#${buildIdFromChildren(children)}`}>
-        <span className='hash'>#</span>
+        <span className="hash">#</span>
         {children}
       </a>
     </StyledH4>
@@ -250,7 +255,7 @@ const H5 = ({ children }: Props) => {
   return (
     <StyledH5 id={buildIdFromChildren(children)}>
       <a href={`#${buildIdFromChildren(children)}`}>
-        <span className='hash'>#</span>
+        <span className="hash">#</span>
         {children}
       </a>
     </StyledH5>

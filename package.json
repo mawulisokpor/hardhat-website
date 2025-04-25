@@ -17,6 +17,7 @@
     "@callstack/react-theme-provider": "^3.0.7",
     "@docsearch/react": "3",
     "@gsap/react": "^2.1.2",
+    "github-slugger": "^2.0.0",
     "glob": "^8.0.1",
     "gray-matter": "^4.0.3",
     "gsap": "^3.12.7",
