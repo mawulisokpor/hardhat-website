@@ -16,6 +16,7 @@ const StyledH1 = styled.h1`
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
+  scroll-margin-top: 130px;
   & .hash {
     margin-left: -30px;
     margin-right: 7px;
@@ -53,6 +54,7 @@ const StyledH2 = styled.h2`
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
+  scroll-margin-top: 130px;
   & .hash {
     margin-left: -24px;
     opacity: 0;
@@ -85,6 +87,7 @@ const StyledH3 = styled.h3`
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
+  scroll-margin-top: 130px;
   & .hash {
     margin-left: -24px;
     margin-right: 8px;
@@ -126,6 +129,7 @@ const StyledH4 = styled.h4`
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
+  scroll-margin-top: 130px;
   & .hash {
     margin-left: -16px;
     margin-right: 4px;
@@ -156,6 +160,7 @@ const StyledH5 = styled.h5`
   line-height: 1.25;
   letter-spacing: 0.5px;
   color: ${tm(({ colors }) => colors.neutral800)};
+  scroll-margin-top: 130px;
   & .hash {
     margin-left: -16px;
     margin-right: 4px;
