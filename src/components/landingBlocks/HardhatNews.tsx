@@ -1,22 +1,22 @@
-import React from "react";
-import { styled } from "linaria/react";
-import Section from "../Section";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
-import LandingContainer from "../LandingContainer";
+import React from 'react';
+import { styled } from 'linaria/react';
+import Section from '../Section';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
+import LandingContainer from '../LandingContainer';
 
 export type NewsCardProps = {
-  image: string;
+  feature_image: string;
   title: string;
-  text: string;
-  link?: string;
+  excerpt: string;
+  url?: string;
 };
 
-type Props = React.PropsWithChildren<{
+type HardhatNewsType = {
   content: {
     title: string;
-    cards: NewsCardProps[];
+    posts?: NewsCardProps[];
   };
-}>;
+};
 
 const Container = styled.div`
   width: 100%;
@@ -235,6 +235,7 @@ const CardLink = styled.a`
   height: 100%;
   position: absolute;
   top: 0;
+  z-index: 2;
   left: 0;
 `;
 
@@ -269,36 +270,30 @@ const Line = styled.div`
   }
 `;
 
-const NewsCard: React.FC<NewsCardProps> = ({ image, title, text, link }) => {
+const NewsCard: React.FC<NewsCardProps> = ({ feature_image, title, excerpt, url }) => {
   return (
     <Card>
-      {link && <CardLink href={link} />}
+      {url && <CardLink href={url} target='_blank' rel='noopener noreferrer' />}
       <ImageContainer>
-        <CardImage src={image} alt={title} />
+        <CardImage src={feature_image} alt={title} />
       </ImageContainer>
       <TextContainer>
         <CardTitle>{title}</CardTitle>
-        <CardText>{text}</CardText>
+        <CardText>{excerpt}</CardText>
       </TextContainer>
     </Card>
   );
 };
 
-const HardhatNews = ({ content }: Props) => {
+const HardhatNews = ({ content }: HardhatNewsType) => {
   return (
     <Section clearPadding>
       <Container>
         <LandingContainer>
           <Title>{content.title}</Title>
           <CardsContainer>
-            {content.cards.map((card) => (
-              <NewsCard
-                key={card.link}
-                image={card.image}
-                title={card.title}
-                text={card.text}
-                link={card.link}
-              />
+            {content.posts?.map((card: NewsCardProps) => (
+              <NewsCard key={card.title} {...card} />
             ))}
           </CardsContainer>
         </LandingContainer>

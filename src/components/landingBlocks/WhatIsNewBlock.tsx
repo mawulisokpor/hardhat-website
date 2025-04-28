@@ -4,20 +4,22 @@ import Image from 'next/image';
 import Section from '../Section';
 import { media, tm, tmDark, tmSelectors } from '../../themes';
 import LandingContainer from '../LandingContainer';
-
-import { CTAType } from '../ui/types';
 import ArrowRight from '../../assets/icons/arrow-right';
 import BracketsImage from '../../assets/why-we/Brackets';
+import HardhatNewsImage from '../../assets/what-is-new/Hardhat-news.svg';
 
-type Props = {
-  content: { title: string; news: NewsType[] };
+type WhatIsNewBlockType = {
+  content: {
+    title: string;
+    releases?: NewsType[];
+  };
 };
 
 export type NewsType = {
   imageUrl?: string;
-  title: string;
-  text: string;
-  cta: CTAType;
+  tag_name: string;
+  body: string;
+  url: string;
 };
 
 const Container = styled.div`
@@ -277,6 +279,7 @@ const NewsTitle = styled.h3`
   font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.05em;
+  word-wrap: break-word;
   color: ${tm(({ colors }) => colors.gray9)};
   ${tmSelectors.dark} {
     color: ${tmDark(({ colors }) => colors.gray9)};
@@ -301,6 +304,12 @@ const NewsText = styled.div`
   line-height: 1.5;
   letter-spacing: 0.045em;
   color: ${tm(({ colors }) => colors.gray7)};
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   ${tmSelectors.dark} {
     color: ${tmDark(({ colors }) => colors.gray7)};
   }
@@ -322,6 +331,7 @@ const NewsLink = styled.a`
   margin-top: auto;
   letter-spacing: 0.02em;
   line-height: 22px;
+  word-wrap: break-word;
 
   color: ${tm(({ colors }) => colors.gray8b)};
   span {
@@ -386,21 +396,21 @@ const NewsLink = styled.a`
     }
   }
 `;
-const NewsCard = ({ title, text, cta, imageUrl }: NewsType) => {
+const NewsCard = ({ tag_name, html_url, body, isFirst }: any) => {
   return (
     <News>
       <NewsHeader className='news-header'>
-        {imageUrl && (
+        {isFirst && (
           <NewsImage>
-            <Image src={imageUrl} alt={title} />
+            <Image src={HardhatNewsImage} alt={tag_name} />
           </NewsImage>
         )}
-        <NewsTitle className='news-title'>{title}</NewsTitle>
+        <NewsTitle className='news-title'>{tag_name}</NewsTitle>
       </NewsHeader>
       <NewsContent className='news-content'>
-        <NewsText>{text}</NewsText>
-        <NewsLink href={cta.url}>
-          <span>{cta.title}</span>
+        <NewsText>{body}</NewsText>
+        <NewsLink href={html_url} target='_blank'>
+          <span>Learn more about the {tag_name}</span>
           <span>
             &nbsp;
             <ArrowRight />
@@ -411,7 +421,7 @@ const NewsCard = ({ title, text, cta, imageUrl }: NewsType) => {
   );
 };
 
-const WhatIsNewBlock = ({ content }: Props) => {
+const WhatIsNewBlock = ({ content }: WhatIsNewBlockType) => {
   return (
     <Section clearPadding>
       <Container>
@@ -421,8 +431,8 @@ const WhatIsNewBlock = ({ content }: Props) => {
           </Brackets>
           <Title>{content.title}</Title>
           <ListNews>
-            {content?.news.map((item: NewsType) => (
-              <NewsCard key={item.title} {...item} />
+            {content.releases?.map((item: NewsType, index: number) => (
+              <NewsCard key={item.tag_name} {...item} isFirst={index === 0} />
             ))}
           </ListNews>
           <Brackets className='brackets-bottom'>
