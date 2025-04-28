@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { styled } from "linaria/react";
-import Section from "../Section";
-import LandingContainer from "../LandingContainer";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
-import backgroundImageLight from "../../assets/email-form/bg-light-big.svg";
-import backgroundImageDark from "../../assets/email-form/bg-dark-big.svg";
-import Lines from "../../assets/email-form/lines";
-import CTA from "../ui/CTA";
+import React, { useState } from 'react';
+import { styled } from 'linaria/react';
+import Section from '../Section';
+import LandingContainer from '../LandingContainer';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
+import backgroundImageLight from '../../assets/email-form/bg-light-big.svg';
+import backgroundImageDark from '../../assets/email-form/bg-dark-big.svg';
+import Lines from '../../assets/email-form/lines';
+import CTA from '../ui/CTA';
 
 // Props interface for the component
 export interface EmailFormProps {
@@ -83,7 +83,7 @@ const FormContainer = styled.div`
 `;
 
 const FormTitle = styled.h2`
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.35;
@@ -155,7 +155,7 @@ const Input = styled.input`
   padding: 0 24px;
   background-color: ${tm(({ colors }) => colors.neutral100)};
   border: 1px solid ${tm(({ colors }) => colors.neutral700)};
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   font-size: 16px;
   line-height: 30px;
   letter-spacing: 0.03em;
@@ -205,18 +205,26 @@ const Input = styled.input`
 
 const ErrorMessage = styled.div`
   position: absolute;
-  bottom: -24px;
+  bottom: -16px;
   left: 0;
   color: red;
-  font-size: 14px;
-  font-family: "Source Code Pro", monospace;
+  font-size: 10px;
+  font-family: 'Source Code Pro', monospace;
+  ${media.xs} {
+    font-size: 12px;
+    bottom: -18px;
+  }
+  ${media.laptop} {
+    font-size: 14px;
+    bottom: -24px;
+  }
 `;
 
 const SuccessMessage = styled.div`
   margin-top: 16px;
   color: ${tm(({ colors }) => colors.tipBorderColor)};
   font-size: 16px;
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   text-align: center;
 `;
 
@@ -245,32 +253,32 @@ const LinesContainer = styled.div`
   }
 `;
 
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+};
+
 const EmailForm: React.FC<EmailFormProps> = ({ endpoint }) => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const validateEmail = (e: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(e);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     // Reset states
-    setError("");
+    setError('');
     setIsSuccess(false);
 
     // Validate email
     if (!email.trim()) {
-      setError("Email address is required");
+      setError('Email address is required');
       return;
     }
 
     if (!validateEmail(email)) {
-      setError("Please enter a valid email address");
+      setError('Please enter a valid email address');
       return;
     }
 
@@ -278,23 +286,23 @@ const EmailForm: React.FC<EmailFormProps> = ({ endpoint }) => {
 
     try {
       const response = await fetch(endpoint, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit email");
+        throw new Error('Failed to submit email');
       }
 
       // Success
-      setEmail("");
+      setEmail('');
       setIsSuccess(true);
     } catch (err) {
-      console.error("Error submitting email:", err);
-      setError("Failed to submit. Please try again later.");
+      console.error('Error submitting email:', err);
+      setError('Failed to submit. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -307,39 +315,32 @@ const EmailForm: React.FC<EmailFormProps> = ({ endpoint }) => {
       </LinesContainer>
       <FormSection>
         <LandingContainer>
-          <BackgroundImage
-            image={backgroundImageLight.src}
-            imageDark={backgroundImageDark.src}
-          />
+          <BackgroundImage image={backgroundImageLight.src} imageDark={backgroundImageDark.src} />
           <FormContainer>
-            <FormTitle>
-              Tell me about new product features as they come out
-            </FormTitle>
+            <FormTitle>Tell me about new product features as they come out</FormTitle>
             <FormRow>
               <InputContainer>
                 <Input
-                  type="email"
-                  placeholder="email address*"
+                  type='email'
+                  placeholder='email address*'
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+                    setEmail(value);
+
+                    if (error && (validateEmail(value) || value.trim() === '')) {
+                      setError('');
+                    }
+                  }}
                   disabled={isSubmitting}
-                  aria-label="Email address"
+                  aria-label='Email address'
                 />
                 {error && <ErrorMessage>{error}</ErrorMessage>}
               </InputContainer>
-              <CTA
-                variant="lg"
-                disabled={isSubmitting}
-                onClick={(e) => handleSubmit(e)}
-              >
-                {isSubmitting ? "Submitting..." : "Get started"}
+              <CTA variant='lg' disabled={isSubmitting} onClick={(e) => handleSubmit(e)}>
+                {isSubmitting ? 'Submitting...' : 'Get started'}
               </CTA>
             </FormRow>
-            {isSuccess && (
-              <SuccessMessage>
-                Thank you! You are now subscribed to our updates.
-              </SuccessMessage>
-            )}
+            {isSuccess && <SuccessMessage>Thank you! You are now subscribed to our updates.</SuccessMessage>}
           </FormContainer>
         </LandingContainer>
       </FormSection>

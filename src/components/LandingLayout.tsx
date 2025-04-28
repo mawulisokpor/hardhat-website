@@ -22,6 +22,7 @@ const Container = styled.div`
   -webkit-font-smoothing: antialiased;
   background-color: ${tm(({ colors }) => colors.neutral0)};
   min-width: 320px;
+  width: 100%;
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.neutral0)};
   }

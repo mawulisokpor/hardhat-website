@@ -34,11 +34,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
-  height: 100vh;
   min-width: 320px;
+
+  width: 100%;
 `;
 
 const Main = styled.main`
@@ -175,14 +175,24 @@ export const Header = styled.header`
   }
 
   ${tmSelectors.dark} {
-    &.is-sidebar-open:before {
+    &.is-sidebar-open:before,
+    &.with-line:before {
       background-color: ${tmDark(({ colors }) => colors.gray3)};
     }
   }
   ${media.mqDark} {
     ${tmSelectors.auto} {
-      &.is-sidebar-open:before {
+      &.is-sidebar-open:before,
+      &.with-line:before {
         background-color: ${tmDark(({ colors }) => colors.gray3)};
+      }
+    }
+  }
+
+  ${media.laptop} {
+    &.with-line {
+      &:before {
+        display: block;
       }
     }
   }
@@ -195,6 +205,7 @@ const View = styled.section`
   justify-content: space-between;
   padding-top: 24px;
   width: 100%;
+  height: 100%;
 
   ${media.laptop} {
     padding-left: 366px;
@@ -291,7 +302,7 @@ const DocumentationLayout = ({ mdxSource, seo, sidebarLayout, footerNavigation }
   return (
     <ThemeProvider>
       <Container>
-        <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
+        <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''} with-line`}>
           <Banner
             content={bannerContent}
             renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}

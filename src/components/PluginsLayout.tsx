@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import SEO from './SEO';
 import DocsNavigation from './DocsNavigation';
-import { tm, tmSelectors, tmDark, media, ThemeProvider, headerTotalHeight } from '../themes';
+import { tm, tmSelectors, tmDark, media, ThemeProvider } from '../themes';
 import { IDocumentationSidebarStructure, ISeo } from './types';
 import { bannerContent, menuItemsList, socialsItems } from '../config';
 import { Header, MobileSidebarMenuMask, SidebarContainer } from './DocumentationLayout';
@@ -21,7 +21,7 @@ const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
-  height: 100vh;
+  width: 100%;
   min-width: 320px;
 `;
 
@@ -55,8 +55,6 @@ const View = styled.section`
   align-items: center;
   padding-top: 24px;
   width: 100%;
-  height: calc(100vh - ${headerTotalHeight});
-  overflow-y: scroll;
 `;
 const Content = styled.section`
   display: flex;
@@ -128,7 +126,7 @@ const PluginsLayout = ({ children, seo, sidebarLayout }: Props) => {
   return (
     <ThemeProvider>
       <Container>
-        <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''}`}>
+        <Header className={`${isSidebarOpen ? 'is-sidebar-open' : ''} `}>
           <Banner
             content={bannerContent}
             renderContent={({ content }: DefaultBannerProps) => <DefaultBanner content={content} />}
