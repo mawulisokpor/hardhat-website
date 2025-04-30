@@ -112,6 +112,7 @@ const ListNews = styled.div`
 `;
 
 const News = styled.article`
+  position: relative;
   width: 100%;
   min-width: 100px;
   min-height: 202px;
@@ -357,6 +358,16 @@ const NewsLink = styled.a`
     .icon {
       color: #040405;
     }
+  }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   ${tmSelectors.dark} {
