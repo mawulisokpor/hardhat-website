@@ -1,21 +1,24 @@
-import { NewsType } from '../components/landingBlocks/WhatIsNewBlock';
+import { NewsType } from "../components/landingBlocks/WhatIsNewBlock";
 
 export default async function getHardHatReleases() {
-  try {
-    const response = await fetch('https://api.github.com/repos/NomicFoundation/hardhat/releases');
+  const response = await fetch(
+    "https://api.github.com/repos/NomicFoundation/hardhat/releases"
+  );
 
-    if (!response.ok) {
-      console.error(`GitHub API error (releases): ${response.status}`);
-      return [];
+  if (!response.ok) {
+    throw Error(`GitHub API error (releases): ${response.status}`);
+  }
+
+  const releases = await response.json();
+  return releases.slice(0, 3).map((release: NewsType) => {
+    const bodyText = release.body?.split("###")[0]?.trim();
+
+    if (!bodyText) {
+      throw Error(
+        `Extracting description text from release failed:\n${release.body}`
+      );
     }
 
-    const releases = await response.json();
-    return releases.slice(0, 3).map((release: NewsType) => {
-      const bodyText = release.body?.split('###')[0] || '';
-      return { ...release, body: bodyText };
-    });
-  } catch (error) {
-    console.error('Error fetching Hardhat releases:', error);
-    return [];
-  }
+    return { ...release, body: bodyText };
+  });
 }
