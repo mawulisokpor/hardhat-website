@@ -39,7 +39,7 @@ const Home = ({ releases, posts }: HomePageType) => {
 
       {/* <EmailForm endpoint={homepageContent.emailFormContent.endpoint} /> */}
 
-      <form data-members-form>
+      <form data-members-form="subscribe">
         <input
           data-members-label
           type="hidden"
