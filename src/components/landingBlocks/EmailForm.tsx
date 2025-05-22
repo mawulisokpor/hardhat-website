@@ -159,11 +159,8 @@ const LinesContainer = styled.div`
   }
 `;
 
-// This will be the container where the Ghost script injects its form
 const GhostFormContainer = styled.div`
-  width: 100%; // Or adjust as needed
-  display: flex;
-  justify-content: center;
+  width: 400px;
 `;
 
 const EmailForm: React.FC<EmailFormProps> = () => {
