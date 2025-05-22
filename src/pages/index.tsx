@@ -8,6 +8,7 @@ import WhatIsNewBlock, {
 import HardhatNews from "../components/landingBlocks/HardhatNews";
 import getPosts from "../lib/getPosts";
 import getHardHatReleases from "../lib/getHardHatReleases";
+import EmailForm from "../components/landingBlocks/EmailForm";
 
 type HomePageType = {
   releases: NewsType[];
@@ -37,39 +38,7 @@ const Home = ({ releases, posts }: HomePageType) => {
         content={{ title: homepageContent.hardhatNewsContent.title, posts }}
       />
 
-      {/* <EmailForm endpoint={homepageContent.emailFormContent.endpoint} /> */}
-
-      <form data-members-form="subscribe">
-        <input
-          data-members-label
-          type="hidden"
-          value="Turntable buying guide"
-        />
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>
-          Name
-          <input data-members-name />
-        </label>
-        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label>
-          Email
-          <input data-members-email type="email" required />
-        </label>
-        {/* eslint-disable-next-line react/button-has-type */}
-        <button>Sign up</button>
-        <p className="loading">⏲️ Please hold while we check our collection.</p>
-        <p className="error">❗Somethings gone wrong. Please try again.</p>
-        <p className="success">🎸 Success! Check your inbox for our email.</p>
-      </form>
-
-      <script
-        src="https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js"
-        data-button-color="#000000"
-        data-button-text-color="#FFFFFF"
-        data-site="https://blog.nomic.foundation/"
-        data-locale="en"
-        async
-      />
+      <EmailForm />
     </LandingLayout>
   );
 };
