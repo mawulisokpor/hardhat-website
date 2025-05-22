@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "linaria/react";
+import Script from "next/script";
 import Section from "../Section";
 import LandingContainer from "../LandingContainer";
 import { media, tm, tmDark, tmSelectors } from "../../themes";
@@ -178,13 +179,13 @@ const EmailForm: React.FC<EmailFormProps> = () => {
               Tell me about new product features as they come out
             </FormTitle>
             <FormRow>
-              <script
+              <Script
                 src="https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js"
+                strategy="afterInteractive"
                 data-button-color="#000000"
                 data-button-text-color="#FFFFFF"
                 data-site="https://blog.nomic.foundation/"
                 data-locale="en"
-                async
               />
               {/*  <InputContainer> */}
               {/*    <Input */}
