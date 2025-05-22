@@ -30,6 +30,16 @@ const Home = ({ releases, posts }: HomePageType) => {
       <WhatIsNewBlock content={{ title: homepageContent.whatIsNewBlockContent.title, releases }} />
       <HardhatNews content={{ title: homepageContent.hardhatNewsContent.title, posts }} />
       <EmailForm endpoint={homepageContent.emailFormContent.endpoint} />
+      <div style="min-height: 58px;max-width: 440px;margin: 0 auto;width: 100%">
+        <script
+          src="https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js"
+          data-button-color="#000000"
+          data-button-text-color="#FFFFFF"
+          data-site="https://blog.nomic.foundation/"
+          data-locale="en"
+          async
+        />
+      </div>
     </LandingLayout>
   );
 };
