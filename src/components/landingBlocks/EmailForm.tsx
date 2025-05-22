@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { styled } from "linaria/react";
 import Section from "../Section";
 import LandingContainer from "../LandingContainer";
@@ -7,14 +7,11 @@ import backgroundImageLight from "../../assets/email-form/bg-light-big.svg";
 import backgroundImageDark from "../../assets/email-form/bg-dark-big.svg";
 import Lines from "../../assets/email-form/lines";
 
-// Props interface for the component
 export interface EmailFormProps {}
 
-// Styled components
 const FormSection = styled.section`
   position: relative;
   width: 100%;
-
   padding: 162px 0;
   background: transparent;
   overflow: hidden;
@@ -109,13 +106,14 @@ const FormTitle = styled.h2`
   }
 `;
 
-const FormRow = styled.form`
+const FormRow = styled.div`
   display: flex;
   width: 100%;
   max-width: 665px;
   gap: 32px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   button.lg {
     height: 44px;
@@ -161,7 +159,31 @@ const LinesContainer = styled.div`
   }
 `;
 
+// This will be the container where the Ghost script injects its form
+const GhostFormContainer = styled.div`
+  width: 100%; // Or adjust as needed
+  display: flex;
+  justify-content: center;
+`;
+
 const EmailForm: React.FC<EmailFormProps> = () => {
+  const ghostFormRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ghostFormRef.current && ghostFormRef.current.childElementCount === 0) {
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js";
+      script.async = true;
+      script.setAttribute("data-button-color", "#000000");
+      script.setAttribute("data-button-text-color", "#FFFFFF");
+      script.setAttribute("data-site", "https://blog.nomic.foundation/");
+      script.setAttribute("data-locale", "en");
+
+      ghostFormRef.current.appendChild(script);
+    }
+  }, []);
+
   return (
     <Section clearPadding>
       <LinesContainer>
@@ -178,36 +200,8 @@ const EmailForm: React.FC<EmailFormProps> = () => {
               Tell me about new product features as they come out
             </FormTitle>
             <FormRow>
-              <script
-                src="https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js"
-                data-button-color="#000000"
-                data-button-text-color="#FFFFFF"
-                data-site="https://blog.nomic.foundation/"
-                data-locale="en"
-                async
-              />
-              {/*  <InputContainer> */}
-              {/*    <Input */}
-              {/*      type='email' */}
-              {/*      placeholder='email address*' */}
-              {/*      value={email} */}
-              {/*      onChange={({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => { */}
-              {/*        setEmail(value); */}
-
-              {/*        if (error && (validateEmail(value) || value.trim() === '')) { */}
-              {/*          setError(''); */}
-              {/*        } */}
-              {/*      }} */}
-              {/*      disabled={isSubmitting} */}
-              {/*      aria-label='Email address' */}
-              {/*    /> */}
-              {/*    {error && <ErrorMessage>{error}</ErrorMessage>} */}
-              {/*  </InputContainer> */}
-              {/*  <CTA variant='lg' disabled={isSubmitting} onClick={(e) => handleSubmit(e)}> */}
-              {/*    {isSubmitting ? 'Submitting...' : 'Get started'} */}
-              {/*  </CTA> */}
+              <GhostFormContainer ref={ghostFormRef} />
             </FormRow>
-            {/* {isSuccess && <SuccessMessage>Thank you! You are now subscribed to our updates.</SuccessMessage>} */}
           </FormContainer>
         </LandingContainer>
       </FormSection>

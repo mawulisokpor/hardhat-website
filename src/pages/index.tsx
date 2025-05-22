@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import HeroBlock from "../components/landingBlocks/HeroBlock";
 import WhyHardhatBlock from "../components/landingBlocks/WhyHardhatBlock";
 import homepageContent from "../content/home";
@@ -9,11 +8,7 @@ import WhatIsNewBlock, {
 import HardhatNews from "../components/landingBlocks/HardhatNews";
 import getPosts from "../lib/getPosts";
 import getHardHatReleases from "../lib/getHardHatReleases";
-
-const EmailForm = dynamic(
-  () => import("../components/landingBlocks/EmailForm"),
-  { ssr: false }
-);
+import EmailForm from "../components/landingBlocks/EmailForm";
 
 type HomePageType = {
   releases: NewsType[];
@@ -43,7 +38,6 @@ const Home = ({ releases, posts }: HomePageType) => {
         content={{ title: homepageContent.hardhatNewsContent.title, posts }}
       />
 
-      {/* @ts-expect-error: TODO: fix types */}
       <EmailForm />
     </LandingLayout>
   );
