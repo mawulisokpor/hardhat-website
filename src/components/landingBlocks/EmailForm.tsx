@@ -172,8 +172,8 @@ const EmailForm: React.FC<EmailFormProps> = () => {
       script.src =
         "https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js";
       script.async = true;
-      script.setAttribute("data-button-color", "#000000");
-      script.setAttribute("data-button-text-color", "#FFFFFF");
+      script.setAttribute("data-button-color", "#FFF100");
+      script.setAttribute("data-button-text-color", "#181A1F");
       script.setAttribute("data-site", "https://blog.nomic.foundation/");
       script.setAttribute("data-locale", "en");
 
