@@ -1,7 +1,5 @@
 import HeroBlock from "../components/landingBlocks/HeroBlock";
 import WhyHardhatBlock from "../components/landingBlocks/WhyHardhatBlock";
-
-import EmailForm from "../components/landingBlocks/EmailForm";
 import homepageContent from "../content/home";
 import LandingLayout from "../components/LandingLayout";
 import WhatIsNewBlock, {
