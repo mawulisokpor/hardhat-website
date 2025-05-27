@@ -135,7 +135,15 @@ const counterAddress = "0x1234567890123456789012345678901234567890";
 const counter = await viem.getContractAt("Counter", counterAddress);
 ```
 
-## Type extensions
+### Using contracts from an npm dependency
+
+You can also use a contract defined in an npm dependency with `hardhat-viem`.
+
+To do this, you need to configure Hardhat to compile the contract and generate artifacts for it. This will allow you to use the `hardhat-viem` helpers to interact with it, just like with any other contract defined in your project.
+
+To learn how to do it, please read [this guide](./configuring-the-compiler.md#generating-artifacts-from-dependencies).
+
+## Type-safe contract interactions
 
 Viem has powerful typing capabilities, triggering compilation errors when you make mistakes like using the wrong type in a function argument or sending value to a non-payable function:
 
