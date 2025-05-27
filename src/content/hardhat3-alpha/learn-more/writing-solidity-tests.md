@@ -8,7 +8,7 @@ A Solidity file is considered a test file if it’s inside the `test/` directory
 
 If a contract in a test file has at least a function that starts with `test`, it’s considered a test contract. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
 
-For example, suppose you have a `contracts/CounterTest.t.sol` or `test/CounterTest.sol` file with the following contract:
+For example, if you have a `contracts/CounterTest.t.sol` or `test/CounterTest.sol` file with the following contract:
 
 ```solidity
 contract CounterTest {
@@ -20,7 +20,7 @@ contract CounterTest {
 }
 ```
 
-In this case, the test runner deploys the `CounterTest` contract and calls its `testInc` function. If the function execution reverts, the test is considered failed.
+the test runner deploys the `CounterTest` contract and calls its `testInc` function. If the function execution reverts, the test is considered failed.
 
 Hardhat also supports fuzz tests, which are similar to regular tests but accept parameters. When the tests are executed, fuzz test functions are called multiple times with random values as arguments:
 
