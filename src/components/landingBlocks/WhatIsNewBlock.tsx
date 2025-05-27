@@ -416,12 +416,14 @@ const NewsCard = ({ tag_name, html_url, body, isFirst }: any) => {
             <Image src={HardhatNewsImage} alt={tag_name} />
           </NewsImage>
         )}
-        <NewsTitle className='news-title'>{tag_name}</NewsTitle>
+        <NewsTitle className='news-title'>
+          {tag_name.replace(/^.*\//, '').replace(/@([^@]*)$/, ' $1')}
+        </NewsTitle>
       </NewsHeader>
       <NewsContent className='news-content'>
         <NewsText>{body}</NewsText>
         <NewsLink href={html_url} target='_blank'>
-          <span>Learn more about the {tag_name}</span>
+          <span>Learn more</span>
           <span>
             &nbsp;
             <ArrowRight />
