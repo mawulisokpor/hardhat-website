@@ -52,16 +52,20 @@ Some projects need to compile different files with different `solc` versions. To
 
 ```typescript
 solidity: {
-  compilers: [{
-    version: "0.7.6"
-  }, {
-    version: "0.8.11"
-  }, {
-    version: "0.8.29",
-    settings: {
-      optimizer: { enabled: true }
+  compilers: [
+    {
+      version: "0.7.6"
+    },
+    {
+      version: "0.8.11"
+    },
+    {
+      version: "0.8.29",
+      settings: {
+        optimizer: { enabled: true }
+      }
     }
-  }]
+  ]
 },
 ```
 
@@ -97,9 +101,11 @@ You can use overrides even if you are using a single solc version, but you still
 
 ```typescript
 solidity: {
-  compilers: [{
-    version: "0.8.29",
-  }],
+  compilers: [
+    {
+      version: "0.8.29",
+    }
+  ],
   overrides: {
     "contracts/Foo.sol": {
       version: "0.8.29",
