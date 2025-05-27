@@ -125,9 +125,9 @@ solidity: {
 TODO—blocked until dependency resolution is finalized.
 -->
 
-## Generating artifacts from dependencies
+## Generating artifacts from npm dependencies
 
-By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project’s dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `dependenciesToCompile` property:
+By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project’s npm dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `dependenciesToCompile` property:
 
 ```typescript
 solidity: {
@@ -138,7 +138,7 @@ solidity: {
 },
 ```
 
-Artifacts can be used to deploy contracts or to obtain their ABIs, among other things. For example, once you’ve configured Hardhat to generate artifacts for `some-dependency/SomeContract.sol`, you can use that contract in a TypeScript test:
+Artifacts can be used to deploy contracts or to obtain their ABIs, among other things. For example, once you’ve configured Hardhat to generate artifacts for `some-dependency/contracts/SomeContract.sol`, you can use that contract in a TypeScript test:
 
 ```typescript
 const someContract = await viem.deployContract("SomeContract");
