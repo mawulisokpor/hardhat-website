@@ -186,7 +186,7 @@ import { network } from "hardhat";
 const { viem } = await network.connect();
 ```
 
-One way to work around this problem is to rename the Hardhat viem object:
+One way to work around this problem is to use a different name for the Hardhat viem object:
 
 ```tsx
 const { viem: hhViem } = await network.connect();
