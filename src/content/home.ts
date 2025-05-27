@@ -53,7 +53,7 @@ import FeatureCardIcons from '../assets/feature-cards/icons';
 
 const heroBlockContent = {
   title: 'Ethereum development environment for professionals',
-  tagline: '<strong>Hardhat 3:</strong> Rearchitected & Rust-powered.',
+  tagline: '<strong>Hardhat 3:</strong> Rust-powered Solidity tests',
   cta: {
     title: 'Get started',
     url: '/hardhat-runner/docs/getting-started',
@@ -64,7 +64,7 @@ const whyHardhatContent = {
   title: 'Why hardhat?',
   footer: {
     title: 'Flexible. Extensible. Fast.',
-    text: 'Experience the new way of building Ethereum software.',
+    text: 'Build your software your way—without limitations.',
   },
   featureCards: [
     {
@@ -82,21 +82,21 @@ const whyHardhatContent = {
       },
 
       articleOne: {
-        title: 'Solidity debugger. Reliable and fully featured.',
-        text: 'Accelerate your development by diving under the hood. Explore low level EVM aspects to figure out complex bugs quickly.',
+        title: 'Run Solidity tests on a Rust-powered runtime',
+        text: 'Deploy your contracts, run Solidity tests, and debug your code on Hardhat’s new runtime written in Rust for outstanding performance.',
         icon: FeatureCardIcons.CCIcon,
         cta: {
-          url: '/hardhat-network/#console.log',
-          title: 'Learn more about the Hardhat Debugger',
+          url: '#',
+          title: 'Learn more about writing Solidity tests',
         },
       },
       articleTwo: {
-        title: 'Run Solidity locally on a Rust-powered runtime',
-        text: 'Deploy your contracts, run tests, and debug your code without dealing with live networks. Hardhat’s Ethereum simulation engine, EDR, is written in Rust for great performance.',
+        title: 'Clear errors and Solidity stack traces',
+        text: 'When transactions revert, Hardhat shows actionable errors like “Non-payable function was called with value 1,” alongside detailed Solidity stack traces to pinpoint exactly where and why your code fails.',
         icon: FeatureCardIcons.CAIcon,
         cta: {
-          url: '/hardhat-network/#console.log',
-          title: 'Learn more about EDR',
+          url: '#',
+          title: 'Learn more about debugging',
         },
       },
     },
@@ -157,12 +157,12 @@ const whyHardhatContent = {
         },
       },
       articleTwo: {
-        title: 'TypeScript extensibility',
-        text: 'A tooling platform designed to be extended, Hardhat has all the utilities you need to address your project-specific needs. Change anything you like. Even entire built-in tasks, or just parts of them.',
-        icon: FeatureCardIcons.LayoutIcon,
+        title: 'Plugin ecosystem',
+        text: 'Extend Hardhat with a composable ecosystem of plugins that add functionality and integrate your existing tools into a smooth workflow.',
+        icon: FeatureCardIcons.CCReverseIcon,
         cta: {
           url: '/hardhat-network/#console.log',
-          title: 'Learn more about extending Hardhat',
+          title: 'Learn started about simulating Base',
         },
       },
     },
@@ -179,14 +179,13 @@ const whyHardhatContent = {
         md: PluginEcosystemImageDarkMd,
         sm: PluginEcosystemImageDarkSm,
       },
-
       articleOne: {
-        title: 'Plugin ecosystem',
-        text: 'Extend Hardhat with a composable ecosystem of plugins that add functionality and integrate your existing tools into a smooth workflow.',
-        icon: FeatureCardIcons.CCReverseIcon,
+        title: 'TypeScript extensibility',
+        text: 'A tooling platform designed to be extended, Hardhat has all the utilities you need to address your project-specific needs. Change anything you like. Even entire built-in tasks, or just parts of them.',
+        icon: FeatureCardIcons.LayoutIcon,
         cta: {
           url: '/hardhat-network/#console.log',
-          title: 'Learn started about simulating Base',
+          title: 'Learn more about extending Hardhat',
         },
       },
       articleTwo: {
@@ -334,7 +333,7 @@ const toolsBlockContent = {
 };
 
 const hardhatNewsContent = {
-  title: 'Hardhat News',
+  title: 'From the Hardhat blog',
 };
 
 const emailFormContent = {
