@@ -4,7 +4,9 @@
 
 ## Setup
 
-If you have already initialized a viem-based project using `hardhat --init`, you don’t need to do anything else. If you want to add the plugin manually:
+If you have already initialized a viem-based project using `hardhat --init`, you don’t need to do anything else.
+
+If you want to add the plugin manually:
 
 1. Install the plugin:
 
