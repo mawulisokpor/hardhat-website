@@ -32,18 +32,18 @@ If you want to add the plugin manually:
 
 ## Connecting to networks
 
-In Hardhat, you interact with networks using _network connections_. You can create connections with the network manager, which is available in the Hardhat Runtime Environment (`hre`):
+In Hardhat, you interact with networks using _network connections_. You can create connections with the network manager, which you can import directly from Hardhat:
 
 ```tsx
-import hre from "hardhat";
+import { network } from "hardhat";
 
-const connection = await hre.network.connect("mainnet");
+const connection = await network.connect("mainnet");
 ```
 
 Plugins can extend connections with new functionality. The `hardhat-viem` plugin adds a `viem` object to each connection, which provides helpers to interact with the connected network:
 
 ```tsx
-const { viem } = await hre.network.connect("mainnet");
+const { viem } = await network.connect("mainnet");
 
 const publicClient = await viem.getPublicClient();
 console.log("Latest block number:", await publicClient.getBlockNumber());
@@ -56,7 +56,7 @@ Viem groups functionality in [clients](https://viem.sh/docs/clients/intro). The 
 You can create a [public client](https://viem.sh/docs/clients/public) using the `getPublicClient` method:
 
 ```tsx
-const { viem } = await hre.network.connect();
+const { viem } = await network.connect();
 
 const publicClient = await viem.getPublicClient();
 
@@ -89,9 +89,9 @@ await testClient.mine({
 `hardhat-viem` includes a `deployContract` function that lets you deploy contracts defined in the project. This function returns a viem [contract instance](https://viem.sh/docs/contract/getContract) of the deployed contract:
 
 ```tsx
-import hre from "hardhat";
+import { network } from "hardhat";
 
-const { viem } = await hre.network.connect();
+const { viem } = await network.connect();
 const counter = await viem.deployContract("Counter");
 
 await counter.write.inc();
@@ -163,25 +163,25 @@ The `viem` object in the connection only includes functionality added by the `ha
 
 ```tsx
 import { keccak256 } from "viem";
-import hre from "hardhat";
+import { network } from "hardhat";
 
-const { viem } = await hre.network.connect();
+const { viem } = await network.connect();
 ```
 
 Keep in mind that you can get a name clash if you use a namespace import:
 
 ```tsx
 import * as viem from "viem";
-import hre from "hardhat";
+import { network } from "hardhat";
 
 // this is an error because viem is already declared
-const { viem } = await hre.network.connect();
+const { viem } = await network.connect();
 ```
 
 One way to work around this problem is to rename the Hardhat viem object:
 
 ```tsx
-const { viem: hhViem } = await hre.network.connect();
+const { viem: hhViem } = await network.connect();
 
 const publicClient = await hhViem.getPublicClient();
 ```
