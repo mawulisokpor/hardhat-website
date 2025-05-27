@@ -100,7 +100,29 @@ contract CounterTest {
 
 ## Running Solidity tests
 
-To run all your Solidity tests, use the `test solidity` task:
+You can run all the tests in your hardhat project using the `test` task:
+
+::::tabsgroup{options=npm,pnpm}
+
+:::tab{value=npm}
+
+```bash
+npx hardhat test
+```
+
+:::
+
+:::tab{value=pnpm}
+
+```bash
+pnpm hardhat test
+```
+
+:::
+
+::::
+
+If you only want to run your Solidity tests, use the `test solidity` task instead:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -122,14 +144,14 @@ pnpm hardhat test solidity
 
 ::::
 
-You can also pass one or more paths as arguments, in which case only those files are executed:
+You can also pass one or more paths as arguments to these tasks, in which case only those files are executed:
 
 ::::tabsgroup{options=npm,pnpm}
 
 :::tab{value=npm}
 
 ```bash
-npx hardhat test solidity <test-file-1> <test-file-2> ...
+npx hardhat test <test-file-1> <test-file-2> ...
 ```
 
 :::
@@ -137,7 +159,7 @@ npx hardhat test solidity <test-file-1> <test-file-2> ...
 :::tab{value=pnpm}
 
 ```bash
-npx hardhat test solidity <test-file-1> <test-file-2> ...
+npx hardhat test <test-file-1> <test-file-2> ...
 ```
 
 :::
