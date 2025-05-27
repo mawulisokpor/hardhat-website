@@ -159,11 +159,11 @@ await contract.write.setItem([3, "three"], {
 
 When using viem on its own, you need to pass an ABI to get contract instances with properly inferred types. The `hardhat-viem` plugin handles this automatically when you use helpers like `deployContract` or `getContractAt`.
 
-### Troubleshooting type extensions
+### Troubleshooting contract type errors
 
-Type extensions are updated when the project is compiled. If you are getting a compilation error that you don’t expect, make sure you’ve run `hardhat compile`.
+Contract types are updated when the project is compiled. If you are getting a compilation error that you don’t expect, make sure you’ve run `hardhat compile`.
 
-VSCode may not always pick up type extension updates automatically. If you are still getting unexpected TypeScript errors after compiling the project, open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and run `TypeScript: Reload Project`.
+Note that VSCode may not always pick up the type updates automatically. If you are still getting unexpected TypeScript errors after compiling the project, open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and run `TypeScript: Reload Project`.
 
 ## Using viem as a module
 
