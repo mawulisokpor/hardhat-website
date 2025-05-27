@@ -4,7 +4,7 @@ Hardhat supports writing tests in both TypeScript and Solidity. TypeScript is ty
 
 ## Writing Solidity tests
 
-A Solidity file is considered a test file if it’s inside the `test/` directory, or if it’s inside the `contracts/` directory and ends with `.t.sol`.
+A Solidity file is considered a test file if it’s inside the `test/` directory, or if it’s inside the `contracts/` directory and ends with `.t.sol`. Both of these directories can be changed in your Hardhat configuration, but these are the defaults.
 
 Every contract in a test file with functions that start with `test` is treated as a test contract. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
 
