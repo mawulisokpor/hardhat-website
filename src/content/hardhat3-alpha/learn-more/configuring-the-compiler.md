@@ -19,7 +19,7 @@ solidity: {
 },
 ```
 
-One common use of settings is enabling optimizations. You can also define the number of runs, which affects how the optimizer balances code size and execution speed:
+One common use of settings is enabling optimizations. You can also define the number of runs, which affects how the optimizer balances code size and execution cost:
 
 ```typescript
 solidity: {
