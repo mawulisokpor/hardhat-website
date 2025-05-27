@@ -40,7 +40,7 @@ import { network } from "hardhat";
 const connection = await network.connect("mainnet");
 ```
 
-Plugins can extend connections with new functionality. The `hardhat-viem` plugin adds a `viem` object to each connection, which provides helpers to interact with the connected network:
+Plugins can extend the network connections with new functionality. The `hardhat-viem` plugin adds a `viem` object to each connection, which provides helpers to interact with the network you are connected to:
 
 ```tsx
 const { viem } = await network.connect("mainnet");
