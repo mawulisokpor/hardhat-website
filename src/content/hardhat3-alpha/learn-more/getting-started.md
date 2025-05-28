@@ -350,7 +350,9 @@ pnpm hardhat test node
 
 This test deploys the `Counter` contract, calls `incBy` multiple times (each in a separate transaction), collects all the emitted `Increment` events, and verifies that their sum matches the contract's final value.
 
-Writing this same test in Solidity is possible, but less convenient, and the test would be executed in a different context—closer to a contract calling another contract than a user interacting with it over time. This makes TypeScript a better fit for scenarios that depend on realistic transaction flows or blockchain behavior.
+Writing this same test in Solidity is possible, but less convenient, and the test would be executed in a different context — closer to a single transaction calling the contract multiple times, than different users interacting with it over time. This makes TypeScript a better fit for scenarios that depend on realistic transaction flows or blockchain behavior.
+
+You can write any TypeScript code you want in your tests, as they are normal TypeScript files with access to Hardhat. In this example, we use `viem` to interact with the contracts and test the expected behavior. To learn more about how to use `viem` with Hardhat, read [this guide](./using-viem.md).
 
 ## Using scripts
 
