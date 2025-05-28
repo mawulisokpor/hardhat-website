@@ -112,11 +112,32 @@ Here’s a quick overview of these files and directories:
 
 - `scripts`: A place for any custom scripts that interact with your contracts or automate parts of your workflow. Scripts have full access to Hardhat’s runtime and can use plugins, connect to networks, deploy contracts, and more.
 
-## Running tasks
+## Writing a smart contract
 
-Hardhat is built around the concept of tasks—commands that automate common parts of your development workflow. Some tasks are built-in while others are added by plugins. It's also possible to define custom tasks tailored to your project's needs.
+Writing a smart contract with Hardhat is as easy as writing a Solidity file inside the `contracts` directory. For example, your `contracts/Counter.sol` should look like this:
 
-A simple example of a built-in task is `compile`. This task compiles your Solidity source files and generates the corresponding artifacts:
+```solidity
+pragma solidity ^0.8.28;
+
+contract Counter {
+  uint public x;
+
+  event Increment(uint by);
+
+  function inc() public {
+    x++;
+    emit Increment(1);
+  }
+
+  function incBy(uint by) public {
+    require(by > 0, "incBy: increment should be positive");
+    x += by;
+    emit Increment(by);
+  }
+}
+```
+
+Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statment and your Hardhat configuration. All you need to do is running:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -138,99 +159,9 @@ pnpm hardhat compile
 
 ::::
 
-Another essential task is `test`, which runs your project’s tests. Hardhat 3 supports both Solidity and TypeScript tests out of the box. You can run them separately using the `test solidity` and `test node` sub-tasks:
+You can learn more about how to customize your Solidity version and settings in [this guide](./configuring-the-compiler.md).
 
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
-
-```bash
-npx hardhat test solidity
-npx hardhat test node
-```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-pnpm hardhat test solidity
-pnpm hardhat test node
-```
-
-:::
-
-::::
-
-To run all tests in your project—both Solidity and TypeScript—you can use the main `test` task:
-
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
-
-```bash
-npx hardhat test
-```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-pnpm hardhat test
-```
-
-:::
-
-::::
-
-Hardhat also includes support for deploying contracts using [Ignition](https://hardhat.org/ignition), our official deployment system. You can deploy to a live network or test everything in a local, temporary network:
-
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
-
-```bash
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-pnpm hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-:::
-
-::::
-
-For more custom workflows, you can create scripts that use Hardhat’s runtime and run them with the `run` task:
-
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
-
-```bash
-npx hardhat run scripts/send-op-tx.ts
-```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-pnpm hardhat run scripts/send-op-tx.ts
-```
-
-:::
-
-::::
-
-Whether you're compiling contracts, running tests, deploying to testnets, or executing custom logic, tasks are the core of how you interact with Hardhat.
-
-## Writing tests
+## Testing your contracts
 
 Tests are a critical part of any Ethereum project. Hardhat lets you write tests in both **Solidity** and **TypeScript**, giving you flexibility to choose the right tool for each situation.
 
