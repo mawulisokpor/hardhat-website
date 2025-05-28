@@ -204,7 +204,29 @@ contract CounterTest is Test {
 }
 ```
 
-You can run all the project’s Solidity tests using the `test solidity` sub-task:
+You can run all the test in your project — both Solidity and TypeScript — using the `test` task:
+
+::::tabsgroup{options=npm,pnpm}
+
+:::tab{value=npm}
+
+```bash
+npx hardhat test
+```
+
+:::
+
+:::tab{value=pnpm}
+
+```bash
+pnpm hardhat test
+```
+
+:::
+
+::::
+
+If you only want to run your Solidity tests, you can use this instead:
 
 ::::tabsgroup{options=npm,pnpm}
 
