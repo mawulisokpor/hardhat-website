@@ -260,7 +260,7 @@ In the example above:
 - `test_InitialValue` and `test_IncByZero` are **unit tests**: they take no parameters and run once per test execution.
 - `testFuzz_Inc` is a **fuzz test**: since it takes a parameter, Hardhat will run it multiple times using random inputs. If any of those runs revert, the fuzz test fails and the failing input is printed.
 
-Hardhat also provides detailed **Solidity stack traces** to help you understand why a test failed. To see them in action, first comment out the `vm.expectRevert();` line in `test_IncByZero`:
+If any of your tests fails, Hardhat will provide detailed **Solidity stack traces** to help you understand why. To see them in action, first comment out the `vm.expectRevert();` line in `test_IncByZero`:
 
 ```solidity
 function test_IncByZero() public {
@@ -269,7 +269,7 @@ function test_IncByZero() public {
 }
 ```
 
-Then run the `test solidity` sub-task again and you’ll get a stack-trace along with the test failure:
+Then run the last command again and you’ll get a stack-trace along with the test failure:
 
 ```
 Failure (1): test_IncByZero()
