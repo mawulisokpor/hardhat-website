@@ -2,7 +2,7 @@
 prev: true
 ---
 
-# Getting started with Hardhat
+# Getting started with Hardhat 3
 
 Hardhat is a flexible and extensible development environment for Ethereum software. It helps you write, test, debug and deploy your smart contracts with ease, whether you're building a simple prototype or a complex production system.
 
