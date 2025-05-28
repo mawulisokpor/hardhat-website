@@ -18,29 +18,12 @@ This guide will walk you through the installation of our recommended setup, but 
 
 To get started with Hardhat 3, you’ll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
 
-First, create a new directory for your project and initialize it as a Node.js project:
-
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
+First, create a new directory for your project:
 
 ```bash
-mkdir hardhat-example && cd hardhat-example
-npm init -y
+mkdir hardhat-example
+cd hardhat-example
 ```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-mkdir hardhat-example && cd hardhat-example
-pnpm init
-```
-
-:::
-
-::::
 
 Once that's done, initialize your Hardhat project by running:
 
@@ -64,12 +47,13 @@ pnpm dlx hardhat@next --init
 
 ::::
 
-This command will prompt you with a few configuration options. You can accept the default answers to quickly scaffold a working setup. Using the defaults will:
+This command will prompt you with a few configuration options. You can accept the default answers to quickly scaffold a working setup.
 
-1. Use the current directory as the project root.
-2. Enable ESM for your Node.js project.
-3. Use the example project that includes the [Node.js test runner](https://nodejs.org/api/test.html) and [viem](https://viem.sh/).
-4. Automatically install all required dependencies.
+Using the defaults will:
+
+1. Initialize the project in the current directory.
+2. Use the example project that includes the [Node.js test runner](https://nodejs.org/api/test.html) and [viem](https://viem.sh/).
+3. Automatically install all the required dependencies.
 
 After the setup is complete, you’ll have a fully working Hardhat 3 project with everything you need to get started. Run the Hardhat help to verify the project was set up correctly:
 
