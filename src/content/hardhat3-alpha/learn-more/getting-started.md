@@ -366,7 +366,23 @@ You can write any TypeScript code you want in your tests, as they are normal Typ
 - Running a deployment in a Hardhat node
 - Connecting a wallet to a Hardhat node
 
-## Next steps
+## Learn more
 
-- Things to do next
-- Links to other guides
+To learn more about Hardhat, check out these other guides:
+
+- [Writing Solidity tests](../learn-more/writing-solidity-tests.md)
+- [Using Viem with Hardhat](../learn-more/using-viem.md)
+- [Configuring the compiler](../learn-more/configuring-the-compiler.md)
+- [Differences with Hardhat 2](../learn-more/comparison.md)
+
+and join our [Hardhat 3 Alpha](https://hardhat.org/hardhat3-alpha-telegram-group) Telegram group to share feedback and stay updated on new releases.
+
+<!--
+
+TODO:
+
+- Code coverage
+- Viem assertions
+- Verification
+
+-->
