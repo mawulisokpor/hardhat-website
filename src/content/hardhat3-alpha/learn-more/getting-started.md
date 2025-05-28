@@ -103,9 +103,13 @@ scripts
 Here’s a quick overview of these files and directories:
 
 - `hardhat.config.ts`: The main configuration file for your project. It defines settings like the Solidity compiler version, network configurations, and the plugins and tasks your project uses.
-- `contracts`: Contains your project's Solidity contracts. You can also include Solidity test files here—any `.t.sol` file will be picked up by the test runner.
+
+- `contracts`: Contains your project's Solidity contracts. You can also include Solidity test files here. Any file ending in `.t.sol` will be treated as a test file.
+
 - `test`: Used for TypeScript integration tests. You can also include Solidity test files here.
-- `ignition`: Holds your [Ignition](https://hardhat.org/ignition) deployment modules, which describe how your contracts should be deployed and can be reused across multiple environments.
+
+- `ignition`: Holds your [Hardhat Ignition](https://hardhat.org/ignition) deployment modules, which describe how your contracts should be deployed.
+
 - `scripts`: A place for any custom scripts that interact with your contracts or automate parts of your workflow. Scripts have full access to Hardhat’s runtime and can use plugins, connect to networks, deploy contracts, and more.
 
 ## Running tasks
