@@ -358,7 +358,6 @@ You can write any TypeScript code you want in your tests, as they are normal Typ
 
 - What scripts are
 - Example script
-- Scripts vs tasks
 
 ## Deploying contracts
 
