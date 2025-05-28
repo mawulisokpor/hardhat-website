@@ -326,7 +326,7 @@ describe("Counter", async function () {
 });
 ```
 
-To run all TypeScript tests, use the `test node` sub-task:
+To run only your TypeScript tests, use the `test node` task:
 
 ::::tabsgroup{options=npm,pnpm}
 
