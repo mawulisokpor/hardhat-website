@@ -280,7 +280,7 @@ Reason: revert: incBy: increment should be positive
 
 This lets you quickly pinpoint the issue, even across deeply nested calls.
 
-Learn more at `<link to solidity tests guide>`.
+Learn more at [writing Solidity tests here](./writing-solidity-tests.md).
 
 ### TypeScript tests
 
