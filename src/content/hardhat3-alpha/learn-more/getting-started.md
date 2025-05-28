@@ -250,6 +250,7 @@ pnpm hardhat test solidity
 
 When you run this command, Hardhat will:
 
+- Compile your contracts and tests.
 - Treat all `.t.sol` files in the `contracts/` directory and all `.sol` files in the `test/` directory as test files.
 - Deploy each test contract defined in those files.
 - Call every function that starts with `test`. If any of these calls revert, the corresponding test is marked as failed.
