@@ -287,7 +287,7 @@ Learn more at [writing Solidity tests here](./writing-solidity-tests.md).
 Solidity tests are ideal for fast, focused unit testing, but they fall short in certain situations:
 
 - **Complex test logic**, where a general-purpose language like TypeScript is more expressive and ergonomic than Solidity.
-- **Tests that require realistic blockchain behavior**, such as advancing blocks or working with multiple transactions. While cheatcodes can simulate this to some extent, excessive mocking is hard to maintain and can lead to inaccurate assumptions.
+- **Tests that require realistic blockchain behavior**, such as advancing blocks or working with gas costs or multiple transactions. While cheatcodes can simulate this to some extent, excessive mocking is hard to maintain and can lead to inaccurate assumptions.
 - **End-to-end scenarios**, where you want to test your contracts as they would behave in production—across multiple transactions, clients, and user interactions.
 
 To support these cases, Hardhat lets you write tests in TypeScript (or JavaScript), using the Node.js test runner or other frameworks like Mocha. These tests run in a real Node.js environment and interact with your contracts through RPC, making them more representative of actual usage.
