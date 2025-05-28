@@ -137,7 +137,7 @@ contract Counter {
 }
 ```
 
-Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statment and your Hardhat configuration. All you need to do is running:
+Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statement and your Hardhat configuration. All you need to do is running:
 
 ::::tabsgroup{options=npm,pnpm}
 
