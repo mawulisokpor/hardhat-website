@@ -167,9 +167,9 @@ Tests are a critical part of any Ethereum project. Hardhat lets you write tests 
 
 Solidity tests run directly on the EVM and are great for unit tests. They execute in a controlled environment, making them fast and deterministic. They also have access to test-related EVM extensions, normally called cheatcodes, which allow you to build complex tests in Solidity.
 
-TypeScript tests, on the other hand, use a fully-simulated local blockchain and interact with it through JSON-RPC. This allows you to write more complex or end-to-end tests using the full power of a general-purpose programming language and a realistic blockchain simulation.
+TypeScript tests, on the other hand, use a fully-simulated local blockchain and interact with it through JSON-RPC. This allows you to write more complex or end-to-end tests using the full power of a general-purpose programming language and a realistic blockchain simulation. You can use any Ethereum TypeScript library, like [viem](https://viem.sh/) or [ethers.js](https://docs.ethers.org/v5/) to write your tests.
 
-Use Solidity when you want low-level, efficient, EVM-native tests. Use TypeScript when you want richer tooling, more flexible assertions, or to test real-world interactions.
+Use Solidity when you want low-level, efficient, EVM-native tests. Use TypeScript when you want richer tooling, more flexible assertions, or to test blockchain-level interactions, like workflows involving multiple transactions.
 
 ### Solidity tests
 
