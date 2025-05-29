@@ -1,10 +1,12 @@
-## Deploying smart contracts
+# Deploying smart contracts
 
 Hardhat comes with an official deployment solution: [**Hardhat Ignition**](https://hardhat.org/ignition), a declarative system for deploying smart contracts. It's already available in Hardhat 2 and has been adopted by many projects. The API hasn't changed in Hardhat 3: if you're familiar with it, you won't encounter any surprises.
 
 With Hardhat Ignition, you define the smart contract instances you want to deploy, along with any operations you want to perform on them. These definitions are grouped into Ignition Modules, which are then analyzed and executed in the most efficient way. This includes sending independent transactions in parallel, recovering from errors, and resuming interrupted deployments.
 
-The sample project includes an Ignition Module as an example. To deploy this module in a simulated network, run the following command:
+The sample project includes an Ignition Module as an example. To learn more about how to write an Ignition module, please read [this document](https://hardhat.org/ignition/docs/guides/creating-modules).
+
+To deploy the example module in a simulated network, run the following command:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -66,7 +68,7 @@ This deployment is executed on the default network, which lasts only for the dur
 
 While Hardhat Ignition is our recommended approach for deploying contracts, you're free to use other tools. For example, you can use custom scripts for simple deployments or a deployment plugin from the community.
 
-### Managing secrets
+## Managing secrets
 
 Hardhat 3 includes an encrypted secrets manager that makes it easier to handle sensitive information like private keys. This ensures you don't have to hardcode secrets in your source code or store them in plain text.
 
