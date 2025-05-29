@@ -360,7 +360,7 @@ A script in Hardhat is just a TypeScript or JavaScript file with access to your 
 
 By convention, scripts are located in the `scripts/` directory. You can name them however you like and use either `.ts` or `.js` extensions.
 
-The sample project includes two example scripts. One of them, `scripts/send-op-tx.ts`, shows how you can simulate a local Optimism-like network and send a transaction on it.
+The example project includes two scripts. One of them, `scripts/send-op-tx.ts`, shows how you can simulate a local Optimism-like network and send a transaction on it.
 
 To run a script, you can use the `run` task:
 
@@ -384,7 +384,54 @@ pnpm hardhat run scripts/send-op-tx.ts
 
 ::::
 
+By doing this, Hardhat will compile your contracts and run your script with access to all of Hardhat's functionality.
+
 ## Deploying contracts
+
+The example project comes with our official deployment solution: **Hardhat Ignition**, a declarative system for deploying smart contracts. 
+
+With Hardhat Ignition, you define the smart contract instances you want to deploy, along with any operations you want to perform on them. These definitions are grouped into Ignition Modules, which are then analyzed and executed in the most efficient way. This includes sending independent transactions in parallel, recovering from errors, and resuming interrupted deployments.
+
+Ignition modules are located in the `ignition/modules/` directory. This is the example module, `ignition/modules/Counter.ts`:
+
+```typescript
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+
+export default buildModule("CounterModule", (m) => {
+  const counter = m.contract("Counter");
+
+  m.call(counter, "incBy", [5n]);
+
+  return { counter };
+});
+```
+
+The most important parts of this module are the `m.contract` and `m.call` function calls. These are used to describe the deployment we want to execute. This example is simple, and the execution is straightforward: deploy an instance of `Counter` and, once it's deployed, call the `incBy(5)` method on it. But even for this simple deployment, we get many things for free by using Ignition: errors that can be automatically recovered will be handled, and things like gas bumping are managed automatically by Ignition.
+
+Modules are deployed with the `ignition deploy` task. You can also use `--network` to specify where to run the deployment. For example, if you have defined a `mainnet` network in your configuration, you can run `ignition deploy --network mainnet ignition/modules/Counter.ts` to deploy `CounterModule` in mainnet.
+
+Before actually deploying in a live network, you probably want to check that the deployment works correctly. A first step to do that is to just run the deployment without specifying a network. This will use a locally simulated, ephemeral Hardhat network:
+
+::::tabsgroup{options=npm,pnpm}
+
+:::tab{value=npm}
+
+```bash
+npx hardhat ignition deploy ignition/modules/Counter.ts
+```
+
+:::
+
+:::tab{value=pnpm}
+
+```bash
+pnpm hardhat ignition deploy ignition/modules/Counter.ts
+```
+
+:::
+
+::::
+
 
 - Short explanation about Ignition
 - Example module explanation
