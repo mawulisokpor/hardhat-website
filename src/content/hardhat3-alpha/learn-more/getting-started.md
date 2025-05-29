@@ -356,8 +356,33 @@ You can write any TypeScript code you want in your tests, as they are normal Typ
 
 ## Using scripts
 
-- What scripts are
-- Example script
+A script in Hardhat is just a TypeScript or JavaScript file with access to your contracts, configuration, and any other functionality that Hardhat provides. You can use them to run custom logic or to automate workflows.
+
+By convention, scripts are located in the `scripts/` directory. You can name them however you like and use either `.ts` or `.js` extensions.
+
+The sample project includes two example scripts. One of them, `scripts/send-op-tx.ts`, shows how you can simulate a local Optimism-like network and send a transaction on it.
+
+To run a script, you can use the `run` task:
+
+::::tabsgroup{options=npm,pnpm}
+
+:::tab{value=npm}
+
+```bash
+npx hardhat run scripts/send-op-tx.ts
+```
+
+:::
+
+:::tab{value=pnpm}
+
+```bash
+pnpm hardhat run scripts/send-op-tx.ts
+```
+
+:::
+
+::::
 
 ## Deploying contracts
 
