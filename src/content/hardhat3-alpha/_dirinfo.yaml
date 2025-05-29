@@ -1,7 +1,7 @@
 section-type: group
 section-title: Hardhat 3 Alpha
 order:
-  - title: Get started
+  - title: Getting started
     href: "#getting-started-with-hardhat-3"
   - title: Installation
     href: "#installation"
