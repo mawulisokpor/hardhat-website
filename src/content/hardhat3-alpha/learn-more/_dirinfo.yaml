@@ -1,13 +1,15 @@
 section-type: group
 section-title: Learn more
 order:
-  - title: Differences with Hardhat 2
-    href: /comparison
-  - title: Alpha version limitations
-    href: /alpha-limitations
-  - title: Configuring the compiler
-    href: /configuring-the-compiler
   - title: Writing Solidity tests
     href: /writing-solidity-tests
   - title: Using viem
     href: /using-viem
+  - title: Deploying contracts
+    href: /deploying-contracts
+  - title: Configuring the compiler
+    href: /configuring-the-compiler
+  - title: Differences with Hardhat 2
+    href: /comparison
+  - title: Alpha version limitations
+    href: /alpha-limitations

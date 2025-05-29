@@ -72,11 +72,11 @@ const AlphaBanner = () => {
         <span className="bannerContent">
           {isDesktop ? (
             <>
-              <b>Hardhat 3 alpha</b>: Rust rewrite, Solidity tests, multi-chain,
-              and more
+              Hacking at ETHGlobal Prague? Try Hardhat 3 alpha—Rust-powered,
+              Solidity tests, multi-chain, and more.
             </>
           ) : (
-            <>Try the Hardhat 3 alpha release</>
+            <>At ETHGlobal? Try the Hardhat 3 alpha release</>
           )}
         </span>
 
