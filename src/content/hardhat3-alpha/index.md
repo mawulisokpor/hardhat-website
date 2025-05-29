@@ -12,7 +12,7 @@ This guide will walk you through the installation of our recommended setup, but 
 
 :::tip
 
-[Hardhat for Visual Studio Code](/hardhat-vscode) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
+[Hardhat for Visual Studio Code](../hardhat-vscode/) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
 
 :::
 
@@ -159,7 +159,7 @@ pnpm hardhat compile
 
 ::::
 
-You can learn more about how to customize your Solidity version and settings in [this guide](./configuring-the-compiler.md).
+You can learn more about how to customize your Solidity version and settings in [this guide](./learn-more/configuring-the-compiler.md).
 
 ## Testing your contracts
 
@@ -280,7 +280,7 @@ Reason: revert: incBy: increment should be positive
 
 This lets you quickly pinpoint the issue, even across deeply nested calls.
 
-Learn more at [writing Solidity tests here](./writing-solidity-tests.md).
+Learn more at [writing Solidity tests here](./learn-more/writing-solidity-tests.md).
 
 ### TypeScript tests
 
@@ -352,7 +352,7 @@ This test deploys the `Counter` contract, calls `incBy` multiple times (each in 
 
 Writing this same test in Solidity is possible, but less convenient, and the test would be executed in a different context — closer to a single transaction calling the contract multiple times, than different users interacting with it over time. This makes TypeScript a better fit for scenarios that depend on realistic transaction flows or blockchain behavior.
 
-You can write any TypeScript code you want in your tests, as they are normal TypeScript files with access to Hardhat. In this example, we use `viem` to interact with the contracts and test the expected behavior. To learn more about how to use `viem` with Hardhat, read [this guide](./using-viem.md).
+You can write any TypeScript code you want in your tests, as they are normal TypeScript files with access to Hardhat. In this example, we use `viem` to interact with the contracts and test the expected behavior. To learn more about how to use `viem` with Hardhat, read [this guide](./learn-more/using-viem.md).
 
 ## Writing scripts to interact with the network
 
@@ -406,11 +406,9 @@ export default buildModule("CounterModule", (m) => {
 });
 ```
 
-The most important parts of this module are the `m.contract` and `m.call` function calls. These are used to describe the deployment we want to execute. This example is simple, and the execution is straightforward: deploy an instance of `Counter` and, once it's deployed, call the `incBy(5)` method on it. But even for this simple deployment, we get many things for free by using Ignition: errors that can be automatically recovered will be handled, and things like gas bumping are managed automatically by Ignition.
+Inside a module you call functions, like `m.contract` and `m.call`, to describe the deployment you want to execute. To learn more about how to write an Ignition module, please read [this document](https://hardhat.org/ignition/docs/guides/creating-modules).
 
-Modules are deployed with the `ignition deploy` task. You can also use `--network` to specify where to run the deployment. For example, if you have defined a `mainnet` network in your configuration, you can run `ignition deploy --network mainnet ignition/modules/Counter.ts` to deploy `CounterModule` in mainnet.
-
-Before actually deploying in a live network, you probably want to check that the deployment works correctly. A first step to do that is to just run the deployment without specifying a network. This will use a locally simulated, ephemeral Hardhat network:
+Modules are deployed with the `ignition deploy` task. To check that the deployment works correctly, let's run it in a simulated network:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -432,28 +430,16 @@ pnpm hardhat ignition deploy ignition/modules/Counter.ts
 
 ::::
 
-- Short explanation about Ignition
-- Example module explanation
-- Running a deployment in a Hardhat node
-- Connecting a wallet to a Hardhat node
+Your deployment was successfully executed in a network simulated by Hardhat! To learn more about how to deploy contracts with Ignition, including how to connect to a real network and how to manage your private keys, please read [this guide](./learn-more/deploying-contracts.md).
 
 ## Learn more
 
 To learn more about Hardhat, check out these other guides:
 
-- [Writing Solidity tests](../learn-more/writing-solidity-tests.md)
-- [Using Viem with Hardhat](../learn-more/using-viem.md)
-- [Configuring the compiler](../learn-more/configuring-the-compiler.md)
-- [Differences with Hardhat 2](../learn-more/comparison.md)
+- [Writing Solidity tests](./learn-more/writing-solidity-tests.md)
+- [Using Viem with Hardhat](./learn-more/using-viem.md)
+- [Deploying contracts](./learn-more/deploying-contracts.md)
+- [Configuring the compiler](./learn-more/configuring-the-compiler.md)
+- [Differences with Hardhat 2](./learn-more/comparison.md)
 
 and join our [Hardhat 3 Alpha](https://hardhat.org/hardhat3-alpha-telegram-group) Telegram group to share feedback and stay updated on new releases.
-
-<!--
-
-TODO:
-
-- Code coverage
-- Viem assertions
-- Verification
-
--->
