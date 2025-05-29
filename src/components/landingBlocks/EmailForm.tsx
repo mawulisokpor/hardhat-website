@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import { styled } from "linaria/react";
-import Section from "../Section";
-import LandingContainer from "../LandingContainer";
-import { media, tm, tmDark, tmSelectors } from "../../themes";
-import backgroundImageLight from "../../assets/email-form/bg-light-big.svg";
-import backgroundImageDark from "../../assets/email-form/bg-dark-big.svg";
-import Lines from "../../assets/email-form/lines";
+import React, { useEffect, useRef } from 'react';
+import { styled } from 'linaria/react';
+import Section from '../Section';
+import LandingContainer from '../LandingContainer';
+import { media, tm, tmDark, tmSelectors } from '../../themes';
+import backgroundImageLight from '../../assets/email-form/bg-light-big.svg';
+import backgroundImageDark from '../../assets/email-form/bg-dark-big.svg';
+import Lines from '../../assets/email-form/lines';
 
 export interface EmailFormProps {}
 
@@ -65,19 +65,20 @@ const FormContainer = styled.div`
   max-width: 352px;
   margin: 0 auto;
   gap: 16px;
-  padding-top: 48px;
+
   ${media.tablet} {
-    gap: 32px;
+    gap: 24px;
     max-width: 377px;
   }
   ${media.laptop} {
     max-width: 665px;
     padding-top: 0;
+    gap: 32px;
   }
 `;
 
 const FormTitle = styled.h2`
-  font-family: "Source Code Pro", monospace;
+  font-family: 'Source Code Pro', monospace;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.35;
@@ -98,7 +99,6 @@ const FormTitle = styled.h2`
     font-size: 20px;
   }
   ${media.laptop} {
-    text-align: left;
     font-size: 31px;
   }
   ${media.desktop} {
@@ -109,7 +109,7 @@ const FormTitle = styled.h2`
 const FormRow = styled.div`
   display: flex;
   width: 100%;
-  max-width: 665px;
+  max-width: 300px;
   gap: 32px;
   flex-direction: column;
   align-items: center;
@@ -119,7 +119,9 @@ const FormRow = styled.div`
     height: 44px;
     font-size: 12px;
   }
-
+  ${media.tablet} {
+    max-width: 665px;
+  }
   ${media.laptop} {
     flex-direction: row;
     button.lg {
@@ -161,6 +163,7 @@ const LinesContainer = styled.div`
 
 const GhostFormContainer = styled.div`
   width: 400px;
+  max-width: 100%;
 `;
 
 const EmailForm: React.FC<EmailFormProps> = () => {
@@ -168,14 +171,13 @@ const EmailForm: React.FC<EmailFormProps> = () => {
 
   useEffect(() => {
     if (ghostFormRef.current && ghostFormRef.current.childElementCount === 0) {
-      const script = document.createElement("script");
-      script.src =
-        "https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js";
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js';
       script.async = true;
-      script.setAttribute("data-button-color", "#FFF100");
-      script.setAttribute("data-button-text-color", "#181A1F");
-      script.setAttribute("data-site", "https://blog.nomic.foundation/");
-      script.setAttribute("data-locale", "en");
+      script.setAttribute('data-button-color', '#FFF100');
+      script.setAttribute('data-button-text-color', '#181A1F');
+      script.setAttribute('data-site', 'https://blog.nomic.foundation/');
+      script.setAttribute('data-locale', 'en');
 
       ghostFormRef.current.appendChild(script);
     }
@@ -188,14 +190,9 @@ const EmailForm: React.FC<EmailFormProps> = () => {
       </LinesContainer>
       <FormSection>
         <LandingContainer>
-          <BackgroundImage
-            image={backgroundImageLight.src}
-            imageDark={backgroundImageDark.src}
-          />
+          <BackgroundImage image={backgroundImageLight.src} imageDark={backgroundImageDark.src} />
           <FormContainer>
-            <FormTitle>
-              Tell me about new product features as they come out
-            </FormTitle>
+            <FormTitle>Tell me about new product features as they come out</FormTitle>
             <FormRow>
               <GhostFormContainer ref={ghostFormRef} />
             </FormRow>
