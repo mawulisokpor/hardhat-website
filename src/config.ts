@@ -25,8 +25,8 @@ export const SOCIALS_LINKS = {
 export const PRIVACY_POLICY_PATH = "/privacy-policy.html";
 
 export const bannerContent = {
-  text: "Hardhat 3 alpha: Rust rewrite, Solidity tests, multi-chain, and more!",
-  shortText: "Try the Hardhat 3 alpha release!",
+  text: "Hacking at ETHGlobal Prague? Try Hardhat 3 alpha—Rust-powered, Solidity tests, multi-chain, and more.",
+  shortText: "At ETHGlobal? Try the Hardhat 3 alpha release",
   href: "/hardhat3-alpha",
 };
 
