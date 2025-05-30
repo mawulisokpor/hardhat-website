@@ -72,8 +72,8 @@ const AlphaBanner = () => {
         <span className="bannerContent">
           {isDesktop ? (
             <>
-              Hacking at ETHGlobal Prague? Try Hardhat 3 alpha—Rust-powered,
-              Solidity tests, multi-chain, and more.
+              Hacking at ETHGlobal? Try Hardhat 3 alpha—Rust-powered, Solidity
+              tests, multi-chain, and more.
             </>
           ) : (
             <>At ETHGlobal? Try the Hardhat 3 alpha release</>
