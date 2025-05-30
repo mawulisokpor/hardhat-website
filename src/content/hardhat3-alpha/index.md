@@ -137,7 +137,7 @@ contract Counter {
 }
 ```
 
-Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statement and your Hardhat configuration. All you need to do is running:
+Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statement and your Hardhat configuration. All you need to do is run:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -204,7 +204,7 @@ contract CounterTest is Test {
 }
 ```
 
-You can run all the test in your project — both Solidity and TypeScript — using the `test` task:
+You can run all the tests in your project—both Solidity and TypeScript—using the `test` task:
 
 ::::tabsgroup{options=npm,pnpm}
 
