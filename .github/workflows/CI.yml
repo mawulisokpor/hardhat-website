@@ -32,7 +32,6 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: |
             website/pnpm-lock.yaml
-            websites-version-of-hardhat/pnpm-lock.yaml
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
         working-directory: website
