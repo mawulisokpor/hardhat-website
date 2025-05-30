@@ -141,7 +141,7 @@ You can also use a contract defined in an npm dependency with `hardhat-viem`.
 
 To do this, you need to configure Hardhat to compile the contract and generate artifacts for it. This will allow you to use the `hardhat-viem` helpers to interact with it, just like with any other contract defined in your project.
 
-To learn how to do it, please read [this guide](./configuring-the-compiler.md#generating-artifacts-from-dependencies).
+To learn how to do it, please read [this guide](./configuring-the-compiler.md#generating-artifacts-from-npm-dependencies).
 
 ## Type-safe contract interactions
 
