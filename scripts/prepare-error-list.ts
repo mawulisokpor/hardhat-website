@@ -3,7 +3,7 @@ import {
   ErrorDescriptor,
   ERRORS,
   getErrorCode,
-} from "../../websites-version-of-hardhat/packages/hardhat-core/internal/core/errors-list";
+} from "../../websites-version-of-hardhat/packages/hardhat-core/src/internal/core/errors-list.ts";
 import * as fs from "fs";
 import * as path from "path";
 
