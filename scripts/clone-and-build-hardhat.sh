@@ -14,6 +14,3 @@ fi
 cd websites-version-of-hardhat
 git fetch origin
 git reset --hard origin/main
-
-pnpm install --prefer-offline --frozen-lockfile
-pnpm build
