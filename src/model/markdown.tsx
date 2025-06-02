@@ -103,6 +103,8 @@ export const withoutComments = (content: string) => {
   return content.replace(/<!--[\s\S]*?-->/gm, "");
 };
 
+export const normalizeApostrophes = (text: string) => text.replace(/’/g, "'");
+
 export const replacePlaceholders = (content: string) => {
   const recommendedSolcVersion = "0.8.28";
   const latestPragma = "^0.8.0";
@@ -227,8 +229,8 @@ export const generateTitleFromContent = (content: string) => {
 
 export const parseMdFile = (source: string) => {
   const { content, data } = matter(source);
-  const formattedContent = replacePlaceholders(
-    withoutComments(withInsertedCodeFromLinks(content))
+  const formattedContent = normalizeApostrophes(
+    replacePlaceholders(withoutComments(withInsertedCodeFromLinks(content)))
   );
 
   const tocTitle = data.title ?? generateTitleFromContent(formattedContent);

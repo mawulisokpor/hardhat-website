@@ -16,7 +16,7 @@ This guide will walk you through the installation of our recommended setup, but 
 
 :::
 
-To get started with Hardhat 3, you’ll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
+To get started with Hardhat 3, you'll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
 
 First, create a new directory for your project:
 
@@ -55,7 +55,7 @@ Using the defaults will:
 2. Use the example project that includes the [Node.js test runner](https://nodejs.org/api/test.html) and [viem](https://viem.sh/).
 3. Automatically install all the required dependencies.
 
-After the setup is complete, you’ll have a fully working Hardhat 3 project with everything you need to get started. Run the Hardhat help to verify the project was set up correctly:
+After the setup is complete, you'll have a fully working Hardhat 3 project with everything you need to get started. Run the Hardhat help to verify the project was set up correctly:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -100,7 +100,7 @@ scripts
 └── send-op-tx.ts
 ```
 
-Here’s a quick overview of these files and directories:
+Here's a quick overview of these files and directories:
 
 - `hardhat.config.ts`: The main configuration file for your project. It defines settings like the Solidity compiler version, network configurations, and the plugins and tasks your project uses.
 
@@ -110,7 +110,7 @@ Here’s a quick overview of these files and directories:
 
 - `ignition`: Holds your [Hardhat Ignition](https://hardhat.org/ignition) deployment modules, which describe how your contracts should be deployed.
 
-- `scripts`: A place for any custom scripts that interact with your contracts or automate parts of your workflow. Scripts have full access to Hardhat’s runtime and can use plugins, connect to networks, deploy contracts, and more.
+- `scripts`: A place for any custom scripts that interact with your contracts or automate parts of your workflow. Scripts have full access to Hardhat's runtime and can use plugins, connect to networks, deploy contracts, and more.
 
 ## Writing a smart contract
 
@@ -269,7 +269,7 @@ function test_IncByZero() public {
 }
 ```
 
-Then run the last command again and you’ll get a stack-trace along with the test failure:
+Then run the last command again and you'll get a stack-trace along with the test failure:
 
 ```
 Failure (1): test_IncByZero()

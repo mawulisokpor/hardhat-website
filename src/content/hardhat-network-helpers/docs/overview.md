@@ -83,6 +83,6 @@ async function main() {
 
 ::::
 
-Since this is not a Hardhat plugin, you don’t need to import the whole package in your config. You can simply import each specific helper function where you need to use them.
+Since this is not a Hardhat plugin, you don't need to import the whole package in your config. You can simply import each specific helper function where you need to use them.
 
 For a full listing of all the helpers provided by this package, see [the reference documentation](./reference).

@@ -78,7 +78,7 @@ For example, given the configuration above:
 
 ## Overriding configured compilers
 
-Some projects need to compile specific files using a different compiler version than Hardhat’s default choice. You can handle this with the `overrides` property:
+Some projects need to compile specific files using a different compiler version than Hardhat's default choice. You can handle this with the `overrides` property:
 
 ```typescript
 solidity: {
@@ -127,7 +127,7 @@ TODO—blocked until dependency resolution is finalized.
 
 ## Generating artifacts from npm dependencies
 
-By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project’s npm dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `dependenciesToCompile` property:
+By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project's npm dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `dependenciesToCompile` property:
 
 ```typescript
 solidity: {
@@ -138,7 +138,7 @@ solidity: {
 },
 ```
 
-Artifacts can be used to deploy contracts or to obtain their ABIs, among other things. For example, once you’ve configured Hardhat to generate artifacts for `some-dependency/contracts/SomeContract.sol`, you can use that contract in a TypeScript test:
+Artifacts can be used to deploy contracts or to obtain their ABIs, among other things. For example, once you've configured Hardhat to generate artifacts for `some-dependency/contracts/SomeContract.sol`, you can use that contract in a TypeScript test:
 
 ```typescript
 const someContract = await viem.deployContract("SomeContract");
