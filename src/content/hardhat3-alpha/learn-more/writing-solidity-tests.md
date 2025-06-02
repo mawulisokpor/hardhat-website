@@ -1,12 +1,12 @@
 # Writing unit tests in Solidity
 
-Hardhat supports writing tests in both TypeScript and Solidity. TypeScript is typically used for higher-level integration tests, whereas Solidity is better suited for unit tests. This guide explains how to add Solidity tests to a Hardhat project, run them, and configure how they are executed. It assumes familiarity with Solidity tests and isn’t meant to serve as an introduction to them.
+Hardhat supports writing tests in both TypeScript and Solidity. TypeScript is typically used for higher-level integration tests, whereas Solidity is better suited for unit tests. This guide explains how to add Solidity tests to a Hardhat project, run them, and configure how they are executed. It assumes familiarity with Solidity tests and isn't meant to serve as an introduction to them.
 
 ## Writing Solidity tests
 
-A Solidity file is considered a test file if it’s inside the `test/` directory, or if it’s inside the `contracts/` directory and ends with `.t.sol`. Both of these directories can be changed in your Hardhat configuration, but these are the defaults.
+A Solidity file is considered a test file if it's inside the `test/` directory, or if it's inside the `contracts/` directory and ends with `.t.sol`. Both of these directories can be changed in your Hardhat configuration, but these are the defaults.
 
-If a contract in a test file has at least a function that starts with `test`, it’s considered a test contract. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
+If a contract in a test file has at least a function that starts with `test`, it's considered a test contract. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
 
 For example, if you have a `contracts/CounterTest.t.sol` or `test/CounterTest.sol` file with the following contract:
 
@@ -36,7 +36,7 @@ contract CounterTest {
 
 ### Assertion libraries
 
-In the previous example, the error message doesn’t show the actual value of `by` that made the test fail. That’s because interpolating the value into the string isn’t straightforward in Solidity. To get better error messages, plus other useful functionality, you can use an assertion library like [forge-std](https://github.com/foundry-rs/forge-std).
+In the previous example, the error message doesn't show the actual value of `by` that made the test fail. That's because interpolating the value into the string isn't straightforward in Solidity. To get better error messages, plus other useful functionality, you can use an assertion library like [forge-std](https://github.com/foundry-rs/forge-std).
 
 To use `forge-std` in a Hardhat project, first install it:
 
@@ -194,7 +194,7 @@ solidityTest: {
 },
 ```
 
-It’s also possible to modify the execution environment of the tests. For example, you can modify the address that is returned by `msg.sender`:
+It's also possible to modify the execution environment of the tests. For example, you can modify the address that is returned by `msg.sender`:
 
 ```typescript
 solidityTest: {

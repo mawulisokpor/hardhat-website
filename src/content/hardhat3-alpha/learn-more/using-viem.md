@@ -4,7 +4,7 @@
 
 ## Setup
 
-If you have already initialized a viem-based project using `hardhat --init`, you don’t need to do anything else.
+If you have already initialized a viem-based project using `hardhat --init`, you don't need to do anything else.
 
 If you want to add the plugin manually:
 
@@ -118,7 +118,7 @@ const counter = await viem.deployContract("Counter", [10n], {
 });
 ```
 
-The `deployContract` function waits until the contract is deployed. If you just want to send the deployment without waiting until it’s mined, you can use `sendDeploymentTransaction`:
+The `deployContract` function waits until the contract is deployed. If you just want to send the deployment without waiting until it's mined, you can use `sendDeploymentTransaction`:
 
 ```tsx
 const deploymentTx = await viem.sendDeploymentTransaction("Counter", [10n], {
@@ -161,13 +161,13 @@ When using viem on its own, you need to pass an ABI to get contract instances wi
 
 ### Troubleshooting contract type errors
 
-Contract types are updated when the project is compiled. If you are getting a compilation error that you don’t expect, make sure you’ve run `hardhat compile`.
+Contract types are updated when the project is compiled. If you are getting a compilation error that you don't expect, make sure you've run `hardhat compile`.
 
 Note that VSCode may not always pick up the type updates automatically. If you are still getting unexpected TypeScript errors after compiling the project, open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and run `TypeScript: Reload Project`.
 
 ## Using viem as a module
 
-The `viem` object in the connection only includes functionality added by the `hardhat-viem` plugin. To use viem’s own functionality, import it from the `viem` module:
+The `viem` object in the connection only includes functionality added by the `hardhat-viem` plugin. To use viem's own functionality, import it from the `viem` module:
 
 ```tsx
 import { keccak256 } from "viem";

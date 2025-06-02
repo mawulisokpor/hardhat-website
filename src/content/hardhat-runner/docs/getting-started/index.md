@@ -11,7 +11,7 @@ description: Getting started with Hardhat, a development environment to compile,
 
 This new major version introduces Solidity tests, a rewrite of performance critical components in Rust, adds multichain support across the board, implements OP Stack simulation, revamps the build system, modernizes our TS CLI and plugin system, and a lot more.
 
-Hardhat 3 is a complete overhaul. This is an alpha release and there’s still a lot of work ahead towards stability, but you can already take it for a spin. [Learn more.](/hardhat3-alpha)
+Hardhat 3 is a complete overhaul. This is an alpha release and there's still a lot of work ahead towards stability, but you can already take it for a spin. [Learn more.](/hardhat3-alpha)
 
 :::
 
@@ -108,7 +108,7 @@ $ npx hardhat init
   Quit
 ```
 
-Let’s create the JavaScript or TypeScript project and go through these steps to compile, test and deploy the sample contract. We recommend using TypeScript, but if you are not familiar with it just pick JavaScript.
+Let's create the JavaScript or TypeScript project and go through these steps to compile, test and deploy the sample contract. We recommend using TypeScript, but if you are not familiar with it just pick JavaScript.
 
 ### Running tasks
 

@@ -4,7 +4,7 @@ This guide will walk you through migrating your Hardhat project to Hardhat Ignit
 
 ## Installing Hardhat Ignition
 
-To get started, we’ll uninstall the `hardhat-deploy` plugin and install the Hardhat Ignition one by executing the following steps:
+To get started, we'll uninstall the `hardhat-deploy` plugin and install the Hardhat Ignition one by executing the following steps:
 
 1. Remove the `hardhat-deploy` packages from your project:
 
@@ -66,7 +66,7 @@ To get started, we’ll uninstall the `hardhat-deploy` plugin and install the Ha
 
    ::::
 
-3. Update the project’s `hardhat.config` file to remove `hardhat-deploy` and `hardhat-deploy-ethers` and instead import Hardhat Ignition:
+3. Update the project's `hardhat.config` file to remove `hardhat-deploy` and `hardhat-deploy-ethers` and instead import Hardhat Ignition:
 
    ::::tabsgroup{options="typescript,javascript"}
 
@@ -96,14 +96,14 @@ To get started, we’ll uninstall the `hardhat-deploy` plugin and install the Ha
 
 `hardhat-deploy` represents contract deployments as JavaScript or TypeScript files under the `./deploy/` folder. Hardhat Ignition follows a similar pattern with deployments encapsulated as modules; these are JS/TS files stored under the `./ignition/modules` directory. Each `hardhat-deploy` deploy file will be converted or merged into a Hardhat Ignition module.
 
-Let’s first create the required folder structure under the root of your project:
+Let's first create the required folder structure under the root of your project:
 
 ```sh
 mkdir ignition
 mkdir ignition/modules
 ```
 
-Now, let’s work through converting a simple `hardhat-deploy` script for this example `Token` contract:
+Now, let's work through converting a simple `hardhat-deploy` script for this example `Token` contract:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -249,7 +249,7 @@ The conversion to an Ignition module can be tested by running the module against
 npx hardhat ignition deploy ./ignition/modules/Token.ts
 ```
 
-Which, if working correctly, will output the contract’s deployed address:
+Which, if working correctly, will output the contract's deployed address:
 
 ```
 You are running Hardhat Ignition against an in-process instance of Hardhat Network.
@@ -273,7 +273,7 @@ To learn more, check out the detailed [guide on writing Hardhat Ignition modules
 
 ## Migrating tests that rely on hardhat-deploy fixtures
 
-Let’s go over the process of rewriting Hardhat tests that rely on `hardhat-deploy` fixture functionality. Using `hardhat-deploy`, calls to `fixture()` deploy everything under the `./deploy` and create a snapshot in the in-memory Hardhat node at the end of the first run. Subsequent calls to `fixture()` revert to the saved snapshot, avoiding rerunning the deployment transactions and thus saving time.
+Let's go over the process of rewriting Hardhat tests that rely on `hardhat-deploy` fixture functionality. Using `hardhat-deploy`, calls to `fixture()` deploy everything under the `./deploy` and create a snapshot in the in-memory Hardhat node at the end of the first run. Subsequent calls to `fixture()` revert to the saved snapshot, avoiding rerunning the deployment transactions and thus saving time.
 
 To do this, `hardhat-deploy-ethers` enhances the Hardhat `ethers` object with a `getContract` method that will return contract instances from the fixture snapshot.
 
