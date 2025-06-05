@@ -7,6 +7,7 @@ import LandingContainer from '../LandingContainer';
 import ArrowRight from '../../assets/icons/arrow-right';
 import BracketsImage from '../../assets/why-we/Brackets';
 import HardhatNewsImage from '../../assets/what-is-new/Hardhat-news.svg';
+import { formatSmartDate } from '../../utils';
 
 type WhatIsNewBlockType = {
   content: {
@@ -128,6 +129,14 @@ const News = styled.article`
       border-right-style: solid;
       gap: 20px;
     }
+    .news-header-inner {
+      flex-direction: column-reverse;
+      gap: 14px;
+    }
+    .news-date {
+      font-size: 14px;
+      color: ${tm(({ colors }) => colors.gray6)};
+    }
     .news-title {
       font-weight: 700;
       color: ${tm(({ colors }) => colors.gray9)} !important;
@@ -199,6 +208,9 @@ const News = styled.article`
     &:first-child {
       .news-header {
         padding: 32px 55px;
+      }
+      .news-date {
+        font-size: 16px;
       }
       .news-content {
         padding: 32px 55px;
@@ -278,7 +290,7 @@ const NewsTitle = styled.h3`
   font-family: Roboto, sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.3;
   letter-spacing: 0.05em;
   word-wrap: break-word;
   color: ${tm(({ colors }) => colors.gray9)};
@@ -359,7 +371,7 @@ const NewsLink = styled.a`
       color: #040405;
     }
   }
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -407,7 +419,38 @@ const NewsLink = styled.a`
     }
   }
 `;
-const NewsCard = ({ tag_name, html_url, body, isFirst }: any) => {
+
+const NewsHeaderInner = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 8px;
+  ${media.tablet} {
+    flex-direction: column;
+  }
+`;
+
+const NewsDate = styled.div`
+  font-family: Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+
+  color: ${tm(({ colors }) => colors.gray7)};
+  ${tmSelectors.dark} {
+    color: ${tm(({ colors }) => colors.gray5)};
+  }
+  ${media.mqDark} {
+    ${tmSelectors.auto} {
+      color: ${tm(({ colors }) => colors.gray5)};
+    }
+  }
+
+  ${media.desktop} {
+    font-size: 14px;
+  }
+`;
+const NewsCard = ({ tag_name, html_url, body, isFirst, published_at }: any) => {
   return (
     <News>
       <NewsHeader className='news-header'>
@@ -416,9 +459,10 @@ const NewsCard = ({ tag_name, html_url, body, isFirst }: any) => {
             <Image src={HardhatNewsImage} alt={tag_name} />
           </NewsImage>
         )}
-        <NewsTitle className='news-title'>
-          {tag_name.replace(/^.*\//, '').replace(/@([^@]*)$/, ' $1')}
-        </NewsTitle>
+        <NewsHeaderInner className='news-header-inner'>
+          <NewsDate className='news-date'>{formatSmartDate(published_at)}</NewsDate>
+          <NewsTitle className='news-title'>{tag_name.replace(/^.*\//, '').replace(/@([^@]*)$/, ' $1')}</NewsTitle>
+        </NewsHeaderInner>
       </NewsHeader>
       <NewsContent className='news-content'>
         <NewsText>{body}</NewsText>
@@ -444,9 +488,9 @@ const WhatIsNewBlock = ({ content }: WhatIsNewBlockType) => {
           </Brackets>
           <Title>{content.title}</Title>
           <ListNews>
-            {content.releases?.map((item: NewsType, index: number) => (
-              <NewsCard key={item.tag_name} {...item} isFirst={index === 0} />
-            ))}
+            {content.releases?.map((item: NewsType, index: number) => {
+              return <NewsCard key={item.tag_name} {...item} isFirst={index === 0} />;
+            })}
           </ListNews>
           <Brackets className='brackets-bottom'>
             <BracketsImage />
