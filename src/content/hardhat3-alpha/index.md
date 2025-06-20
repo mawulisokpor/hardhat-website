@@ -333,7 +333,7 @@ To run only your TypeScript tests, use the `test node` task:
 :::tab{value=npm}
 
 ```bash
-npx hardhat test node
+npx hardhat test nodejs
 ```
 
 :::
@@ -341,7 +341,7 @@ npx hardhat test node
 :::tab{value=pnpm}
 
 ```bash
-pnpm hardhat test node
+pnpm hardhat test nodejs
 ```
 
 :::

@@ -254,7 +254,7 @@ To run the TypeScript tests in the project, execute the following command:
 :::tab{value=npm}
 
 ```
-npx hardhat test node
+npx hardhat test nodejs
 ```
 
 :::
@@ -262,7 +262,7 @@ npx hardhat test node
 :::tab{value=pnpm}
 
 ```
-pnpm hardhat test node
+pnpm hardhat test nodejs
 ```
 
 :::
