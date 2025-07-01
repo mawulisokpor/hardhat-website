@@ -223,6 +223,28 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   ::::
 
+- To find the path to the keystore file, use `keystore path`:
+
+  ::::tabsgroup{options=npm,pnpm}
+
+  :::tab{value=npm}
+
+  ```bash
+  npx hardhat keystore path
+  ```
+
+  :::
+
+  :::tab{value=pnpm}
+
+  ```bash
+  pnpm hardhat keystore path
+  ```
+
+  :::
+
+  ::::
+
 <!-- ## Combining environment and encrypted variables
 
 The `hardhat-keystore` plugin extends how configuration variables are resolved, but it doesn’t replace their default behavior. Hardhat still looks for environment variables first, and only falls back to the keystore if the variable isn’t set in the environment. This makes it easy to mix and override values depending on your workflow.
@@ -252,33 +274,3 @@ SEPOLIA_RPC_URL=https://temporary-url.example pnpm hardhat test
 This lets you test with a different provider without changing or deleting the encrypted value.
 
 Another use case is **defining a variable exclusively through environment variables**, without using the keystore at all. This is useful in environments like CI runners. Since environment variables are always checked first, you don’t need to change anything in your config for this to work. -->
-
-## Under the hood
-
-The location of the encrypted keystore file depends on your operating system. You can see where it’s stored by running any keystore task with the `--verbose` flag. For example:
-
-::::tabsgroup{options=npm,pnpm}
-
-:::tab{value=npm}
-
-```bash
-npx hardhat keystore list --verbose
-```
-
-:::
-
-:::tab{value=pnpm}
-
-```bash
-pnpm hardhat keystore list --verbose
-```
-
-:::
-
-::::
-
-On Linux, this might print something like:
-
-```
-path to keystore file: /home/username/.config/hardhat-nodejs/keystore.json
-```
