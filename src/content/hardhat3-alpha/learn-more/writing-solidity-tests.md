@@ -63,7 +63,7 @@ pnpm install --save-dev github:foundry-rs/forge-std#v1.9.7
 You can then import the `Test` base contract and extend your test contract from it. This lets you use helper functions like `assertEq`, which shows the mismatched values when the assertion fails:
 
 ```solidity
-import { Test } from "forge-std/src/Test.sol";
+import { Test } from "forge-std/Test.sol";
 
 contract CounterTest is Test {
     function testIncBy(uint by) public {
