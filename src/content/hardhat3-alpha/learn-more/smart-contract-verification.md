@@ -143,7 +143,7 @@ Running `verify` without any subtask, will verify on Etherscan.
 
 If you want to verify a contract on a block explorer of a network that isn't natively supported by the plugin, you can set a chain descriptor in your Hardhat configuration to add support for that network.
 
-Adding a chain descriptor for a netowork called "ExampleChain", with chain id `123456`, would look like this:
+Adding a chain descriptor for a network called "ExampleChain", with chain id `123456`, would look like this:
 
 ```tsx
 const config: HardhatUserConfig = {
