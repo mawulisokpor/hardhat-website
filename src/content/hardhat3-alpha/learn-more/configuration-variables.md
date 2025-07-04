@@ -245,6 +245,28 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   ::::
 
+- To change the keystore's password, use `keystore change-password`:
+
+  ::::tabsgroup{options=npm,pnpm}
+
+  :::tab{value=npm}
+
+  ```bash
+  npx hardhat keystore change-password
+  ```
+
+  :::
+
+  :::tab{value=pnpm}
+
+  ```bash
+  pnpm hardhat keystore change-password
+  ```
+
+  :::
+
+  ::::
+
 <!-- ## Combining environment and encrypted variables
 
 The `hardhat-keystore` plugin extends how configuration variables are resolved, but it doesn’t replace their default behavior. Hardhat still looks for environment variables first, and only falls back to the keystore if the variable isn’t set in the environment. This makes it easy to mix and override values depending on your workflow.
