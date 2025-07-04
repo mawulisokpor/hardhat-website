@@ -7,6 +7,8 @@ order:
     href: /using-viem
   - title: Deploying contracts
     href: /deploying-contracts
+  - title: Verifying contracts
+    href: /smart-contract-verification
   - title: Configuring the compiler
     href: /configuring-the-compiler
   - title: Configuration variables
