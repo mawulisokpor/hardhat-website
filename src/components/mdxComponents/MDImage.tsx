@@ -1,8 +1,8 @@
 // @ts-nocheck
-import React from 'react';
-import Image from 'next/image';
-import { styled } from 'linaria/react';
-import { media, tmSelectors } from '../../themes';
+import React from "react";
+import Image from "next/image";
+import { styled } from "linaria/react";
+import { media, tmSelectors } from "../../themes";
 
 export interface Props {
   src: string;
@@ -57,22 +57,24 @@ const ImageContainer = styled.div`
 `;
 
 const isShellBadge = (src: string): boolean => /img\.shields\.io/.test(src);
-const isHardhatBadge = (alt: string): boolean => alt === 'hardhat';
+const isHardhatBadge = (alt: string): boolean => alt === "hardhat";
 
 const calcImgWidth = ({ isShellBdg, isHardhatBdg }) => {
-  if (isHardhatBdg) return '140px';
-  if (isShellBdg) return '80px';
+  if (isHardhatBdg) return "140px";
+  if (isShellBdg) return "80px";
   return null;
 };
 
 // Parse classes from alt text in format "alt#class1 class2"
-const parseAltAndClasses = (altText: string): { alt: string; classes: string | null } => {
-  if (!altText || !altText.includes('#')) {
+const parseAltAndClasses = (
+  altText: string
+): { alt: string; classes: string | null } => {
+  if (!altText || !altText.includes("#")) {
     return { alt: altText, classes: null };
   }
 
-  const [alt, ...classParts] = altText.split('#');
-  const classes = classParts.join('#'); // Rejoin in case there were multiple # in the alt text
+  const [alt, ...classParts] = altText.split("#");
+  const classes = classParts.join("#"); // Rejoin in case there were multiple # in the alt text
 
   return {
     alt: alt.trim(),
@@ -85,19 +87,25 @@ const MDImage = ({ src, alt }: Props) => {
   const isHardhatBdg = isHardhatBadge(cleanAlt);
   const isShellBdg = isShellBadge(src);
 
-  const containerClassName = [isHardhatBdg ? 'hardhat-badge' : '', customClasses].filter(Boolean).join(' ') || null;
+  const containerClassName =
+    [isHardhatBdg ? "hardhat-badge" : "", customClasses]
+      .filter(Boolean)
+      .join(" ") || null;
 
   return (
-    <ImageContainer width={calcImgWidth({ isHardhatBdg, isShellBdg })} className={containerClassName}>
+    <ImageContainer
+      width={calcImgWidth({ isHardhatBdg, isShellBdg })}
+      className={containerClassName}
+    >
       <Image
-        className='md-img'
+        className="md-img"
         src={src}
         alt={cleanAlt}
-        width='100%'
-        height='100%'
+        width="100%"
+        height="100%"
         quality={100}
-        layout='responsive'
-        objectFit='contain'
+        layout="responsive"
+        objectFit="contain"
       />
     </ImageContainer>
   );

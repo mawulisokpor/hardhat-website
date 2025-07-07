@@ -12,12 +12,9 @@ Since Hardhat 3 is still in development, things will continue to evolve, and you
 
 ## Missing Plugins and Features
 
-- Hardhat Toolbox hasn't been ported to Hardhat 3 yet.
 - Hardhat 3 doesn't currently support `hardhat-shorthand` or `hh`.
-- Hardhat 3 will include built-in support for code coverage, compatible with both Solidity and JavaScript tests. However, this feature is not yet available in the alpha version.
 - Gas reporting and gas snapshots are not yet supported.
 - Both Solidity and JavaScript tests will offer alternative trace formats that users can choose from. Currently, only Solidity stack traces are supported.
-- The smart contract verification plugin hasn't been ported to Hardhat 3 yet.
 - Ledger device support is not yet available but will be added soon.
 - The output printed by different types of tests will be more integrated, improving their UX and readability.
 
@@ -27,10 +24,7 @@ Since Hardhat 3 is still in development, things will continue to evolve, and you
 
 ## Build System
 
-- Most tasks use the `default` build profile by default. In the near future, each task will be able to specify its own default build profile.
 - The compilation cache is not yet optimized and doesn't fully support incremental compilation.
-- Remapping packages installed through `npm` is more cumbersome than expected and will be improved soon.
-- Hardhat 3 may create build jobs with more remappings than strictly necessary.
 - The build process may run out of memory when compiling large projects.
 - The build system isn't yet extensible through plugins, but improvements are planned.
 - Vyper is not yet supported.

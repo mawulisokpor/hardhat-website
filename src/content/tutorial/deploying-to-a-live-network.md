@@ -53,7 +53,7 @@ TokenModule#Token - 0x5FbDB2315678afecb367f032d93F642f64180aa3
 
 ## Deploying to remote networks
 
-To deploy to a remote network such as mainnet or any testnet, you need to add a `network` entry to your `hardhat.config.js` file. We’ll use Sepolia for this example, but you can add any network. For key storage, utilize the `configuration variables`.
+To deploy to a remote network such as mainnet or any testnet, you need to add a `network` entry to your `hardhat.config.js` file. We'll use Sepolia for this example, but you can add any network. For key storage, utilize the `configuration variables`.
 
 :::tip
 

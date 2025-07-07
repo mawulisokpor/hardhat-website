@@ -44,7 +44,7 @@ To get help for a specific task run: npx hardhat help [task]
 
 You can create additional tasks, which will appear in this list. For example, you might create a task to reset the state of a development environment, or to interact with your contracts, or to package your project.
 
-Let’s go through the process of creating one to interact with a smart contract.
+Let's go through the process of creating one to interact with a smart contract.
 
 Tasks in Hardhat are asynchronous JavaScript functions that get access to the [Hardhat Runtime Environment](../advanced/hardhat-runtime-environment.md), which exposes its configuration and parameters, as well as programmatic access to other tasks and any plugin objects that may have been injected.
 
@@ -86,13 +86,13 @@ pnpm add -D @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-he
 
 ::::
 
-Task creation code can go in `hardhat.config.js`, or whatever your configuration file is called. It’s a good place to create simple tasks. If your task is more complex, it's also perfectly valid to split the code into several files and `require` them from the configuration file.
+Task creation code can go in `hardhat.config.js`, or whatever your configuration file is called. It's a good place to create simple tasks. If your task is more complex, it's also perfectly valid to split the code into several files and `require` them from the configuration file.
 
-(If you’re writing a Hardhat plugin that adds a task, they can also be created from a separate npm package. Learn more about creating tasks through plugins in our [Building plugins section](../advanced/building-plugins.md).)
+(If you're writing a Hardhat plugin that adds a task, they can also be created from a separate npm package. Learn more about creating tasks through plugins in our [Building plugins section](../advanced/building-plugins.md).)
 
 **The configuration file is always executed on startup before anything else happens.** It's good to keep this in mind. We will load the Hardhat toolbox and add our task creation code to it.
 
-For this tutorial, we're going to create a task to get an account’s balance from the terminal. You can do this with the Hardhat’s config API, which is available in the global scope of `hardhat.config.js`:
+For this tutorial, we're going to create a task to get an account's balance from the terminal. You can do this with the Hardhat's config API, which is available in the global scope of `hardhat.config.js`:
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
@@ -129,7 +129,7 @@ AVAILABLE TASKS:
 To get help for a specific task run: npx hardhat help [task]
 ```
 
-Now let’s implement the functionality we want. We need to get the account address from the user. We can do this by adding a parameter to our task:
+Now let's implement the functionality we want. We need to get the account address from the user. We can do this by adding a parameter to our task:
 
 ```js
 task("balance", "Prints an account's balance")
@@ -154,7 +154,7 @@ balance: Prints an account's balance
 For global options help run: hardhat help
 ```
 
-Let’s now get the account’s balance. The [Hardhat Runtime Environment](../advanced/hardhat-runtime-environment.md) will be available in the global scope. By using Hardhat’s [ether.js plugin](https://github.com/NomicFoundation/hardhat/tree/main/packages/hardhat-ethers), which is included in the Hardhat Toolbox, we get access to an ethers.js instance:
+Let's now get the account's balance. The [Hardhat Runtime Environment](../advanced/hardhat-runtime-environment.md) will be available in the global scope. By using Hardhat's [ether.js plugin](https://github.com/NomicFoundation/hardhat/tree/main/packages/hardhat-ethers), which is included in the Hardhat Toolbox, we get access to an ethers.js instance:
 
 ```js
 task("balance", "Prints an account's balance")

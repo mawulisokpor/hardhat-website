@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { styled } from 'linaria/react';
-import Section from '../Section';
-import LandingContainer from '../LandingContainer';
-import { media, tm, tmDark, tmSelectors } from '../../themes';
-import backgroundImageLight from '../../assets/email-form/bg-light-big.svg';
-import backgroundImageDark from '../../assets/email-form/bg-dark-big.svg';
-import Lines from '../../assets/email-form/lines';
+import React, { useEffect, useRef } from "react";
+import { styled } from "linaria/react";
+import Section from "../Section";
+import LandingContainer from "../LandingContainer";
+import { media, tm, tmDark, tmSelectors } from "../../themes";
+import backgroundImageLight from "../../assets/email-form/bg-light-big.svg";
+import backgroundImageDark from "../../assets/email-form/bg-dark-big.svg";
+import Lines from "../../assets/email-form/lines";
 
 export interface EmailFormProps {}
 
@@ -78,7 +78,7 @@ const FormContainer = styled.div`
 `;
 
 const FormTitle = styled.h2`
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Source Code Pro", monospace;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.35;
@@ -171,13 +171,14 @@ const EmailForm: React.FC<EmailFormProps> = () => {
 
   useEffect(() => {
     if (ghostFormRef.current && ghostFormRef.current.childElementCount === 0) {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js';
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/ghost/signup-form@~0.2/umd/signup-form.min.js";
       script.async = true;
-      script.setAttribute('data-button-color', '#FFF100');
-      script.setAttribute('data-button-text-color', '#181A1F');
-      script.setAttribute('data-site', 'https://blog.nomic.foundation/');
-      script.setAttribute('data-locale', 'en');
+      script.setAttribute("data-button-color", "#FFF100");
+      script.setAttribute("data-button-text-color", "#181A1F");
+      script.setAttribute("data-site", "https://blog.nomic.foundation/");
+      script.setAttribute("data-locale", "en");
 
       ghostFormRef.current.appendChild(script);
     }
@@ -190,9 +191,14 @@ const EmailForm: React.FC<EmailFormProps> = () => {
       </LinesContainer>
       <FormSection>
         <LandingContainer>
-          <BackgroundImage image={backgroundImageLight.src} imageDark={backgroundImageDark.src} />
+          <BackgroundImage
+            image={backgroundImageLight.src}
+            imageDark={backgroundImageDark.src}
+          />
           <FormContainer>
-            <FormTitle>Tell me about new product features as they come out</FormTitle>
+            <FormTitle>
+              Tell me about new product features as they come out
+            </FormTitle>
             <FormRow>
               <GhostFormContainer ref={ghostFormRef} />
             </FormRow>

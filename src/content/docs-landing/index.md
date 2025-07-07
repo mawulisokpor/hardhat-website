@@ -9,7 +9,7 @@ description: Documentation about Hardhat, the Ethereum development environment
 
 This new major version introduces Solidity tests, a rewrite of performance critical components in Rust, adds multichain support across the board, implements OP Stack simulation, revamps the build system, modernizes our TS CLI and plugin system, and a lot more.
 
-Hardhat 3 is a complete overhaul. This is an alpha release and there’s still a lot of work ahead towards stability, but you can already take it for a spin. [Learn more.](/hardhat3-alpha)
+Hardhat 3 is a complete overhaul. This is an alpha release and there's still a lot of work ahead towards stability, but you can already take it for a spin. [Learn more.](/hardhat3-alpha)
 
 :::
 

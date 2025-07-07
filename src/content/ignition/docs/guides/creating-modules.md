@@ -148,7 +148,7 @@ The first parameter is the `Future` object, whose execution results in the event
 
 You can also provide as a fourth parameter an object with options, which can contain:
 
-- `emitter`: A `Future` representing the contract instance that **directly emits** the event. This defaults to the `Future` you pass as first argument, but they’re not always the same. A `Future` can be executed and indirectly lead to an event emission by calling other contracts during its execution, which then directly emit the event.
+- `emitter`: A `Future` representing the contract instance that **directly emits** the event. This defaults to the `Future` you pass as first argument, but they're not always the same. A `Future` can be executed and indirectly lead to an event emission by calling other contracts during its execution, which then directly emit the event.
 
 - `eventIndex`: If the are multiple events with the same name emitted by the `emitter`, you can use this parameter to pick one of them. It defaults to `0`.
 

@@ -27,7 +27,7 @@ Then the URL for the `sepolia` network will be formed with the configuration var
 
 :::warning
 
-Configuration variables are stored in plain text on your disk. Avoid using this feature for data you wouldn’t normally save in an unencrypted file. Run `npx hardhat vars path` to find the storage's file location.
+Configuration variables are stored in plain text on your disk. Avoid using this feature for data you wouldn't normally save in an unencrypted file. Run `npx hardhat vars path` to find the storage's file location.
 
 :::
 

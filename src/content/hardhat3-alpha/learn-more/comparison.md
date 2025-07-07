@@ -28,7 +28,7 @@ Hardhat 3 embraces modern JavaScript by using [ECMAScript Modules (ESM)](https:/
 
 In Hardhat 2, JavaScript tests are always run with a bundled version of Mocha. In Hardhat 3, the test runner is just another plugin and you can choose which one to use.
 
-Hardhat 3 provides official plugins for running tests: one for Mocha and one for [Node.js’s built-in test runner](https://nodejs.org/api/test.html) The recommended option is the Node.js test runner, because it's fast and has no external dependencies.
+Hardhat 3 provides official plugins for running tests: one for Mocha and one for [Node.js's built-in test runner](https://nodejs.org/api/test.html) The recommended option is the Node.js test runner, because it's fast and has no external dependencies.
 
 ## Declarative Configuration
 

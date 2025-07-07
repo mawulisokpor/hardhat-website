@@ -69,7 +69,7 @@ Viem also provides functionality for interacting with contracts, and `hardhat-vi
 
 Use the `hre.viem` object to get these helpers, similar to how clients are used. The next example shows how to get a contract instance and call one of its methods:
 
-1. Create a `MyToken.sol` file inside your project’s `contracts` directory:
+1. Create a `MyToken.sol` file inside your project's `contracts` directory:
 
    ```solidity
    // SPDX-License-Identifier: MIT
@@ -146,7 +146,7 @@ If you want to learn more about working with contracts, you can visit the [`hard
 
 ### Testing
 
-In this example, we’ll test the `MyToken` contract, covering scenarios like supply increase and expected operation reverts.
+In this example, we'll test the `MyToken` contract, covering scenarios like supply increase and expected operation reverts.
 
 1. Create a `test/my-token.ts` file:
 

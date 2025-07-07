@@ -1,8 +1,8 @@
-import React from 'react';
-import { styled } from 'linaria/react';
-import Section from '../Section';
-import { media, tm, tmDark, tmSelectors } from '../../themes';
-import LandingContainer from '../LandingContainer';
+import React from "react";
+import { styled } from "linaria/react";
+import Section from "../Section";
+import { media, tm, tmDark, tmSelectors } from "../../themes";
+import LandingContainer from "../LandingContainer";
 
 export type NewsCardProps = {
   feature_image: string;
@@ -270,10 +270,15 @@ const Line = styled.div`
   }
 `;
 
-const NewsCard: React.FC<NewsCardProps> = ({ feature_image, title, excerpt, url }) => {
+const NewsCard: React.FC<NewsCardProps> = ({
+  feature_image,
+  title,
+  excerpt,
+  url,
+}) => {
   return (
     <Card>
-      {url && <CardLink href={url} target='_blank' rel='noopener noreferrer' />}
+      {url && <CardLink href={url} target="_blank" rel="noopener noreferrer" />}
       <ImageContainer>
         <CardImage src={feature_image} alt={title} />
       </ImageContainer>

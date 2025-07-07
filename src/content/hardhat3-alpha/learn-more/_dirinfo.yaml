@@ -1,9 +1,19 @@
 section-type: group
 section-title: Learn more
 order:
+  - title: Writing Solidity tests
+    href: /writing-solidity-tests
+  - title: Using viem
+    href: /using-viem
+  - title: Deploying contracts
+    href: /deploying-contracts
+  - title: Verifying contracts
+    href: /smart-contract-verification
+  - title: Configuring the compiler
+    href: /configuring-the-compiler
+  - title: Configuration variables
+    href: /configuration-variables
   - title: Differences with Hardhat 2
     href: /comparison
   - title: Alpha version limitations
     href: /alpha-limitations
-  # - title: Solidity Tests
-  #   href: /solidity-tests

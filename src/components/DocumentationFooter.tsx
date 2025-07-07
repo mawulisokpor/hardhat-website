@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import { styled } from 'linaria/react';
-import { media, tm, tmDark, tmSelectors } from '../themes';
-import ExternalLinkIcon from '../assets/icons/external-link-icon';
-import FooterArrow from '../assets/icons/footer-arrow';
-import { FooterNavigation } from './types';
+import React from "react";
+import Link from "next/link";
+import { styled } from "linaria/react";
+import { media, tm, tmDark, tmSelectors } from "../themes";
+import ExternalLinkIcon from "../assets/icons/external-link-icon";
+import FooterArrow from "../assets/icons/footer-arrow";
+import { FooterNavigation } from "./types";
 
 type Props = FooterNavigation;
 
@@ -122,13 +122,13 @@ const LastUpdatedWrapper = styled.div`
 `;
 
 const DocumentationFooter = ({ next, prev, lastEditDate, editLink }: Props) => {
-  const date = lastEditDate ? new Date(lastEditDate).toLocaleString() : '';
+  const date = lastEditDate ? new Date(lastEditDate).toLocaleString() : "";
   return (
     <Footer>
       <PageEdit>
         {editLink ? (
           <ImprovePageLinkWrapper>
-            <a href={editLink} target='_blank' rel='noopener noreferrer'>
+            <a href={editLink} target="_blank" rel="noopener noreferrer">
               <span>
                 Help us improve this page <ExternalLinkIcon />
               </span>
@@ -152,7 +152,7 @@ const DocumentationFooter = ({ next, prev, lastEditDate, editLink }: Props) => {
             <Link href={prev.href}>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a>
-                <FooterArrow className='arrow-reversed' />
+                <FooterArrow className="arrow-reversed" />
                 <span>{prev.label}</span>
               </a>
             </Link>

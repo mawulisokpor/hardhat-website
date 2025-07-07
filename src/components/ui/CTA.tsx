@@ -1,6 +1,6 @@
-import React from 'react';
-import { styled } from 'linaria/react';
-import { media, tm, tmDark, tmSelectors } from '../../themes';
+import React from "react";
+import { styled } from "linaria/react";
+import { media, tm, tmDark, tmSelectors } from "../../themes";
 
 const A = styled.a`
   display: inline-flex;
@@ -157,16 +157,18 @@ type Props = React.PropsWithChildren<{
   href?: string;
   variant?: string;
   disabled?: boolean;
-  onClick?: (() => void) | React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?:
+    | (() => void)
+    | React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }>;
 
-const CTA = ({ children, href, variant = '', onClick, disabled }: Props) => {
-  if ((href === '' || href === undefined || href === null) && !onClick) {
-    throw new Error('CTA should have a href prop or a onClick prop');
+const CTA = ({ children, href, variant = "", onClick, disabled }: Props) => {
+  if ((href === "" || href === undefined || href === null) && !onClick) {
+    throw new Error("CTA should have a href prop or a onClick prop");
   }
   return (
     <A
-      as={onClick ? 'button' : 'a'}
+      as={onClick ? "button" : "a"}
       className={variant}
       href={href ?? undefined}
       onClick={onClick ?? undefined}

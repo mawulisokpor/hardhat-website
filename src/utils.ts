@@ -2,7 +2,7 @@ export default function getImage(card: any, screenWidth: number, type: string) {
   const isDesktop = screenWidth >= 1700;
   const isLaptop = screenWidth >= 1280;
 
-  if (type === 'light') {
+  if (type === "light") {
     if (isDesktop) return card.image.lg;
     if (isLaptop) return card.image.m;
     return card.image.md;
@@ -22,11 +22,11 @@ export function formatSmartDate(dateString: Date | string) {
 
   const isSameYear = now.getFullYear() === date.getFullYear();
 
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
-  if (diffDays < 14) return 'Last week';
-  if (diffDays < 21) return '2 weeks ago';
+  if (diffDays < 14) return "Last week";
+  if (diffDays < 21) return "2 weeks ago";
 
   const nowMonth = now.getMonth();
   const nowYear = now.getFullYear();
@@ -34,18 +34,18 @@ export function formatSmartDate(dateString: Date | string) {
   const dateYear = date.getFullYear();
 
   const monthDiff = (nowYear - dateYear) * 12 + (nowMonth - dateMonth);
-  if (monthDiff === 1) return 'Last month';
+  if (monthDiff === 1) return "Last month";
 
   if (isSameYear) {
-    return new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: 'numeric',
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
     }).format(date);
   }
 
-  return new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   }).format(date);
 }

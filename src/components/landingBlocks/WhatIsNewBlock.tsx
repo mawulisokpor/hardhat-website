@@ -1,13 +1,13 @@
-import React from 'react';
-import { styled } from 'linaria/react';
-import Image from 'next/image';
-import Section from '../Section';
-import { media, tm, tmDark, tmSelectors } from '../../themes';
-import LandingContainer from '../LandingContainer';
-import ArrowRight from '../../assets/icons/arrow-right';
-import BracketsImage from '../../assets/why-we/Brackets';
-import HardhatNewsImage from '../../assets/what-is-new/Hardhat-news.svg';
-import { formatSmartDate } from '../../utils';
+import React from "react";
+import { styled } from "linaria/react";
+import Image from "next/image";
+import Section from "../Section";
+import { media, tm, tmDark, tmSelectors } from "../../themes";
+import LandingContainer from "../LandingContainer";
+import ArrowRight from "../../assets/icons/arrow-right";
+import BracketsImage from "../../assets/why-we/Brackets";
+import HardhatNewsImage from "../../assets/what-is-new/Hardhat-news.svg";
+import { formatSmartDate } from "../../utils";
 
 type WhatIsNewBlockType = {
   content: {
@@ -373,7 +373,7 @@ const NewsLink = styled.a`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     display: block;
     top: 0;
@@ -453,20 +453,24 @@ const NewsDate = styled.div`
 const NewsCard = ({ tag_name, html_url, body, isFirst, published_at }: any) => {
   return (
     <News>
-      <NewsHeader className='news-header'>
+      <NewsHeader className="news-header">
         {isFirst && (
           <NewsImage>
             <Image src={HardhatNewsImage} alt={tag_name} />
           </NewsImage>
         )}
-        <NewsHeaderInner className='news-header-inner'>
-          <NewsDate className='news-date'>{formatSmartDate(published_at)}</NewsDate>
-          <NewsTitle className='news-title'>{tag_name.replace(/^.*\//, '').replace(/@([^@]*)$/, ' $1')}</NewsTitle>
+        <NewsHeaderInner className="news-header-inner">
+          <NewsDate className="news-date">
+            {formatSmartDate(published_at)}
+          </NewsDate>
+          <NewsTitle className="news-title">
+            {tag_name.replace(/^.*\//, "").replace(/@([^@]*)$/, " $1")}
+          </NewsTitle>
         </NewsHeaderInner>
       </NewsHeader>
-      <NewsContent className='news-content'>
+      <NewsContent className="news-content">
         <NewsText>{body}</NewsText>
-        <NewsLink href={html_url} target='_blank'>
+        <NewsLink href={html_url} target="_blank">
           <span>Learn more</span>
           <span>
             &nbsp;
@@ -483,16 +487,18 @@ const WhatIsNewBlock = ({ content }: WhatIsNewBlockType) => {
     <Section clearPadding>
       <Container>
         <LandingContainer>
-          <Brackets className='brackets-top'>
+          <Brackets className="brackets-top">
             <BracketsImage />
           </Brackets>
           <Title>{content.title}</Title>
           <ListNews>
             {content.releases?.map((item: NewsType, index: number) => {
-              return <NewsCard key={item.tag_name} {...item} isFirst={index === 0} />;
+              return (
+                <NewsCard key={item.tag_name} {...item} isFirst={index === 0} />
+              );
             })}
           </ListNews>
-          <Brackets className='brackets-bottom'>
+          <Brackets className="brackets-bottom">
             <BracketsImage />
           </Brackets>
         </LandingContainer>
