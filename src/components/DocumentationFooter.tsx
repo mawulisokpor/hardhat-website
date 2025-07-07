@@ -13,7 +13,7 @@ const Footer = styled.footer`
   width: 100%;
   flex-direction: column;
   margin-top: 74px;
-  padding: 0 34px;
+  padding: 0 16px;
   font-size: 10px;
 
   & a {
@@ -22,7 +22,9 @@ const Footer = styled.footer`
       opacity: 0.8;
     }
   }
-
+  ${media.tablet} {
+    padding: 0 44px;
+  }
   ${media.md} {
     padding: 0 140px;
     font-size: 16px;

@@ -25,9 +25,8 @@ export const SOCIALS_LINKS = {
 export const PRIVACY_POLICY_PATH = "/privacy-policy.html";
 
 export const bannerContent = {
-  text: "Hardhat 3 alpha: Rust rewrite, Solidity tests, multi-chain, and more!",
-  shortText: "Try the Hardhat 3 alpha release!",
-  href: "/hardhat3-alpha",
+  text: "join the Hardhat team! Nomic Labs is hiring",
+  href: "https://hardhat.org/solidity-survey-2024",
 };
 
 // export const bannerContent = {
@@ -144,6 +143,6 @@ export enum LayoutsConfigKeys {
 
 export const GDPR = {
   title: "We value your privacy",
-  text: "We use cookies to enhance your browsing experience and analyze our traffic. By clicking “Accept All”, you consent to our use of cookies.",
+  text: "We use cookies to enhace your browsing experience, serve personalized adds or content, and analyze our traffic. By clicking “Accept All”, you consent to our use of cookies.",
   readMoreHref: "/privacy-policy.html",
 };

@@ -4,23 +4,17 @@ import { useRouter } from "next/router";
 
 import SEO from "./SEO";
 import DocsNavigation from "./DocsNavigation";
-import {
-  tm,
-  tmSelectors,
-  tmDark,
-  media,
-  ThemeProvider,
-  headerTotalHeight,
-} from "../themes";
+import { tm, tmSelectors, tmDark, media, ThemeProvider } from "../themes";
 import { IDocumentationSidebarStructure, ISeo } from "./types";
-import { menuItemsList, socialsItems } from "../config";
+import { bannerContent, menuItemsList, socialsItems } from "../config";
 import {
   Header,
   MobileSidebarMenuMask,
   SidebarContainer,
 } from "./DocumentationLayout";
 import MobileSidebarMenu from "./MobileSidebarMenu";
-import AlphaBanner from "./ui/AlphaBanner";
+import Banner, { DefaultBanner } from "./ui/Banner";
+import { DefaultBannerProps } from "./ui/types";
 
 const Container = styled.div`
   position: relative;
@@ -31,12 +25,11 @@ const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
-  height: 100vh;
+  width: 100%;
   min-width: 320px;
 `;
 
 const Main = styled.main`
-  padding-top: ${headerTotalHeight};
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-start;
@@ -44,7 +37,6 @@ const Main = styled.main`
   background-color: ${tm(({ colors }) => colors.neutral0)};
   width: 100%;
   position: relative;
-  transition: background-color ease-in-out 0.25s;
 
   ${tmSelectors.dark} {
     background-color: ${tmDark(({ colors }) => colors.neutral0)};
@@ -54,7 +46,7 @@ const Main = styled.main`
       background-color: ${tmDark(({ colors }) => colors.neutral0)};
     }
   }
-  ${media.md} {
+  ${media.laptop} {
     & aside {
       display: none;
     }
@@ -67,8 +59,6 @@ const View = styled.section`
   align-items: center;
   padding-top: 24px;
   width: 100%;
-  height: calc(100vh - ${headerTotalHeight});
-  overflow-y: scroll;
 `;
 const Content = styled.section`
   display: flex;
@@ -140,12 +130,17 @@ const PluginsLayout = ({ children, seo, sidebarLayout }: Props) => {
   return (
     <ThemeProvider>
       <Container>
-        <Header>
+        <Header className={`${isSidebarOpen ? "is-sidebar-open" : ""} `}>
+          <Banner
+            content={bannerContent}
+            renderContent={({ content }: DefaultBannerProps) => (
+              <DefaultBanner content={content} />
+            )}
+          />
           <DocsNavigation
             isSidebarOpen={isSidebarOpen}
             onSidebarOpen={setIsSidebarOpen}
           />
-          <AlphaBanner />
         </Header>
 
         <SEO seo={seo} />

@@ -43,3 +43,6 @@ jobs:
       - name: Build the docs
         run: pnpm build
         working-directory: website
+        env:
+          NEXT_GHOST_CMS_API_KEY: ${{ secrets.NEXT_GHOST_CMS_API_KEY }}
+          NEXT_GHOST_CMS_CONTENT_URL: ${{ secrets.NEXT_GHOST_CMS_CONTENT_URL }}
