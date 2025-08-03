@@ -4,8 +4,8 @@ export enum NavigationPagesPaths {
   HOME = "/",
   TOOLS = "/#tools",
   PLUGINS = "/plugins",
-  DOCUMENTATION = "/docs",
-  TUTORIAL = "/tutorial",
+  DOCUMENTATION = "/docs/getting-started",
+  TUTORIAL = "/get-started",
 }
 export interface MenuItemType {
   label: string;

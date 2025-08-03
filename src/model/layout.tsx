@@ -9,7 +9,6 @@ import {
   readMDFileFromPathOrIndex,
 } from "./markdown";
 import { DirInfoConfigKeys, DOCS_PATH, TEMP_PATH } from "../config";
-import { getPluginsSubitems } from "./plugins";
 
 import {
   SectionType,
@@ -52,7 +51,7 @@ const getLayoutsInfo = (): LayoutsInfo => {
   return yamlData;
 };
 
-export const getDirInfoFiles = (): InfoFiles =>
+const getDirInfoFiles = (): InfoFiles =>
   glob
     .sync(`${DOCS_PATH}**/_dirinfo.yaml`)
     .filter((pathname) => /\.yaml$/.test(pathname))
@@ -61,21 +60,21 @@ export const getDirInfoFiles = (): InfoFiles =>
       path: pathname,
     }));
 
-export const getYamlData = (relativePath: string): DirInfo => {
+const getYamlData = (relativePath: string): DirInfo => {
   const fullPath = `${DOCS_PATH}/${relativePath}`;
   const yamlText = fs.readFileSync(fullPath).toString();
   const yamlData = yaml.load(yamlText) as DirInfo;
   return yamlData;
 };
 
-export const getFoldersInfo = (infoFiles: InfoFiles): FoldersConfig =>
+const getFoldersInfo = (infoFiles: InfoFiles): FoldersConfig =>
   infoFiles.map(({ path }) => ({
     path,
     folder: path.replace("/_dirinfo.yaml", ""),
     config: getYamlData(path),
   }));
 
-export const getAllFolders = (mdFiles: string[]): FolderWithFiles[] => {
+const getAllFolders = (mdFiles: string[]): FolderWithFiles[] => {
   const filesWithPaths = mdFiles.map((fileName) => ({
     fileName,
     path: fileName.replace(/\/.*\.mdx?$/, ""),
@@ -117,27 +116,7 @@ const matchFoldersToLayouts = (
     }
     const fld = folders.find((f) => f.path === path);
     const fldInfo = foldersInfo.find((f) => f.folder === path);
-    if (
-      fldInfo &&
-      fldInfo.config[DirInfoConfigKeys.SECTION_TYPE] === SectionType.PLUGINS
-    ) {
-      const virtualFiles = fldInfo?.config?.order?.map((file: string | {}) => {
-        if (typeof file === "object") {
-          return file;
-        }
-        return {
-          file,
-          href: file,
-        };
-      });
 
-      return {
-        path,
-        files: virtualFiles,
-        layout: lt,
-        [DirInfoConfigKeys.SECTION_TYPE]: SectionType.PLUGINS,
-      };
-    }
     const files =
       fld?.files?.map((file) => ({ file, href: getHrefByFile(file) })) || null;
     return {
@@ -200,22 +179,10 @@ const generateSingleSection = (folder: FolderType) => {
 
 const generateHiddenSection = () => null;
 
-const generatePluginsSection = (folder: FolderType) => {
-  const tocItem = {
-    label:
-      folder[DirInfoConfigKeys.SECTION_TITLE] || toCapitalCase(folder.path),
-    type: folder[DirInfoConfigKeys.SECTION_TYPE],
-    children: getPluginsSubitems(folder.path, folder.order),
-  };
-
-  return tocItem;
-};
-
 const sectionTypeGeneratorsMap = {
   [SectionType.GROUP]: generateGroupSection,
   [SectionType.SINGLE]: generateSingleSection,
   [SectionType.HIDDEN]: generateHiddenSection,
-  [SectionType.PLUGINS]: generatePluginsSection,
 };
 
 const generateTocItem = (fld: null | FolderType): TocItem | null => {
@@ -268,24 +235,6 @@ const getItemByHref =
     };
   };
 
-const getPluginsItems = (
-  layoutNavigations: FlatTocItem[],
-  folder: FolderInfo & {
-    layout: Layout;
-  }
-): Array<FlatTocItem & { file: string }> => {
-  const pluginItems = layoutNavigations.filter(({ href }) =>
-    /\/plugins/.test(href)
-  );
-
-  return pluginItems.map((item) => ({
-    ...item,
-    file: item.label,
-    folder: folder.path,
-    layout: folder.layout.layoutKey,
-  }));
-};
-
 const getLayoutToc = (
   layout: Layout,
   foldersStructure: Array<{
@@ -328,6 +277,7 @@ const getLayoutToc = (
   return { tocItems, flatTocList };
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const createLayouts = () => {
   const infoFiles = getDirInfoFiles();
   const foldersInfo = getFoldersInfo(infoFiles);
@@ -375,10 +325,6 @@ export const createLayouts = () => {
     .map((folder) =>
       folder.files
         ?.map((fileEntry) => {
-          if (folder[DirInfoConfigKeys.SECTION_TYPE] === SectionType.PLUGINS) {
-            const pluginItems = getPluginsItems(layoutNavigations, folder);
-            return pluginItems;
-          }
           // @ts-ignore
           const { prev, next } = getNavigation(
             `/${fileEntry.href}`,
@@ -415,6 +361,6 @@ export const createLayouts = () => {
   const sidebarConfigPath = `${TEMP_PATH}sidebarConfig.json`;
   fs.writeFileSync(
     sidebarConfigPath,
-    JSON.stringify({ layoutConfigs, layoutsMap })
+    JSON.stringify({ layoutConfigs, layoutsMap }, undefined, 2)
   );
 };

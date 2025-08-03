@@ -4,7 +4,6 @@ export enum SectionType {
   SINGLE = "single",
   GROUP = "group",
   HIDDEN = "hidden",
-  PLUGINS = "plugins",
 }
 
 export type OrderType =
@@ -95,5 +94,5 @@ export interface IPlugin {
   authorUrl: string;
   description: string;
   tags: string[];
-  normalizedName?: string;
+  slug?: string;
 }

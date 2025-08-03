@@ -72,7 +72,7 @@ const Main = styled.main`
   }
 `;
 
-export const SidebarMask = styled.div`
+const SidebarMask = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -321,9 +321,7 @@ const DocumentationLayout = ({
   return (
     <ThemeProvider>
       <Container>
-        <Header
-          className={`${isSidebarOpen ? "is-sidebar-open" : ""} with-line`}
-        >
+        <Header className={isSidebarOpen ? "is-sidebar-open" : ""}>
           <Banner
             content={bannerContent}
             renderContent={({ content }: DefaultBannerProps) => (

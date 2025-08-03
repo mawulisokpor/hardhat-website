@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "bash scripts/clone-and-build-hardhat.sh && tsx scripts/prepare-error-list.ts",
+    "prepare": "tsx scripts/prepare-error-list.ts && tsx scripts/download-plugin-readmes-and-downloads-count.ts && tsx scripts/prepare-markdown-replacement-values.ts",
+    "prebuild": "pnpm prepare",
+    "predev": "pnpm prepare",
     "dev": "next-remote-watch ./src/content",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
@@ -11,8 +13,7 @@
     "build:test": "ANALYZE=true next build",
     "start": "next start",
     "lint": "eslint src -f unix && pnpm prettier --check '**/*.{js,ts,tsx,md,yml,yaml}'",
-    "lint:fix": "eslint src -f unix --fix && pnpm prettier --write '**/*.{js,ts,tsx,md,yml,yaml}'",
-    "postinstall": "bash scripts/clone-and-build-hardhat.sh"
+    "lint:fix": "eslint src -f unix --fix && pnpm prettier --write '**/*.{js,ts,tsx,md,yml,yaml}'"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^3.0.7",
@@ -37,7 +38,6 @@
     "remark-prism": "^1.3.6",
     "remark-unwrap-images": "^3.0.1",
     "tsx": "^4.19.4",
-    "undici": "^5.26.2",
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
@@ -45,13 +45,6 @@
     "@babel/plugin-transform-runtime": "^7.26.10",
     "@babel/preset-env": "^7.16.11",
     "@next/bundle-analyzer": "^12.1.5",
-    "@react-theming/storybook-addon": "^1.1.5",
-    "@storybook/addon-actions": "^6.4.19",
-    "@storybook/addon-essentials": "^6.4.19",
-    "@storybook/addon-interactions": "^6.4.19",
-    "@storybook/addon-links": "^6.4.19",
-    "@storybook/react": "^6.4.19",
-    "@storybook/testing-library": "^0.0.9",
     "@types/glob": "^8.1.0",
     "@types/js-yaml": "^4.0.9",
     "@types/mdx-js__react": "^1.5.5",
@@ -69,7 +62,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-storybook": "^0.5.7",
     "js-yaml": "^4.1.0",
     "markdown-link-check": "^3.13.7",
     "next-compose-plugins": "^2.2.1",

@@ -14,23 +14,67 @@ const path = require("path");
  *
  */
 const customRedirects = [
-  // shortlinks
+  // Backwards compatibility of the alpha
+  // Can be removed soon.
   {
-    source: "/config",
-    destination: "/hardhat-runner/docs/config",
+    source: "/hardhat3-alpha/:path",
+    destination: "/docs",
+    permanent: false,
+  },
+
+  // Top level redirects
+  {
+    source: "/docs",
+    destination: "/docs/getting-started",
     permanent: false,
   },
   {
-    source: "/plugins",
-    destination: "/hardhat-runner/plugins",
+    source: "/hardhat-vscode",
+    destination: "/hardhat-vscode/docs/overview",
+    permanent: false,
+  },
+  {
+    source: "/hardhat-vscode/docs",
+    destination: "/hardhat-vscode/docs/overview",
+    permanent: false,
+  },
+  {
+    source: "/hardhat-network-helpers",
+    destination: "/hardhat-network-helpers/docs/overview",
+    permanent: false,
+  },
+  {
+    source: "/hardhat-network-helpers/docs",
+    destination: "/hardhat-network-helpers/docs/overview",
+    permanent: false,
+  },
+  {
+    source: "/ignition",
+    destination: "/ignition/docs/getting-started#overview",
+    permanent: false,
+  },
+  {
+    source: "/ignition/docs",
+    destination: "/ignition/docs/getting-started#overview",
+    permanent: false,
+  },
+
+  // Valid shortlinks
+  {
+    source: "/config",
+    destination: "/docs/config",
     permanent: false,
   },
   {
     source: "/getting-started",
-    destination: "/hardhat-runner/docs/getting-started#overview",
+    destination: "/docs/getting-started#overview",
     permanent: false,
   },
-  { source: "/links/stack-traces", destination: "/", permanent: false },
+  {
+    source: "/get-started",
+    destination: "/getting-started",
+    permanent: false,
+  },
   {
     source: "/reportbug",
     destination: "https://github.com/NomicFoundation/hardhat/issues/new",
@@ -39,11 +83,6 @@ const customRedirects = [
   {
     source: "/report-bug",
     destination: "https://github.com/NomicFoundation/hardhat/issues/new",
-    permanent: false,
-  },
-  {
-    source: "/console-log",
-    destination: "/hardhat-network/#console.log",
     permanent: false,
   },
   {
@@ -57,20 +96,20 @@ const customRedirects = [
     permanent: false,
   },
   {
-    source: "/hardhat3-alpha-telegram-group",
-    destination: "https://t.me/+nx5My-pzR0piMjU5",
+    source: "/release/:version",
+    destination:
+      "https://github.com/NomicFoundation/hardhat/releases/tag/hardhat%40:version",
     permanent: false,
   },
   {
-    source: "/hre",
-    destination: "/advanced/hardhat-runtime-environment",
+    source: "/errors",
+    destination: "/docs/errors",
     permanent: false,
   },
-  {
-    source: "/nodejs-versions",
-    destination: "/reference/stability-guarantees#node.js-versions-support",
-    permanent: false,
-  },
+  ...loadErrorRedirects(),
+
+  // Legacy shortlinks: We should be able to remove them when
+  // we drop support for HH2, and if they aren't used in HH3
   {
     source: "/verify-custom-networks",
     destination:
@@ -84,8 +123,28 @@ const customRedirects = [
     permanent: false,
   },
   {
+    source: "/console-log",
+    destination: "/hardhat-network/#console.log",
+    permanent: false,
+  },
+  {
+    source: "/hre",
+    destination: "/advanced/hardhat-runtime-environment",
+    permanent: false,
+  },
+  {
+    source: "/nodejs-versions",
+    destination: "/reference/stability-guarantees#node.js-versions-support",
+    permanent: false,
+  },
+  {
     source: "/metamask-issue",
     destination: "/hardhat-network/docs/metamask-issue",
+    permanent: false,
+  },
+  {
+    source: "/hardhat3-alpha-telegram-group",
+    destination: "https://t.me/+nx5My-pzR0piMjU5",
     permanent: false,
   },
   {
@@ -133,7 +192,23 @@ const customRedirects = [
     destination: "/ignition/docs/guides/error-handling",
     permanent: false,
   },
-  // top-level component URLs
+
+  // Everything below is HH2 related, which should be removable
+  // once we drop support for HH2
+
+  // HH2 errors:
+  {
+    source: "/HH:slug(\\d{1,})",
+    destination: "https://v2.hardhat.org/HH:slug",
+    permanent: false,
+  },
+  {
+    source: "/hh:slug(\\d{1,})",
+    destination: "https://v2.hardhat.org/HH:slug",
+    permanent: false,
+  },
+
+  // Depreacated top-level component URLs
   {
     source: "/hardhat-runner",
     destination: "/hardhat-runner/docs/getting-started#overview",
@@ -155,16 +230,6 @@ const customRedirects = [
     permanent: false,
   },
   {
-    source: "/hardhat-vscode",
-    destination: "/hardhat-vscode/docs/overview",
-    permanent: false,
-  },
-  {
-    source: "/hardhat-vscode/docs",
-    destination: "/hardhat-vscode/docs/overview",
-    permanent: false,
-  },
-  {
     source: "/hardhat-chai-matchers",
     destination: "/hardhat-chai-matchers/docs/overview",
     permanent: false,
@@ -172,26 +237,6 @@ const customRedirects = [
   {
     source: "/hardhat-chai-matchers/docs",
     destination: "/hardhat-chai-matchers/docs/overview",
-    permanent: false,
-  },
-  {
-    source: "/hardhat-network-helpers",
-    destination: "/hardhat-network-helpers/docs/overview",
-    permanent: false,
-  },
-  {
-    source: "/hardhat-network-helpers/docs",
-    destination: "/hardhat-network-helpers/docs/overview",
-    permanent: false,
-  },
-  {
-    source: "/ignition",
-    destination: "/ignition/docs/getting-started#overview",
-    permanent: false,
-  },
-  {
-    source: "/ignition/docs",
-    destination: "/ignition/docs/getting-started#overview",
     permanent: false,
   },
 
@@ -237,11 +282,6 @@ const customRedirects = [
     permanent: false,
   },
   {
-    source: "/errors",
-    destination: "/hardhat-runner/docs/errors",
-    permanent: false,
-  },
-  {
     source: "/reference/stability-guarantees",
     destination: "/hardhat-runner/docs/reference/stability-guarantees",
     permanent: false,
@@ -249,11 +289,6 @@ const customRedirects = [
   {
     source: "/reference/solidity-support",
     destination: "/hardhat-runner/docs/reference/solidity-support",
-    permanent: false,
-  },
-  {
-    source: "/plugins/:slug",
-    destination: "/hardhat-runner/plugins/:slug",
     permanent: false,
   },
   {
@@ -325,13 +360,6 @@ const customRedirects = [
     destination: "/hardhat-runner/plugins/nomicfoundation-hardhat-ethers",
     permanent: false,
   },
-  {
-    source: "/release/:version",
-    destination:
-      "https://github.com/NomicFoundation/hardhat/releases/tag/hardhat%40:version",
-    permanent: false,
-  },
-  ...loadErrorRedirects(),
 ];
 
 module.exports = customRedirects;

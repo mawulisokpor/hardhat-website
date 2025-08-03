@@ -14,12 +14,17 @@ import remarkUnwrapImages from "remark-unwrap-images";
 import rehypePrism from "rehype-prism";
 import remarkPrism from "remark-prism";
 
-import { DOCS_PATH, REPO_URL, TEMP_PATH } from "../config";
+import {
+  DOCS_PATH,
+  MARKDOWN_REAPLACEMENT_VALUES_JSON,
+  REPO_URL,
+  TEMP_PATH,
+} from "../config";
 import { ITabsState } from "../global-tabs";
 
-export const newLineDividerRegEx = /\r\n|\n/;
+const newLineDividerRegEx = /\r\n|\n/;
 
-export const withIndexURL = (pathname: string): string[] => {
+const withIndexURL = (pathname: string): string[] => {
   const docPath = pathname.split("/");
   if (docPath[docPath.length - 1] === "index") {
     return [...docPath.slice(0, docPath.length - 1)];
@@ -43,7 +48,7 @@ export const normilizePath = (docPath: string[]): string[] => {
   return normalized;
 };
 
-export const withCodeElementWrapper = (
+const withCodeElementWrapper = (
   content: string,
   extension: string = "",
   highlightedLinesNumbers: string = ""
@@ -56,7 +61,7 @@ ${content}
   \`\`\``;
 };
 
-export const getEntriesInfo = (
+const getEntriesInfo = (
   line: string
 ): {
   pathname: string;
@@ -78,7 +83,7 @@ export const getEntriesInfo = (
   };
 };
 
-export const readFileContent = (pathname: string) => {
+const readFileContent = (pathname: string) => {
   try {
     return fs.readFileSync(pathname).toString();
   } catch (err) {
@@ -86,11 +91,11 @@ export const readFileContent = (pathname: string) => {
   }
 };
 
-export const getFileExtensionFromPathname = (pathname: string) => {
+const getFileExtensionFromPathname = (pathname: string) => {
   return pathname.substring(pathname.lastIndexOf(".") + 1);
 };
 
-export const withInsertedCodeFromLinks = (content: string) => {
+const withInsertedCodeFromLinks = (content: string) => {
   return content
     .split(newLineDividerRegEx)
     .map((line: string) => {
@@ -110,36 +115,34 @@ export const withInsertedCodeFromLinks = (content: string) => {
     .join("\n");
 };
 
-export const withoutComments = (content: string) => {
+const withoutComments = (content: string) => {
   return content.replace(/<!--[\s\S]*?-->/gm, "");
 };
 
-export const normalizeApostrophes = (text: string) => text.replace(/’/g, "'");
+const normalizeApostrophes = (text: string) => text.replace(/’/g, "'");
 
-export const replacePlaceholders = (content: string) => {
-  const recommendedSolcVersion = "0.8.28";
-  const latestPragma = "^0.8.0";
-  const hardhatPackageJson = fs
-    .readFileSync(
-      path.resolve(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "..",
-        "websites-version-of-hardhat",
-        "packages",
-        "hardhat-core",
-        "package.json"
-      )
-    )
-    .toString();
-  const hardhatVersion = JSON.parse(hardhatPackageJson).version;
+const replacePlaceholders = (content: string) => {
+  const replacementValuesJson = fs.readFileSync(
+    MARKDOWN_REAPLACEMENT_VALUES_JSON,
+    "utf-8"
+  );
 
-  return content
-    .replaceAll("{RECOMMENDED_SOLC_VERSION}", recommendedSolcVersion)
-    .replaceAll("{LATEST_PRAGMA}", latestPragma)
-    .replaceAll("{HARDHAT_VERSION}", hardhatVersion);
+  const replacementValues = JSON.parse(replacementValuesJson);
+
+  let replacedContent = content;
+  const entries = Array.from(Object.entries(replacementValues));
+  for (let i = 0; i < entries.length; i += 1) {
+    const [key, value] = entries[i];
+    if (typeof value !== "string") {
+      throw new Error(
+        `Expected markdown replacement value "${key}" to be a string, but got ${value} (typeof "${typeof value}")`
+      );
+    }
+
+    replacedContent = replacedContent.replaceAll(`{${key}}`, value.toString());
+  }
+
+  return replacedContent;
 };
 
 export const readMDFileFromPathOrIndex = (
@@ -228,7 +231,7 @@ function validateTabs() {
   };
 }
 
-export const generateTitleFromContent = (content: string) => {
+const generateTitleFromContent = (content: string) => {
   return content
     .split(newLineDividerRegEx)
     .filter((line) => line.startsWith("#"))[0]
@@ -245,6 +248,7 @@ export const parseMdFile = (source: string) => {
   const tocTitle = data.title ?? generateTitleFromContent(formattedContent);
   const seoTitle = tocTitle || "Hardhat";
   const seoDescription =
+    data.description ||
     data.title ||
     "Ethereum development environment for professionals by Nomic Foundation";
 
@@ -312,11 +316,12 @@ export const getMDFiles = (): string[] =>
     )
     .map((pathname) => pathname.replace(DOCS_PATH, ""));
 
-export const getPathParamsByFile = (pathname: string): string[] => {
+const getPathParamsByFile = (pathname: string): string[] => {
   const fileBase = pathname.replace(/\.mdx?$/, "");
   return withIndexURL(fileBase);
 };
-export const getPathParamsByFileMd = (pathname: string): string[] => {
+
+const getPathParamsByFileMd = (pathname: string): string[] => {
   return withIndexURL(pathname);
 };
 
@@ -341,7 +346,7 @@ export const getMDPaths = (): Array<{ params: { docPath: string[] } }> =>
     ])
     .flat();
 
-export const getSidebarConfig = () => {
+const getSidebarConfig = () => {
   try {
     const sidebarConfigPath = `${TEMP_PATH}sidebarConfig.json`;
     const configText = fs.readFileSync(sidebarConfigPath).toString();
@@ -377,14 +382,9 @@ export const getCommitDate = (fileName: string): string => {
 
 export const getEditLink = (fileName: string): string => {
   // the errors page is a special case because it's auto-generated
-  const errorsFile = path.join(
-    "content",
-    "hardhat-runner",
-    "docs",
-    "errors",
-    "index.md"
-  );
+  const errorsFile = path.join("content", "docs", "errors", "index.md");
   if (fileName.endsWith(errorsFile)) {
+    //
     return "https://github.com/NomicFoundation/hardhat/edit/main/packages/hardhat-core/src/internal/core/errors-list.ts";
   }
 
