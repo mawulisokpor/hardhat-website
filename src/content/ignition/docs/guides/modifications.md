@@ -4,13 +4,7 @@ It's possible to make changes to modules after having deployed them.
 
 For example, if we wanted to add a new `Rocket` contract instance to the module we deployed in the [Quick Start guide](../getting-started/index.md#quick-start), this is what we would do:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
-**ignition/modules/Apollo.ts**
-
-```typescript{8,10,12}
+```typescript
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
 export default buildModule("Apollo", (m) => {
@@ -25,32 +19,6 @@ export default buildModule("Apollo", (m) => {
   return { apollo, artemis };
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-**ignition/modules/Apollo.js**
-
-```javascript{8,10,12}
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
-
-module.exports = buildModule("Apollo", (m) => {
-  const apollo = m.contract("Rocket", ["Saturn V"]);
-
-  m.call(apollo, "launch", []);
-
-  const artemis = m.contract("Rocket", ["Artemis 2"], { id: "artemis" });
-
-  m.call(artemis, "launch", []);
-
-  return { apollo, artemis };
-});
-```
-
-:::
-
-::::
 
 Then run it again. Hardhat Ignition will continue from where it left off, and execute the new parts of the module.
 

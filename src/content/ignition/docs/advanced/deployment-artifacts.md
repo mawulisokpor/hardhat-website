@@ -14,7 +14,7 @@ The journal file allows Hardhat Ignition to resume deployments.
 
 ## Contract Artifacts and `BuildInfo`s
 
-Hardhat Ignition uses [the same format as Hardhat](../../../hardhat-runner/docs/advanced/artifacts.md) for artifacts and build info files.
+Hardhat Ignition uses the same format as Hardhat for artifacts and build info files.
 
 The only differences are that the artifacts are stored in `ignition/deployment/<DeploymentId>/artifacts`, without subfolders, and that their files are named after the `Future` ID that created them.
 

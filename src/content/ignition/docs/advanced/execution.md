@@ -60,7 +60,7 @@ Hardhat Ignition will error if you try to resume the execution of a `Future` tha
 
 Hardhat Ignition knows how to execute each kind of `Future`: deploying a contract, instantiating an existing one, calling a contract, reading from one, deploying a library, sending ETH or data, or reading an event argument.
 
-Some of these require sending transactions, which Hardhat Ignition does through the [Hardhat Runtime Environment](../../../hardhat-runner/docs/advanced/hardhat-runtime-environment.md)'s network connection.
+Some of these require sending transactions, which Hardhat Ignition does through the Hardhat Runtime Environment's network connection.
 
 ### Transaction execution
 

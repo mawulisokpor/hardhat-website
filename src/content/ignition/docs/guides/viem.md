@@ -8,35 +8,19 @@ The Viem support in Hardhat Ignition includes a helper function, for use in Hard
 
 To install Hardhat Ignition with Viem support in an existing Hardhat project, you will need:
 
-- Hardhat version 2.18.0 or higher
-- Viem version 1.18.0 or higher
+- Hardhat version 3.0.0 or higher
+- Viem version 2.30.0 or higher
 
-You can also follow [Hardhat's Viem Quick Start](../../../hardhat-runner/docs/advanced/using-viem#quick-start) to create a new Hardhat Viem project from scratch.
+You can also follow [Hardhat's Viem Quick Start](../../../docs/learn-more/using-viem.md) to create a new Hardhat Viem project from scratch.
 
 From the root directory of your Hardhat project run:
 
-::::tabsgroup{options="npm 7+,npm 6,yarn,pnpm"}
+::::tabsgroup{options="npm,pnpm"}
 
-:::tab{value="npm 7+"}
+:::tab{value="npm"}
 
 ```shell
 npm install --save-dev @nomicfoundation/hardhat-ignition-viem
-```
-
-:::
-
-:::tab{value="npm 6"}
-
-```shell
-npm install --save-dev @nomicfoundation/hardhat-ignition-viem @nomicfoundation/hardhat-ignition @nomicfoundation/hardhat-verify @nomicfoundation/hardhat-viem @nomicfoundation/ignition-core typescript viem
-```
-
-:::
-
-:::tab{value=yarn}
-
-```shell
-yarn add --dev @nomicfoundation/hardhat-ignition-viem @nomicfoundation/hardhat-ignition @nomicfoundation/hardhat-verify @nomicfoundation/hardhat-viem @nomicfoundation/ignition-core typescript viem
 ```
 
 :::
@@ -51,27 +35,18 @@ pnpm add -D @nomicfoundation/hardhat-ignition-viem viem typescript
 
 ::::
 
-Then [enable the plugin](../../../hardhat-runner/docs/guides/project-setup.md#plugins-and-dependencies) in your config file:
-
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
+Then [enable the plugin](../../../docs/learn-more/using-viem.md#setup) in your config file:
 
 ```typescript
-import "@nomicfoundation/hardhat-ignition-viem";
+import HardhatIgnitionViemPlugin '@nomicfoundation/hardhat-ignition-viem'
+
+export default {
+  plugins: [
+    HardhatIgnitionViemPlugin,
+  ],
+  // ... rest of your config
+}
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-require("@nomicfoundation/hardhat-ignition-viem");
-```
-
-:::
-
-::::
 
 :::tip
 
@@ -81,13 +56,16 @@ Only **one** Hardhat Ignition package should be imported within your Hardhat con
 
 ## The Ignition object
 
-The `@nomicfoundation/hardhat-plugin-viem` plugin adds an `ignition` object to the [Hardhat Runtime Environment](../../../hardhat-runner/docs/advanced/hardhat-runtime-environment.md).
+The `@nomicfoundation/hardhat-plugin-viem` plugin adds an `ignition` object to each `NetworkConnection` created by Hardhat.
 
 The `ignition` object exposes a `deploy` method, which takes an Ignition module, deploys it against the current network, like Hardhat Network, and returns the results of the module as typed Viem contract instances.
 
 The `deploy` method takes the Module as its first argument:
 
 ```typescript
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+import hre from "hardhat";
+
 const ApolloModule = buildModule("Apollo", (m) => {
   const apollo = m.contract("Rocket", ["Saturn V"]);
 
@@ -95,7 +73,8 @@ const ApolloModule = buildModule("Apollo", (m) => {
 });
 
 it("should have named the rocket Saturn V", async function () {
-  const { apollo } = await hre.ignition.deploy(ApolloModule);
+  const connection = await hre.network.connect();
+  const { apollo } = await connection.ignition.deploy(ApolloModule);
 
   assert.equal(await apollo.read.name(), "Saturn V");
 });
@@ -107,7 +86,7 @@ The `ignition.deploy` method returns an object with a Viem contract instance per
 
 To infer the type of a Viem contract instance, the full type of the ABI must be available when initializing a `Future` within a module.
 
-For named Hardhat contracts, the ABI and type information will be retrieved automatically using [hardhat-viem's type generation](https://hardhat.org/hardhat-runner/docs/advanced/using-viem#contract-type-generation).
+For named Hardhat contracts, the ABI and type information will be retrieved automatically using [hardhat-viem's type generation](../../../docs/learn-more/using-viem.md#type-safe-contract-interactions).
 
 If you are passing an artifact object to initialize a `Future` within a module, you will need to ensure the artifact's ABI is either declared with [const assertions](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-4.html#const-assertions) or defined inline:
 
@@ -138,20 +117,21 @@ See [Viem's type inference requirements](https://viem.sh/docs/typescript.html#ty
 
 ## Sending transactions with a different account
 
-The `ignition.deploy` method will default to using the first account in Hardhat network's `accounts` array as the sender for all transactions.
+The `ignition.deploy` method will default to using the first account in the `accounts` array of the Hardhat `NetworkConnection` as the sender for all transactions.
 
 You can change this by passing a `defaultSender` within the options object as a second argument to the `deploy` method:
 
 ```typescript
-const [first, second] = await hre.viem.getWalletClients();
+const connection = await hre.network.connect();
+const [first, second] = await connection.viem.getWalletClients();
 
-const result = await hre.ignition.deploy(ApolloModule, {
+const result = await connection.ignition.deploy(ApolloModule, {
   defaultSender: second.account.address,
 });
 ```
 
 ## Hardhat Ignition and Hardhat Viem
 
-Hardhat Ignition leverages the [hardhat-viem](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-viem) plugin for its type generation support, and inherits the same approach to [managing types and version stability](https://hardhat.org/hardhat-runner/docs/advanced/using-viem#managing-types-and-version-stability).
+Hardhat Ignition leverages the [hardhat-viem](../../../docs/learn-more/using-viem.md) plugin for its type generation support, and inherits the same approach to managing types and version stability.
 
-Read the documentation on [hardhat-viem](https://hardhat.org/hardhat-runner/plugins/nomicfoundation-hardhat-viem) to learn more about Hardhat's Viem capabilities.
+Read the documentation on [hardhat-viem](../../../docs/learn-more/using-viem.md) to learn more about Hardhat's Viem capabilities.

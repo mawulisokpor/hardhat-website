@@ -4,30 +4,16 @@ When developing smart contracts, you may decide to use an upgradeable proxy patt
 
 While there are several different proxy patterns, each with their own tradeoffs, this guide will focus on the [TransparentUpgradeableProxy](https://docs.openzeppelin.com/contracts/5.x/api/proxy#TransparentUpgradeableProxy) pattern. You can read more about upgradeable proxy patterns [on OpenZeppelin's blog](https://blog.openzeppelin.com/proxy-patterns).
 
-:::tip
-
-The finished code for this guide can be found in the [Hardhat Ignition monorepo](https://github.com/NomicFoundation/hardhat-ignition/tree/development/examples/upgradeable)
-
-:::
-
 ## Installation
 
 Before we get started, make sure you have the OpenZeppelin Contracts library installed in your project. You can install it using npm or yarn:
 
-::::tabsgroup{options="npm,yarn,pnpm"}
+::::tabsgroup{options="npm,pnpm"}
 
 :::tab{value="npm"}
 
 ```sh
 npm install @openzeppelin/contracts
-```
-
-:::
-
-:::tab{value=yarn}
-
-```sh
-yarn add @openzeppelin/contracts
 ```
 
 :::
@@ -86,6 +72,8 @@ In addition to updating the version string, this contract also adds a `name` sta
 
 Finally, we'll create a file called `Proxies.sol` to import our proxy contracts. This file will look a little different from the others:
 
+<!-- TODO: write a solution for this because this doesn't force Hardhat to compile the contracts anymore -->
+
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
@@ -98,15 +86,11 @@ Because we're using the OpenZeppelin proxy contracts, we need to import them her
 
 ## Writing our Ignition modules
 
-Inside our `ignition` directory, we'll create a directory called `modules`, if one doesn't already exist. Inside this directory, we'll create a file called `ProxyModule.js` (or `ProxyModule.ts` if you're using TypeScript). Inside this file, we'll break up our first Ignition module into two parts.
+Inside our `ignition` directory, we'll create a directory called `modules`, if one doesn't already exist. Inside this directory, we'll create a file called `ProxyModule.ts` (or `ProxyModule.js` if you're using JavaScript). Inside this file, we'll break up our first Ignition module into two parts.
 
 ### Part 1: Deploying our proxies
 
 As always, we'll begin by importing `buildModule` from `@nomicfoundation/hardhat-ignition/modules`, then we'll define our first module, which we'll call `ProxyModule`:
-
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
 
 ```typescript
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
@@ -133,40 +117,6 @@ const proxyModule = buildModule("ProxyModule", (m) => {
   return { proxyAdmin, proxy };
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
-
-const proxyModule = buildModule("ProxyModule", (m) => {
-  const proxyAdminOwner = m.getAccount(0);
-
-  const demo = m.contract("Demo");
-
-  const proxy = m.contract("TransparentUpgradeableProxy", [
-    demo,
-    proxyAdminOwner,
-    "0x",
-  ]);
-
-  const proxyAdminAddress = m.readEventArgument(
-    proxy,
-    "AdminChanged",
-    "newAdmin"
-  );
-
-  const proxyAdmin = m.contractAt("ProxyAdmin", proxyAdminAddress);
-
-  return { proxyAdmin, proxy };
-});
-```
-
-:::
-
-::::
 
 Let's break down what's happening here.
 
@@ -202,35 +152,23 @@ Finally, we return the `Demo` contract instance so that we can use it in other m
 
 As a last step, we'll export `demoModule` from our file so that we can deploy it and use it in our tests or scripts:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
 ```typescript
 export default demoModule;
 ```
 
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-module.exports = demoModule;
-```
-
-:::
-
-::::
-
 ### Part 3: Upgrading our proxy with an initialization function
 
-Next it's time to upgrade our proxy to a new version. To do this, we'll create a new file within our `ignition/modules` directory called `UpgradeModule.js` (or `UpgradeModule.ts` if you're using TypeScript). Inside this file, we'll again break up our module into two parts. To start, we'll write our `UpgradeModule`:
+Next it's time to upgrade our proxy to a new version. To do this, we'll create a new file within our `ignition/modules` directory called `UpgradeModule.ts` (or `UpgradeModule.js` if you're using JavaScript). Inside this file, we'll again break up our module into two parts. To start, we'll write our `UpgradeModule`:
 
 ```js
+import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
+
+import DemoModule from "./ProxyModule.js";
+
 const upgradeModule = buildModule("UpgradeModule", (m) => {
   const proxyAdminOwner = m.getAccount(0);
 
-  const { proxyAdmin, proxy } = m.useModule(demoModule);
+  const { proxyAdmin, proxy } = m.useModule(DemoModule);
 
   const demoV2 = m.contract("DemoV2");
 
@@ -278,51 +216,35 @@ As before, we return the `DemoV2` contract instance so that we can use it in oth
 
 As a last step, we'll export `demoV2Module` from our file so that we can deploy it and use it in our tests or scripts:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
 ```typescript
 export default demoV2Module;
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-module.exports = demoV2Module;
-```
-
-:::
-
-::::
 
 ## Testing our Ignition modules
 
 Now that we've written our Ignition modules for deploying and interacting with our proxy, let's write a couple of simple tests to make sure everything works as expected.
 
-Inside our `test` directory, we'll create a file called `ProxyDemo.js` (or `ProxyDemo.ts` if you're using TypeScript):
-
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
+Inside our `test` directory, we'll create a file called `ProxyDemo.ts` (or `ProxyDemo.js` if you're using JavaScript):
 
 ```typescript
 import { expect } from "chai";
-import { ignition, ethers } from "hardhat";
+import hre from "hardhat";
 
-import DemoModule from "../ignition/modules/ProxyModule";
-import UpgradeModule from "../ignition/modules/UpgradeModule";
+import DemoModule from "../ignition/modules/ProxyModule.js";
+import UpgradeModule from "../ignition/modules/UpgradeModule.js";
 
-describe("Demo Proxy", function () {
+describe("Demo Proxy", async function () {
+  const { ignition, ethers } = await hre.network.connect();
+
   describe("Proxy interaction", function () {
     it("Should be interactable via proxy", async function () {
       const [, otherAccount] = await ethers.getSigners();
 
       const { demo } = await ignition.deploy(DemoModule);
 
-      expect(await demo.connect(otherAccount).version()).to.equal("1.0.0");
+      expect(
+        await demo.connect(otherAccount).getFunction("version")()
+      ).to.equal("1.0.0");
     });
   });
 
@@ -332,7 +254,9 @@ describe("Demo Proxy", function () {
 
       const { demo } = await ignition.deploy(UpgradeModule);
 
-      expect(await demo.connect(otherAccount).version()).to.equal("2.0.0");
+      expect(
+        await demo.connect(otherAccount).getFunction("version")()
+      ).to.equal("2.0.0");
     });
 
     it("Should have set the name during upgrade", async function () {
@@ -340,56 +264,13 @@ describe("Demo Proxy", function () {
 
       const { demo } = await ignition.deploy(UpgradeModule);
 
-      expect(await demo.connect(otherAccount).name()).to.equal("Example Name");
+      expect(await demo.connect(otherAccount).getFunction("name")()).to.equal(
+        "Example Name"
+      );
     });
   });
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-const { expect } = require("chai");
-
-const DemoModule = require("../ignition/modules/ProxyModule");
-const UpgradeModule = require("../ignition/modules/UpgradeModule");
-
-describe("Demo Proxy", function () {
-  describe("Proxy interaction", function () {
-    it("Should be interactable via proxy", async function () {
-      const [, otherAccount] = await ethers.getSigners();
-
-      const { demo } = await ignition.deploy(DemoModule);
-
-      expect(await demo.connect(otherAccount).version()).to.equal("1.0.0");
-    });
-  });
-
-  describe("Upgrading", function () {
-    it("Should have upgraded the proxy to DemoV2", async function () {
-      const [, otherAccount] = await ethers.getSigners();
-
-      const { demo } = await ignition.deploy(UpgradeModule);
-
-      expect(await demo.connect(otherAccount).version()).to.equal("2.0.0");
-    });
-
-    it("Should have set the name during upgrade", async function () {
-      const [, otherAccount] = await ethers.getSigners();
-
-      const { demo } = await ignition.deploy(UpgradeModule);
-
-      expect(await demo.connect(otherAccount).name()).to.equal("Example Name");
-    });
-  });
-});
-```
-
-:::
-
-::::
 
 Here we use Hardhat Ignition to deploy our imported modules. First, we deploy our base `DemoModule` that returns the first version of our `Demo` contract and tests it to ensure the proxy worked and retrieves the appropriate version string. Then, we deploy our `UpgradeModule` that returns an upgraded version of our `Demo` contract and tests it to ensure the proxy returns the updated version string. We also test that our initialization function was called, setting the `name` state variable to `"Example Name"`.
 

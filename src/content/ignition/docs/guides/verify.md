@@ -10,57 +10,36 @@ In this guide we'll explain how to do this with the [Etherscan](https://ethersca
 
 The first thing you need is an API key from Etherscan. To get one, go to [their site](https://etherscan.io/login), sign in (or create an account if you don't have one) and open the "API Keys" tab. Then click the "Add" button and give a name to the API key you are creating (e.g. "Hardhat"). After that you'll see the newly created key in the list.
 
-Open your Hardhat config and add the API key you just created:
-
-::::tabsgroup{options=TypeScript,JavaScript}
-
-:::tab{value=TypeScript}
+Open your Hardhat config and add the API key you just created as a configuration variable:
 
 ```ts
+import { configVariable } from "hardhat/config";
+
 export default {
   // ...rest of the config...
   etherscan: {
-    apiKey: "ABCDE12345ABCDE12345ABCDE123456789",
+    apiKey: configVariable("ETHERSCAN_API_KEY"),
   },
 };
 ```
 
-:::
+:::tip
 
-:::tab{value=JavaScript}
-
-```js
-module.exports = {
-  // ...rest of the config...
-  etherscan: {
-    apiKey: "ABCDE12345ABCDE12345ABCDE123456789",
-  },
-};
-```
+You can find more info about using Hardhat configuration variables in the [configuration variable guide](../../../docs/learn-more/configuration-variables.md).
 
 :::
-
-::::
 
 ## Deploying and verifying on the Sepolia testnet
 
 We are going to use the [Sepolia testnet](https://ethereum.org/en/developers/docs/networks/#sepolia) to deploy and verify our Ignition module, so you need to add this network in your Hardhat config. Here we are using [Alchemy](https://alchemy.com/) to connect to the network.
 
-:::tip
-
-For more information on `vars` and configuration variables, please see our [configuration variables guide](../../../hardhat-runner/docs/guides/configuration-variables.md).
-
-:::
-
-::::tabsgroup{options=TypeScript,JavaScript}
-
-:::tab{value=TypeScript}
-
 ```ts
+import { configVariable } from "hardhat/config";
+
 // Go to https://alchemy.com, sign up, create a new App in
 // its dashboard, and set the Hardhat configuration variable
-// ALCHEMY_API_KEY to the key
-const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
+// ALCHEMY_RPC_URL to the key
+const ALCHEMY_RPC_URL = configVariable("ALCHEMY_RPC_URL");
 
 // Replace this private key with your Sepolia test account private key
 // To export your private key from Coinbase Wallet, go to
@@ -68,51 +47,18 @@ const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
 // To export your private key from Metamask, open Metamask and
 // go to Account Details > Export Private Key
 // Beware: NEVER put real Ether into testing accounts
-const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
+const SEPOLIA_PRIVATE_KEY = configVariable("SEPOLIA_PRIVATE_KEY");
 
 export default {
   // ...rest of your config...
   networks: {
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      url: ALCHEMY_RPC_URL,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
   },
 };
 ```
-
-:::
-
-:::tab{value=JavaScript}
-
-```js
-// Go to https://alchemy.com, sign up, create a new App in
-// its dashboard, and set the Hardhat configuration variable
-// ALCHEMY_API_KEY to the key
-const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
-
-// Replace this private key with your Sepolia test account private key
-// To export your private key from Coinbase Wallet, go to
-// Settings > Developer Settings > Show private key
-// To export your private key from Metamask, open Metamask and
-// go to Account Details > Export Private Key
-// Beware: NEVER put real Ether into testing accounts
-const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
-
-module.exports = {
-  // ...rest of your config...
-  networks: {
-    sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
-      accounts: [SEPOLIA_PRIVATE_KEY],
-    },
-  },
-};
-```
-
-:::
-
-::::
 
 To deploy on Sepolia you need to send some Sepolia ether to the address that's going to be making the deployment. You can get testnet ether from a faucet, a service that distributes testing-ETH for free. Here is one for Sepolia:
 
@@ -172,4 +118,4 @@ If you get an error saying that the address does not have bytecode, it probably 
 
 After the task has successfully executed, for each deployed contract you'll see a link to its publicly verified code.
 
-To learn more about verifying, read the [hardhat-verify](/hardhat-runner/plugins/nomicfoundation-hardhat-verify) documentation.
+To learn more about verifying, read our guide on [smart contract verification](../../../docs/learn-more/smart-contract-verification.md) documentation.
