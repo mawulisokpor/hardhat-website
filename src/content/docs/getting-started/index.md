@@ -32,7 +32,7 @@ Once that's done, initialize your Hardhat project by running:
 :::tab{value=npm}
 
 ```bash
-npx hardhat@next --init
+npx hardhat --init
 ```
 
 :::
@@ -51,9 +51,9 @@ This command will prompt you with a few configuration options. You can accept th
 
 Using the defaults will:
 
-1. Initialize the project in the current directory.
-2. Use the example project that includes the [Node.js test runner](https://nodejs.org/api/test.html) and [viem](https://viem.sh/).
-3. Automatically install all the required dependencies.
+- Initialize the project in the current directory.
+- Use the sample project that includes the [Node.js test runner](https://nodejs.org/api/test.html) and [viem](https://viem.sh/).
+- Automatically install all the required dependencies.
 
 After the setup is complete, you'll have a fully working Hardhat 3 project with everything you need to get started. Run the Hardhat help to verify the project was set up correctly:
 
@@ -104,13 +104,13 @@ Here's a quick overview of these files and directories:
 
 - `hardhat.config.ts`: The main configuration file for your project. It defines settings like the Solidity compiler version, network configurations, and the plugins and tasks your project uses.
 
-- `contracts`: Contains your project's Solidity contracts. You can also include Solidity test files here. Any file ending in `.t.sol` will be treated as a test file.
+- `contracts`: Contains your project's Solidity contracts. You can also include Solidity test files here by using the `.t.sol` extension.
 
 - `test`: Used for TypeScript integration tests. You can also include Solidity test files here.
 
 - `ignition`: Holds your [Hardhat Ignition](https://hardhat.org/ignition) deployment modules, which describe how your contracts should be deployed.
 
-- `scripts`: A place for any custom scripts that interact with your contracts or automate parts of your workflow. Scripts have full access to Hardhat's runtime and can use plugins, connect to networks, deploy contracts, and more.
+- `scripts`: A place for any custom scripts that automate parts of your workflow. Scripts have full access to Hardhat's runtime and can use plugins, connect to networks, deploy contracts, and more.
 
 ## Writing a smart contract
 
@@ -159,7 +159,7 @@ pnpm hardhat compile
 
 ::::
 
-You can learn more about how to customize your Solidity version and settings in [this guide](hardhat3-alpha/learn-more/configuring-the-compiler.md).
+You can learn more about how to customize your Solidity version and settings in [this guide](/docs/learn-more/configuring-the-compiler.md).
 
 ## Testing your contracts
 
@@ -169,7 +169,7 @@ Hardhat tests run against a local in-memory blockchain, which is much faster tha
 
 ### Solidity tests
 
-Hardhat 3 has full support for writing Solidity tests. The example project includes a Solidity test file at `contracts/Counter.t.sol`:
+Hardhat 3 has full support for writing Solidity tests. The sample project includes a Solidity test file at `contracts/Counter.t.sol`:
 
 ```solidity
 import { Counter } from "./Counter.sol";
@@ -194,8 +194,8 @@ contract CounterTest is Test {
   }
 
   function test_IncByZero() public {
-      vm.expectRevert();
-      counter.incBy(0);
+    vm.expectRevert();
+    counter.incBy(0);
   }
 }
 ```
@@ -246,10 +246,10 @@ pnpm hardhat test solidity
 
 When you run this command, Hardhat will:
 
-- Compile your contracts and tests.
-- Treat all `.t.sol` files in the `contracts/` directory and all `.sol` files in the `test/` directory as test files.
-- Deploy each test contract defined in those files.
-- Call every function that starts with `test`. If any of these calls revert, the corresponding test is marked as failed.
+1. Compile your contracts and tests.
+2. Gather all your test files. These include all `.t.sol` files in the `contracts/` directory and all `.sol` files in the `test/` directory.
+3. Deploy each test contract defined in those files.
+4. Call every function that starts with `test`. If any of these calls revert, the corresponding test is marked as failed.
 
 In the example above:
 
@@ -276,53 +276,52 @@ Reason: revert: incBy: increment should be positive
 
 This lets you quickly pinpoint the issue, even across deeply nested calls.
 
-Learn more at [writing Solidity tests here](hardhat3-alpha/learn-more/writing-solidity-tests.md).
+Learn more at [writing Solidity tests here](/docs/learn-more/writing-solidity-tests.md).
 
 ### TypeScript tests
 
 Solidity tests are ideal for fast, focused unit testing, but they fall short in certain situations:
 
 - **Complex test logic**, where a general-purpose language like TypeScript is more expressive and ergonomic than Solidity.
-- **Tests that require realistic blockchain behavior**, such as advancing blocks or working with gas costs or multiple transactions. While cheatcodes can simulate this to some extent, excessive mocking is hard to maintain and can lead to inaccurate assumptions.
-- **End-to-end scenarios**, where you want to test your contracts as they would behave in production—across multiple transactions, clients, and user interactions.
+- **Tests that require realistic blockchain behavior**, such as advancing blocks or working with gas costs. While cheatcodes can simulate this to some extent, excessive mocking is hard to maintain and can lead to inaccurate assumptions.
+- **End-to-end scenarios**, where you want to test your contracts as they would behave in production, involving multiple transactions, clients, and user interactions.
 
-To support these cases, Hardhat lets you write tests in TypeScript (or JavaScript), using the Node.js test runner or other frameworks like Mocha. These tests run in a real Node.js environment and interact with your contracts through RPC, making them more representative of actual usage.
+To support these use cases, Hardhat lets you write tests in TypeScript (or JavaScript), using the [Node.js test runner](https://nodejs.org/api/test.html) or other frameworks like [Mocha](https://mochajs.org/). These tests run in a real Node.js environment and interact with your contracts through JSON-RPC, making them more representative of actual usage.
 
-The example project includes a TypeScript test file at `test/Counter.ts`:
+The sample project comes with a TypeScript test file at `test/Counter.ts`, which includes the following test:
 
 ```tsx
-describe("Counter", async function () {
-  const { viem } = await network.connect();
-  const publicClient = await viem.getPublicClient();
+it("The sum of the Increment events should match the current value", async function () {
+  const counter = await viem.deployContract("Counter");
 
-  it("The sum of the Increment events should match the current value", async function () {
-    const counter = await viem.deployContract("Counter");
+  // run a series of increments
+  for (let i = 1n; i <= 10n; i++) {
+    await counter.write.incBy([i]);
+  }
 
-    // run a series of increments
-    for (let i = 1n; i <= 10n; i++) {
-      await counter.write.incBy([i]);
-    }
-
-    const events = await publicClient.getContractEvents({
-      address: counter.address,
-      abi: counter.abi,
-      eventName: "Increment",
-      fromBlock: 0n,
-      strict: true,
-    });
-
-    // check that the aggregated events match the current value
-    let total = 0n;
-    for (const event of events) {
-      total += event.args.by;
-    }
-
-    assert.equal(total, await counter.read.x());
+  const events = await publicClient.getContractEvents({
+    address: counter.address,
+    abi: counter.abi,
+    eventName: "Increment",
+    fromBlock: 0n,
+    strict: true,
   });
+
+  // check that the aggregated events match the current value
+  let total = 0n;
+  for (const event of events) {
+    total += event.args.by;
+  }
+
+  assert.equal(total, await counter.read.x());
 });
 ```
 
-To run only your TypeScript tests, use the `test node` task:
+This test deploys the `Counter` contract, calls `incBy` multiple times (each in a separate transaction), collects all the emitted `Increment` events, and verifies that their sum matches the contract's final value.
+
+Writing this same test in Solidity is possible, but less convenient, and the test would be executed in a different context — closer to a single transaction calling the contract multiple times, than different users interacting with it over time. This makes TypeScript a better fit for scenarios that depend on realistic transaction flows or blockchain behavior.
+
+To run your TypeScript tests, use the `test nodejs` task:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -344,11 +343,7 @@ pnpm hardhat test nodejs
 
 ::::
 
-This test deploys the `Counter` contract, calls `incBy` multiple times (each in a separate transaction), collects all the emitted `Increment` events, and verifies that their sum matches the contract's final value.
-
-Writing this same test in Solidity is possible, but less convenient, and the test would be executed in a different context — closer to a single transaction calling the contract multiple times, than different users interacting with it over time. This makes TypeScript a better fit for scenarios that depend on realistic transaction flows or blockchain behavior.
-
-You can write any TypeScript code you want in your tests, as they are normal TypeScript files with access to Hardhat. In this example, we use `viem` to interact with the contracts and test the expected behavior. To learn more about how to use `viem` with Hardhat, read [this guide](hardhat3-alpha/learn-more/using-viem.md).
+You can write any TypeScript code you want in your tests, as they are normal TypeScript files with access to Hardhat. In this example, we use `viem` to interact with the contracts and test the expected behavior. To learn more about how to use `viem` with Hardhat, read [this guide](/docs/learn-more/using-viem.md).
 
 ### Solidity vs TypeScript tests
 
@@ -364,7 +359,7 @@ A script in Hardhat is just a TypeScript or JavaScript file with access to your 
 
 By convention, scripts are located in the `scripts/` directory. You can name them however you like and use either `.ts` or `.js` extensions.
 
-The example project includes two scripts. One of them, `scripts/send-op-tx.ts`, shows how you can simulate a local Optimism-like network and send a transaction on it.
+The sample project includes two scripts. One of them, `scripts/send-op-tx.ts`, shows how you can simulate a local Optimism-like network and send a transaction on it.
 
 To run a script, you can use the `run` task:
 
@@ -410,7 +405,7 @@ export default buildModule("CounterModule", (m) => {
 });
 ```
 
-Inside a module you call functions, like `m.contract` and `m.call`, to describe the deployment you want to execute. To learn more about how to write an Ignition module, please read [this document](https://hardhat.org/ignition/docs/guides/creating-modules).
+Inside a module you call functions, like `m.contract` and `m.call`, to describe the deployment you want to execute. To learn more about how to write an Ignition module, please read [this document](/ignition/docs/guides/creating-modules).
 
 Modules are deployed with the `ignition deploy` task. To check that the deployment works correctly, let's run it in a simulated network:
 
@@ -434,16 +429,16 @@ pnpm hardhat ignition deploy ignition/modules/Counter.ts
 
 ::::
 
-Your deployment was successfully executed in a network simulated by Hardhat! To learn more about how to deploy contracts with Ignition, including how to connect to a real network and how to manage your private keys, please read [this guide](hardhat3-alpha/learn-more/deploying-contracts.md).
+Your deployment was successfully executed in a network simulated by Hardhat! To learn more about how to deploy contracts with Ignition, including how to connect to a real network and how to manage your private keys, please read [this guide](/docs/learn-more/deploying-contracts.md).
 
 ## Learn more
 
 To learn more about Hardhat, check out these other guides:
 
-- [Writing Solidity tests](hardhat3-alpha/learn-more/writing-solidity-tests.md)
-- [Using Viem with Hardhat](hardhat3-alpha/learn-more/using-viem.md)
-- [Deploying contracts](hardhat3-alpha/learn-more/deploying-contracts.md)
-- [Configuring the compiler](hardhat3-alpha/learn-more/configuring-the-compiler.md)
-- [Differences with Hardhat 2](hardhat3-alpha/learn-more/comparison.md)
+- [Writing Solidity tests](/docs/learn-more/writing-solidity-tests.md)
+- [Using Viem with Hardhat](/docs/learn-more/using-viem.md)
+- [Deploying contracts](/docs/learn-more/deploying-contracts.md)
+- [Configuring the compiler](/docs/learn-more/configuring-the-compiler.md)
+- [Differences with Hardhat 2](/docs/learn-more/comparison.md)
 
 and join our [Hardhat 3 Alpha](https://hardhat.org/hardhat3-alpha-telegram-group) Telegram group to share feedback and stay updated on new releases.
