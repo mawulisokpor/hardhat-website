@@ -20,14 +20,14 @@ async function main() {
   const connection = await hre.network.connect();
   const { apollo } = await connection.ignition.deploy(ApolloModule);
 
-  // or `apollo.address` if you're using Viem
-  console.log(`Apollo deployed to: ${await apollo.getAddress()}`);
+  // or `apollo.getAddress()` if you're using Ethers.js
+  console.log(`Apollo deployed to: ${apollo.address}`);
 }
 
 main().catch(console.error);
 ```
 
-This script imports the `Apollo` module and deploys it using `connection.ignition.deploy`. The `apollo` object in this example is an [ethers.js](https://docs.ethers.org) contract instance, which returns the deployed contract's address via the `getAddress` function. We then log this address to the console. To run the script, execute the following command:
+This script imports the `Apollo` module and deploys it using `connection.ignition.deploy`. The `apollo` object in this example is a [Viem](https://viem.sh) contract instance, which returns the deployed contract's address via the `address` property. We then log this address to the console. To run the script, execute the following command:
 
 ::::tabsgroup{options="TypeScript,JavaScript"}
 
@@ -86,7 +86,7 @@ async function main() {
     parameters: { Apollo: { rocketName } },
   });
 
-  console.log(`Apollo deployed to: ${await apollo.getAddress()}`);
+  console.log(`Apollo deployed to: ${apollo.address}`);
 }
 
 main().catch(console.error);
@@ -120,7 +120,7 @@ async function main() {
       parameters: { Apollo: { rocketName } },
     });
 
-    console.log(`Apollo deployed to: ${await apollo.getAddress()}`);
+    console.log(`Apollo deployed to: ${apollo.address}`);
   } else {
     console.log("No name given for Rocket contract, skipping deployment");
   }

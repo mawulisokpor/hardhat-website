@@ -35,7 +35,7 @@ You can also follow [Hardhat's Quick Start guide](../../../docs/getting-started/
 
 :::tip
 
-If you prefer to use **Viem** instead of **ethers**, check out the [Viem guide](../../../ignition/docs/guides/viem.md) for installation instructions.
+If you prefer to use **Ethers** instead of **Viem**, check out the [Ethers.js guide](../../../ignition/docs/guides/ethers.md) for installation instructions.
 
 :::
 
@@ -46,7 +46,7 @@ Once you have a Hardhat project ready, open a terminal in its root directory, an
 :::tab{value="npm"}
 
 ```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-ethers@next
+npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
 ```
 
 :::
@@ -54,23 +54,21 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-ethers@next
 :::tab{value="pnpm"}
 
 ```sh
-pnpm add -D @nomicfoundation/hardhat-ignition-ethers@next
+pnpm add -D @nomicfoundation/hardhat-ignition-viem@next
 ```
 
 :::
 
 ::::
 
-<!-- TODO: is this the right link? its a todo currently so this might just be a placeholder -->
-
-Finally, add this to your config file to [enable the plugin](../../../docs/config/index.md):
+Finally, add this to your config file to enable the plugin:
 
 ```typescript
-import hardhatEthersPlugin '@nomicfoundation/hardhat-ignition-ethers'
+import hardhatViemPlugin '@nomicfoundation/hardhat-ignition-viem'
 
 export default {
   plugins: [
-    hardhatEthersPlugin,
+    hardhatViemPlugin,
   ],
   // ... rest of your config
 }

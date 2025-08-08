@@ -4,7 +4,7 @@ If you want to test that your deployment was correctly defined, or if you want t
 
 :::tip
 
-If you prefer to use **Viem** instead of **ethers**, check out the [Viem guide](../../../ignition/docs/guides/viem.md) for more details.
+If you prefer to use **Ethers** instead of **Viem**, check out the [Ethers.js guide](../../../ignition/docs/guides/ethers.md) for more details.
 
 :::
 
@@ -18,6 +18,9 @@ The `ignition` object exposes a `deploy` method, that takes an Ignition Module a
 // We define a module in the test file here, but you can also `import` it.
 import { network } from "hardhat";
 
+import assert from "node:assert/strict";
+import { it } from "node:test";
+
 const CounterModule = buildModule("Counter", (m) => {
   const startCount = m.getParameter("startCount", 0);
 
@@ -30,11 +33,11 @@ it("should set the start count to 0 by default", async function () {
   const { ignition } = await network.connect();
   const { counter } = await ignition.deploy(CounterModule);
 
-  assert.equal(await counter.count(), 42);
+  assert.equal(await counter.read.count(), 0);
 });
 ```
 
-The `ignition.deploy` method returns an object with an `ethers` contract per contract `Future` returned in your module.
+The `ignition.deploy` method returns an object with a `viem` contract per contract `Future` returned in your module.
 
 ## Using module parameters
 
@@ -42,6 +45,9 @@ The `ignition.deploy` receives an options object as second argument which can be
 
 ```js
 import { network } from "hardhat";
+
+import assert from "node:assert/strict";
+import { it } from "node:test";
 
 it("should allow setting the start count for new counters", async function () {
   const { ignition } = await network.connect();
@@ -53,7 +59,7 @@ it("should allow setting the start count for new counters", async function () {
     },
   });
 
-  assert.equal(await counter.count(), 42);
+  assert.equal(await counter.read.count(), 42);
 });
 ```
 
@@ -64,6 +70,9 @@ You can combine Hardhat Ignition with [Hardhat Network Helper's `loadFixture`](.
 ```js
 import { network } from "hardhat";
 
+import assert from "node:assert/strict";
+import { it } from "node:test";
+
 async function deployCounterModuleFixture() {
   const { ignition } = await network.connect();
   return ignition.deploy(CounterModule);
@@ -71,9 +80,11 @@ async function deployCounterModuleFixture() {
 
 it("should set the start count to 0 by default", async function () {
   const { networkHelpers } = await network.connect();
-  const counter = await networkHelpers.loadFixture(deployCounterModuleFixture);
+  const { counter } = await networkHelpers.loadFixture(
+    deployCounterModuleFixture
+  );
 
-  return { counter };
+  assert.equal(await counter.read.count(), 0);
 });
 ```
 
@@ -86,8 +97,8 @@ You can change this by passing a `defaultSender` within the options object as a 
 ```typescript
 const connection = await network.connect();
 
-const [first, second] = await connection.ethers.getSigners();
+const [first, second] = await connection.viem.getWalletClients();
 const result = await connection.ignition.deploy(CounterModule, {
-  defaultSender: second.address,
+  defaultSender: second.account.address,
 });
 ```

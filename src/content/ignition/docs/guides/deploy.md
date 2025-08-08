@@ -115,8 +115,8 @@ async function main() {
     ),
   });
 
-  // or `apollo.address` if you're using Viem
-  console.log(`Apollo deployed to: ${await apollo.getAddress()}`);
+  // or `apollo.getAddress()` if you're using Ethers.js
+  console.log(`Apollo deployed to: ${apollo.address}`);
 }
 
 main().catch(console.error);

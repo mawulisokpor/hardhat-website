@@ -52,7 +52,7 @@ To deploy on Sepolia you need to send some Sepolia ether to the address that's g
 
 :::tip
 
-This guide assumes you are using the contracts and Ignition module from the [quick start guide](/ignition/docs/getting-started#quick-start), but the steps are the same for any deployment.
+This guide assumes you are using the contracts and Ignition module from the [quick start guide](../getting-started/index.md), but the steps are the same for any deployment.
 
 :::
 

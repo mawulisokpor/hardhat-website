@@ -70,19 +70,18 @@ contract DemoV2 {
 
 In addition to updating the version string, this contract also adds a `name` state variable and a `setName` function that allows us to set the value of `name`. We'll use this function later when we upgrade our proxy.
 
-Finally, we'll create a file called `Proxies.sol` to import our proxy contracts. This file will look a little different from the others:
+Finally, because we'll be using the OpenZeppelin proxy contracts in our Ignition modules, we need to tell Hardhat to compile them. To do this, we need to edit our `hardhat.config.ts` (or `hardhat.config.js` if you're using JavaScript) file to include the OpenZeppelin contracts in our compilation process. Add the following `npmFilesToBuild` field to your existing Hardhat configuration:
 
-<!-- TODO: write a solution for this because this doesn't force Hardhat to compile the contracts anymore -->
-
-```solidity
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
-
-import "@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol";
-import "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol";
+```typescript
+export default {
+  solidity: {
+    npmFilesToBuild: [
+      "@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol",
+      "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
+    ],
+  },
+};
 ```
-
-Because we're using the OpenZeppelin proxy contracts, we need to import them here to make sure Hardhat knows to compile them. This will ensure that their artifacts are available for Hardhat Ignition to use later when we're writing our Ignition modules.
 
 ## Writing our Ignition modules
 
@@ -227,44 +226,49 @@ Now that we've written our Ignition modules for deploying and interacting with o
 Inside our `test` directory, we'll create a file called `ProxyDemo.ts` (or `ProxyDemo.js` if you're using JavaScript):
 
 ```typescript
-import { expect } from "chai";
 import hre from "hardhat";
+
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
 
 import DemoModule from "../ignition/modules/ProxyModule.js";
 import UpgradeModule from "../ignition/modules/UpgradeModule.js";
 
 describe("Demo Proxy", async function () {
-  const { ignition, ethers } = await hre.network.connect();
+  const { ignition, viem } = await hre.network.connect();
 
   describe("Proxy interaction", function () {
     it("Should be interactable via proxy", async function () {
-      const [, otherAccount] = await ethers.getSigners();
+      const [, otherAccount] = await viem.getWalletClients();
 
       const { demo } = await ignition.deploy(DemoModule);
 
-      expect(
-        await demo.connect(otherAccount).getFunction("version")()
-      ).to.equal("1.0.0");
+      assert.equal(
+        await demo.read.version({ account: otherAccount.account.address }),
+        "1.0.0"
+      );
     });
   });
 
   describe("Upgrading", function () {
     it("Should have upgraded the proxy to DemoV2", async function () {
-      const [, otherAccount] = await ethers.getSigners();
+      const [, otherAccount] = await viem.getWalletClients();
 
       const { demo } = await ignition.deploy(UpgradeModule);
 
-      expect(
-        await demo.connect(otherAccount).getFunction("version")()
-      ).to.equal("2.0.0");
+      assert.equal(
+        await demo.read.version({ account: otherAccount.account.address }),
+        "2.0.0"
+      );
     });
 
     it("Should have set the name during upgrade", async function () {
-      const [, otherAccount] = await ethers.getSigners();
+      const [, otherAccount] = await viem.getWalletClients();
 
       const { demo } = await ignition.deploy(UpgradeModule);
 
-      expect(await demo.connect(otherAccount).getFunction("name")()).to.equal(
+      assert.equal(
+        await demo.read.name({ account: otherAccount.account.address }),
         "Example Name"
       );
     });
@@ -282,5 +286,5 @@ Here are some additional resources to learn more about topics discussed in this 
 
 - [OpenZeppelin's blog post on proxy patterns](https://blog.openzeppelin.com/proxy-patterns)
 - [OpenZeppelin's documentation on the TransparentUpgradeableProxy used in this guide](https://docs.openzeppelin.com/contracts/5.x/api/proxy#TransparentUpgradeableProxy)
-- [Hardhat Ignition's documentation on creating Ignition modules](/ignition/docs/guides/creating-modules)
-- [Hardhat Ignition's documentation on testing Ignition modules](/ignition/docs/guides/tests)
+- [Hardhat Ignition's documentation on creating Ignition modules](./creating-modules.md)
+- [Hardhat Ignition's documentation on testing Ignition modules](./tests.md)
