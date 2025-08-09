@@ -95,7 +95,9 @@ using Hardhat and an explanation of each of them.`;
         ERRORS[packageName][rangeName]
       )) {
         const errorCode = `hhe${errorDescriptor.number}`;
-        const title = `${errorCode}: ${errorDescriptor.websiteTitle}`;
+        const title = `${errorCode.toUpperCase()}: ${
+          errorDescriptor.websiteTitle
+        }`;
 
         content += `
 #### [${title}](#${errorCode})
@@ -107,26 +109,27 @@ ${errorDescriptor.websiteDescription}
 
         errorRedirects.push({
           source: `/${shortLink}`,
-          destination: `/errors/#${anchor}`,
+          destination: `/docs/reference/errors/#${anchor}`,
           permanent: false,
         });
         errorRedirects.push({
           source: `/${shortLink.toLowerCase()}`,
-          destination: `/errors/#${anchor}`,
+          destination: `/docs/reference/errors/#${anchor}`,
           permanent: false,
         });
       }
     }
   }
 
-  // The error list has some problems, so we fixed it manually and saved it here
-  content = fs.readFileSync(
-    path.join(__dirname, "temporary-error-list.md"),
-    "utf-8"
-  );
+  // We use this alternative file when we accdidentally published an error
+  // dsecriptor with invalid mardkwon in websiteTitle or websiteDescription.
+  // content = fs.readFileSync(
+  //   path.join(__dirname, "manually-fixed-error-list"),
+  //   "utf-8"
+  // );
 
   fs.writeFileSync(
-    path.join(__dirname, "../src/content/docs/errors/index.md"),
+    path.join(__dirname, "../src/content/docs/reference/errors/index.md"),
     content,
     "utf-8"
   );
