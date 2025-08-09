@@ -12,15 +12,19 @@ As is the case when using any unaudited contract system, please be aware of the 
 
 We are going to use the [Sepolia testnet](https://ethereum.org/en/developers/docs/networks/#sepolia) to deploy our Ignition module, so you need to add this network in your Hardhat config. Here we are using [Alchemy](https://alchemy.com/) to connect to the network.
 
-::::tabsgroup{options=TypeScript,JavaScript}
+:::tip
 
-:::tab{value=TypeScript}
+You can find more info about using Hardhat configuration variables in the [configuration variable guide](../../../docs/learn-more/configuration-variables.md).
+
+:::
 
 ```ts
+import { configVariable } from "hardhat/config";
+
 // Go to https://alchemy.com, sign up, create a new App in
 // its dashboard, and set the Hardhat configuration variable
-// ALCHEMY_API_KEY to the key
-const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
+// ALCHEMY_RPC_URL to the full RPC URL, including the API key
+const ALCHEMY_RPC_URL = configVariable("ALCHEMY_RPC_URL");
 
 // Replace this private key with your Sepolia test account private key
 // To export your private key from Coinbase Wallet, go to
@@ -28,51 +32,18 @@ const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
 // To export your private key from Metamask, open Metamask and
 // go to Account Details > Export Private Key
 // Beware: NEVER put real Ether into testing accounts
-const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
+const SEPOLIA_PRIVATE_KEY = configVariable("SEPOLIA_PRIVATE_KEY");
 
 export default {
   // ...rest of your config...
   networks: {
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
+      url: ALCHEMY_RPC_URL,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
   },
 };
 ```
-
-:::
-
-:::tab{value=JavaScript}
-
-```js
-// Go to https://alchemy.com, sign up, create a new App in
-// its dashboard, and set the Hardhat configuration variable
-// ALCHEMY_API_KEY to the key
-const ALCHEMY_API_KEY = vars.get("ALCHEMY_API_KEY");
-
-// Replace this private key with your Sepolia test account private key
-// To export your private key from Coinbase Wallet, go to
-// Settings > Developer Settings > Show private key
-// To export your private key from Metamask, open Metamask and
-// go to Account Details > Export Private Key
-// Beware: NEVER put real Ether into testing accounts
-const SEPOLIA_PRIVATE_KEY = vars.get("SEPOLIA_PRIVATE_KEY");
-
-module.exports = {
-  // ...rest of your config...
-  networks: {
-    sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
-      accounts: [SEPOLIA_PRIVATE_KEY],
-    },
-  },
-};
-```
-
-:::
-
-::::
 
 To deploy on Sepolia you need to send some Sepolia ether to the address that's going to be making the deployment. You can get testnet ether from a faucet, a service that distributes testing-ETH for free. Here is one for Sepolia:
 
@@ -81,15 +52,11 @@ To deploy on Sepolia you need to send some Sepolia ether to the address that's g
 
 :::tip
 
-This guide assumes you are using the contracts and Ignition module from the [quick start guide](/ignition/docs/getting-started#quick-start), but the steps are the same for any deployment.
+This guide assumes you are using the contracts and Ignition module from the [quick start guide](../getting-started/index.md), but the steps are the same for any deployment.
 
 :::
 
 Our last step before deploying is to add a salt for the deployment. This step is required to avoid any potential collisions with other deployments. The salt must be a 32 byte hex encoded string. You can add the salt via your Hardhat config:
-
-::::tabsgroup{options=TypeScript,JavaScript}
-
-:::tab{value=TypeScript}
 
 ```ts
 export default {
@@ -104,28 +71,6 @@ export default {
   },
 };
 ```
-
-:::
-
-:::tab{value=JavaScript}
-
-```js
-module.exports = {
-  // ...rest of your config...
-  ignition: {
-    strategyConfig: {
-      create2: {
-        // To learn more about salts, see the CreateX documentation
-        salt: "0x0000000000000000000000000000000000000000000000000000000000000000",
-      },
-    },
-  },
-};
-```
-
-:::
-
-::::
 
 You can now run the deployment with `create2` using the newly added Sepolia network:
 

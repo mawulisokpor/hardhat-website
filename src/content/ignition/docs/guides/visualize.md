@@ -5,7 +5,7 @@ Hardhat Ignition comes built-in with a `visualize` task that generates an HTML r
 The `visualize` task takes the path to the module to visualize as an argument:
 
 ```bash
-npx hardhat ignition visualize ./ignition/modules/Apollo.js
+npx hardhat ignition visualize ./ignition/modules/Apollo.ts
 ```
 
 Running `visualize` will generate the report and open it in your system's default browser.

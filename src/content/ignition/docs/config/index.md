@@ -6,9 +6,9 @@ Hardhat Ignition has configuration options at both the global and network level.
 
 You can use the `ignition` field in the Hardhat config to customize how Hardhat Ignition behaves:
 
-```js
-// hardhat.config.js
-module.exports = {
+```typescript
+// hardhat.config.ts
+export default {
   ignition: {
     blockPollingInterval: 1_000,
     timeBeforeBumpingFees: 3 * 60 * 1_000,
@@ -55,9 +55,9 @@ Default value: false
 
 You can use the `ignition` field under specific network configurations to customize deployments on a per-network basis:
 
-```js
-// hardhat.config.js
-module.exports = {
+```typescript
+// hardhat.config.ts
+export default {
   networks: {
     sepolia: {
       // ...

@@ -10,10 +10,6 @@ To create an Ignition Module, import the `buildModule` function from `@nomicfoun
 
 This is a module which will be identified as `"MyToken"`:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
 ```typescript
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
@@ -23,24 +19,6 @@ export default buildModule("MyToken", (m) => {
   return { token };
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
-
-module.exports = buildModule("My token", (m) => {
-  const token = m.contract("Token", ["My Token", "TKN", 18]);
-
-  return { token };
-});
-```
-
-:::
-
-::::
 
 You can create multiple modules in a single file, but each must have a unique ID. To deploy a module, you must export it using `module.exports =` or `export default`. As a best practice, we suggest maintaining one module per file, naming the file after the module ID.
 
@@ -217,12 +195,6 @@ To access these values, you can call `m.getParameter` providing the name for the
 
 For example, we can modify the `Apollo` module from the [Quick Start guide](../getting-started/index.md#quick-start) to make the `name` field in the `Rocket` smart contract configurable with a parameter:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
-**ignition/modules/Apollo.ts**
-
 ```typescript
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
@@ -234,28 +206,6 @@ export default buildModule("Apollo", (m) => {
   return { apollo };
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-**ignition/modules/Apollo.js**
-
-```javascript
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
-
-module.exports = buildModule("Apollo", (m) => {
-  const apollo = m.contract("Rocket", [m.getParameter("name", "Saturn V")]);
-
-  m.call(apollo, "launch", []);
-
-  return { apollo };
-});
-```
-
-:::
-
-::::
 
 The above module code will deploy `Rocket` with the name provided in the parameters.
 

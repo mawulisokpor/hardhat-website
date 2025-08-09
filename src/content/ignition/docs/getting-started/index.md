@@ -19,7 +19,7 @@ This guide will walk you through the steps to install Hardhat Ignition into an e
 
 :::tip
 
-If you don't have a Hardhat project yet, or if you want to create a new one to try Hardhat Ignition, please follow [this guide](../../../hardhat-runner/docs/getting-started/index.md) first.
+If you don't have a Hardhat project yet, or if you want to create a new one to try Hardhat Ignition, please follow [this guide](../../../docs/getting-started/index.md) first.
 
 :::
 
@@ -27,41 +27,26 @@ If you don't have a Hardhat project yet, or if you want to create a new one to t
 
 To install Hardhat Ignition in an existing Hardhat project, you will need:
 
-- Hardhat version 2.18.0 or higher
-- Ethers.js version 6 or higher
+- Hardhat version 3.0.0 or higher
+- [Node.js](https://nodejs.org/) version 22.0.0 or higher
+- A package manager like [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
 
-You can also follow [Hardhat's Quick Start guide](../../../hardhat-runner/docs/getting-started/index.md) to create a new project from scratch to follow this guide.
+You can also follow [Hardhat's Quick Start guide](../../../docs/getting-started/index.md) to create a new project from scratch to follow this guide.
 
 :::tip
 
-If you prefer to use **Viem** instead of **ethers**, check out the [Viem guide](../../../ignition/docs/guides/viem.md) for installation instructions.
+If you prefer to use **Ethers** instead of **Viem**, check out the [Ethers.js guide](../../../ignition/docs/guides/ethers.md) for installation instructions.
 
 :::
 
 Once you have a Hardhat project ready, open a terminal in its root directory, and run:
 
-::::tabsgroup{options="npm 7+,npm 6,yarn,pnpm"}
+::::tabsgroup{options="npm,pnpm"}
 
-:::tab{value="npm 7+"}
-
-```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
-```
-
-:::
-
-:::tab{value="npm 6"}
+:::tab{value="npm"}
 
 ```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-ignition @nomicfoundation/hardhat-verify @nomicfoundation/ignition-core ethers
-```
-
-:::
-
-:::tab{value=yarn}
-
-```sh
-yarn add --dev @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-ignition @nomicfoundation/hardhat-verify @nomicfoundation/ignition-core ethers
+npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
 ```
 
 :::
@@ -69,34 +54,25 @@ yarn add --dev @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat
 :::tab{value="pnpm"}
 
 ```sh
-pnpm add -D @nomicfoundation/hardhat-ignition-ethers @nomicfoundation/hardhat-ignition ethers
+pnpm add -D @nomicfoundation/hardhat-ignition-viem@next
 ```
 
 :::
 
 ::::
 
-Finally, add this to your config file to [enable the plugin](../../../hardhat-runner/docs/guides/project-setup.md#plugins-and-dependencies):
-
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
+Finally, add this to your config file to enable the plugin:
 
 ```typescript
-import "@nomicfoundation/hardhat-ignition-ethers";
+import hardhatViemPlugin '@nomicfoundation/hardhat-ignition-viem'
+
+export default {
+  plugins: [
+    hardhatViemPlugin,
+  ],
+  // ... rest of your config
+}
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```javascript
-require("@nomicfoundation/hardhat-ignition-ethers");
-```
-
-:::
-
-::::
 
 ## Quick start
 
@@ -136,11 +112,7 @@ mkdir ignition
 mkdir ignition/modules
 ```
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
-And paste the following code into a `ignition/modules/Apollo.ts`. We'll explain it in a moment.
+And paste the following code into a `ignition/modules/Apollo.ts` (or `ignition/modules/Apollo.js`). We'll explain it in a moment.
 
 ```typescript
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
@@ -153,28 +125,6 @@ export default buildModule("Apollo", (m) => {
   return { apollo };
 });
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-And paste the following code into a `ignition/modules/Apollo.js`. We'll explain it in a moment.
-
-```javascript
-const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
-
-module.exports = buildModule("Apollo", (m) => {
-  const apollo = m.contract("Rocket", ["Saturn V"]);
-
-  m.call(apollo, "launch", []);
-
-  return { apollo };
-});
-```
-
-:::
-
-::::
 
 The first aspect to note is that modules are created by calling the `buildModule` function, which requires a module ID and a callback function. Our module will be identified as `"Apollo"`.
 

@@ -3,7 +3,7 @@
 To execute your deployments, you need to use the `ignition deploy` task. It takes a path to a module file as an argument:
 
 ```sh
-npx hardhat ignition deploy ignition/modules/MyModule.js
+npx hardhat ignition deploy ignition/modules/MyModule.ts
 ```
 
 Hardhat Ignition will load the Ignition Module exported by the file you provided, and deploy it.
@@ -103,15 +103,20 @@ If you're deploying Ignition Modules via Hardhat Scripts, you can pass an absolu
 import hre from "hardhat";
 import path from "path";
 
-import ApolloModule from "../ignition/modules/Apollo";
+import ApolloModule from "../ignition/modules/Apollo.js";
 
 async function main() {
-  const { apollo } = await hre.ignition.deploy(ApolloModule, {
+  const connection = await hre.network.connect();
+  const { apollo } = await connection.ignition.deploy(ApolloModule, {
     // This must be an absolute path to your parameters JSON file
-    parameters: path.resolve(__dirname, "../ignition/parameters.json"),
+    parameters: path.resolve(
+      import.meta.dirname,
+      "../ignition/parameters.json"
+    ),
   });
 
-  console.log(`Apollo deployed to: ${await apollo.getAddress()}`);
+  // or `apollo.getAddress()` if you're using Ethers.js
+  console.log(`Apollo deployed to: ${apollo.address}`);
 }
 
 main().catch(console.error);
