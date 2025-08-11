@@ -32,11 +32,11 @@ Hardhat 3 provides official plugins for running tests: one for Mocha and one for
 
 ## Declarative Configuration
 
-Hardhat 3 configuration is now fully declarative. This contrasts with Hardhat 2, where some things are configured by the side effects of certain imports and function calls.
+Hardhat 3 configuration is now fully declarative. This contrasts with Hardhat 2, where part of the configuration came from side effects of specific imports and function calls.
 
 ## Programmatic initialization of the Hardhat Runtime Environment
 
-Apart from accessing a global instance of the HRE by importing it from the `hardhat` module, you can now initialize multiple independent instances of the Hardhat Runtime Environment programmatically.
+Apart from accessing a global instance of the Hardhat Runtime Environment by importing it from the `hardhat` module, you can now initialize multiple independent instances of the HRE programmatically.
 
 ## Configuration Variables
 
@@ -50,7 +50,7 @@ Hardhat 3 introduces support for build profiles, which let you use different com
 
 ## Full npm support
 
-The build system of Hardhat 3 is now fully integrated with npm: anything that can be done with npm is supported. In most cases, this won't affect you, but advanced scenarios that were previously difficult or unsupported now work out of the box.
+Anything that can be done with npm is now supported by the build system of Hardhat 3. In most cases, this won't affect you, but advanced scenarios that were difficult or impossible now work out of the box.
 
 ## New plugin system
 
