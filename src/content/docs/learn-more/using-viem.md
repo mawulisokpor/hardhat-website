@@ -1,6 +1,6 @@
 # How to use viem with Hardhat
 
-[viem](https://viem.sh/) is a modern, type-safe library that lets you deploy contracts, manage accounts, read chain state, and more. It's the library we recommend for interacting with Ethereum. You can integrate viem with Hardhat by using the `hardhat-viem` plugin.
+[viem](https://viem.sh/) is a modern, type-safe library to deploy contracts, manage accounts, read chain state, and more. It's the library we recommend for interacting with Ethereum. You can integrate viem with Hardhat by using the `hardhat-viem` plugin.
 
 ## Setup
 
@@ -11,7 +11,7 @@ If you want to add the plugin manually:
 1. Install the plugin:
 
    ```bash
-   npm install --save-dev @nomicfoundation/hardhat-viem@next
+   npm install --save-dev @nomicfoundation/hardhat-viem
    ```
 
 2. Add it to the list of plugins in your Hardhat configuration:
@@ -32,18 +32,18 @@ If you want to add the plugin manually:
 
 ## Connecting to networks
 
-In Hardhat, you interact with networks using _network connections_. You can create connections with the network manager, which you can import directly from Hardhat:
+In Hardhat, you interact with networks using _network connections_. You can create connections with the network manager, which can be imported directly from Hardhat:
 
 ```tsx
 import { network } from "hardhat";
 
-const connection = await network.connect("mainnet");
+const connection = await network.connect();
 ```
 
-Plugins can extend the network connections with new functionality. The `hardhat-viem` plugin adds a `viem` object to each connection, which provides helpers to interact with the network you are connected to:
+Plugins can extend the objects returned by the network manager. The `hardhat-viem` plugin extends them with a `viem` property, which provides helpers to interact with the network you connected to:
 
 ```tsx
-const { viem } = await network.connect("mainnet");
+const { viem } = await network.connect();
 
 const publicClient = await viem.getPublicClient();
 console.log("Latest block number:", await publicClient.getBlockNumber());
@@ -51,7 +51,7 @@ console.log("Latest block number:", await publicClient.getBlockNumber());
 
 ## Using viem clients
 
-Viem groups functionality in [clients](https://viem.sh/docs/clients/intro). The `hardhat-viem` plugin helps you create them more easily.
+Viem functionality is grouped into [clients](https://viem.sh/docs/clients/intro). The `hardhat-viem` plugin helps you create viem clients more easily.
 
 You can create a [public client](https://viem.sh/docs/clients/public) using the `getPublicClient` method:
 
@@ -86,7 +86,7 @@ await testClient.mine({
 
 ## Deploying and interacting with contracts
 
-`hardhat-viem` includes a `deployContract` function that lets you deploy contracts defined in the project. This function returns a viem [contract instance](https://viem.sh/docs/contract/getContract) of the deployed contract:
+`hardhat-viem` includes a `deployContract` function to deploy contracts defined in the project. This function returns a viem [contract instance](https://viem.sh/docs/contract/getContract) of the deployed contract:
 
 ```tsx
 import { network } from "hardhat";
@@ -121,14 +121,14 @@ const counter = await viem.deployContract("Counter", [10n], {
 The `deployContract` function waits until the contract is deployed. If you just want to send the deployment without waiting until it's mined, you can use `sendDeploymentTransaction`:
 
 ```tsx
-const deploymentTx = await viem.sendDeploymentTransaction("Counter", [10n], {
+const { deploymentTransaction } = await viem.sendDeploymentTransaction("Counter", [10n], {
   client: {
     wallet: wallet2,
   },
 });
 ```
 
-All the previous examples deploy a new contract instance, but sometimes you need to interact with an already deployed contract. In those cases, you can use the `getContractAt` function:
+All the previous examples deploy a new contract instance, but sometimes you need to interact with an already deployed contract. In those cases, use the `getContractAt` function:
 
 ```tsx
 const counterAddress = "0x1234567890123456789012345678901234567890";
@@ -139,9 +139,9 @@ const counter = await viem.getContractAt("Counter", counterAddress);
 
 You can also use a contract defined in an npm dependency with `hardhat-viem`.
 
-To do this, you need to configure Hardhat to compile the contract and generate artifacts for it. This will allow you to use the `hardhat-viem` helpers to interact with it, just like with any other contract defined in your project.
+To do this, configure Hardhat to compile the contract and generate its artifacts. Read [this guide](./configuring-the-compiler.md#generating-artifacts-from-npm-dependencies) to learn how.
 
-To learn how to do it, please read [this guide](./configuring-the-compiler.md#generating-artifacts-from-npm-dependencies).
+This lets you to use the `hardhat-viem` helpers to interact with it, just like any other contract in your project.
 
 ## Viem assertions
 
@@ -178,7 +178,7 @@ await contract.write.setItem([3, "three"], {
 });
 ```
 
-When using viem on its own, you need to pass an ABI to get contract instances with properly inferred types. The `hardhat-viem` plugin handles this automatically when you use helpers like `deployContract` or `getContractAt`.
+When using viem on its own, you need to explicitly use the contract's ABI to get properly inferred types. The `hardhat-viem` plugin handles this automatically in helpers like `deployContract` or `getContractAt`.
 
 ### Troubleshooting contract type errors
 
@@ -188,7 +188,7 @@ Note that VSCode may not always pick up the type updates automatically. If you a
 
 ## Using viem as a module
 
-The `viem` object in the connection only includes functionality added by the `hardhat-viem` plugin. To use viem's own functionality, import it from the `viem` module:
+The `viem` object in the connection only includes the functionality added by `hardhat-viem`. To use viem's own functionality, import it from the `viem` module:
 
 ```tsx
 import { keccak256 } from "viem";
