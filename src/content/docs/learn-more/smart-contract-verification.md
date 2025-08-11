@@ -17,7 +17,7 @@ If you want to add the plugin manually:
     :::tab{value=npm}
 
     ```bash
-    npm install --save-dev @nomicfoundation/hardhat-verify@next
+    npm install --save-dev @nomicfoundation/hardhat-verify
     ```
 
     :::
@@ -25,7 +25,7 @@ If you want to add the plugin manually:
     :::tab{value=pnpm}
 
     ```bash
-    pnpm install --save-dev @nomicfoundation/hardhat-verify@next
+    pnpm install --save-dev @nomicfoundation/hardhat-verify
     ```
 
     :::
