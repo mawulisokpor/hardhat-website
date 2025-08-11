@@ -12,25 +12,25 @@ If you want to add the plugin manually:
 
 1. Install the plugin:
 
-    ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm}
 
-    :::tab{value=npm}
+   :::tab{value=npm}
 
-    ```bash
-    npm install --save-dev @nomicfoundation/hardhat-verify
-    ```
+   ```bash
+   npm install --save-dev @nomicfoundation/hardhat-verify
+   ```
 
-    :::
+   :::
 
-    :::tab{value=pnpm}
+   :::tab{value=pnpm}
 
-    ```bash
-    pnpm install --save-dev @nomicfoundation/hardhat-verify
-    ```
+   ```bash
+   pnpm install --save-dev @nomicfoundation/hardhat-verify
+   ```
 
-    :::
+   :::
 
-    ::::
+   ::::
 
 2. Add it to the list of plugins in your Hardhat configuration:
 

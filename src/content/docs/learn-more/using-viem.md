@@ -121,11 +121,15 @@ const counter = await viem.deployContract("Counter", [10n], {
 The `deployContract` function waits until the contract is deployed. If you just want to send the deployment without waiting until it's mined, you can use `sendDeploymentTransaction`:
 
 ```tsx
-const { deploymentTransaction } = await viem.sendDeploymentTransaction("Counter", [10n], {
-  client: {
-    wallet: wallet2,
-  },
-});
+const { deploymentTransaction } = await viem.sendDeploymentTransaction(
+  "Counter",
+  [10n],
+  {
+    client: {
+      wallet: wallet2,
+    },
+  }
+);
 ```
 
 All the previous examples deploy a new contract instance, but sometimes you need to interact with an already deployed contract. In those cases, use the `getContractAt` function:
