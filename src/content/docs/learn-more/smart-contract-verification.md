@@ -119,7 +119,7 @@ npx hardhat verify --network sepolia --constructor-args-path constructor-args.ts
 
 ## Using different build profiles
 
-By default, the `verify` task uses the `production` build profile, as this the recommended build profile to build your contracts before deploying them. If you deploy your contracts with Hardhat Ignition, you automatically use the `production` build profile.
+By default, the `verify` task uses the `production` build profile, as this is the recommended build profile to build your contracts before deploying them. If you deploy your contracts with Hardhat Ignition, you automatically use the `production` build profile.
 
 If you want to use a different build profile, you can pass the `--build-profile` flag:
 
@@ -137,7 +137,7 @@ npx hardhat verify etherscan ...
 
 They have the same interface, but verify on a different block explorer.
 
-Running `verify` without any subtask, will verify on Etherscan.
+Running `verify` without any subtask will verify on Etherscan.
 
 ## Verifying on a block explorer of a different network
 
@@ -169,10 +169,7 @@ const config: HardhatUserConfig = {
 
 Your verification might fail for a variety of reasons. Here are some common issues and how to fix them:
 
-- Verifying immediately after deploying: your contracts may not have beein indexed by the block explorer yet, causing the verification to fail. Normally, waiting a minute is enough for it to work.
-
-- Wrong constructor arguments: double check that your constructor arguments are correct.
-
-- Using code that is different from the one used for deployment: if you are trying to deploy a contract that you have deployed weeks, or even just days, ago, then chances are that the code has changed in the meantime. Double check that you are using the correct code.
-
-- Using a different build profile: if you are using a different build profile than the one used for deployment, then the bytecode will be different, causing the verification to fail. Try using `--build-profile` with other build profiles to verify your contract, starting with `default`. You may also need to run `hardhat compile` with the same build profile to generate the correct artifacts.
+- **Verifying immediately after deploying**. Your contracts may not have been indexed by the block explorer yet, causing the verification to fail. Normally, waiting a minute is enough for it to work.
+- **Wrong constructor arguments**. Double-check that your constructor arguments are correct.
+- **Using code that is different from the one used for deployment**. If you are trying to verify a contract that you have deployed weeks ago, then chances are that the code has changed in the meantime. Double-check that you are using the correct code.
+- **Using a different build profile**. If you are using a different build profile than the one used for deployment, then the bytecode will be different, causing the verification to fail. Try using `--build-profile` with other profiles to verify your contract, beginning with `default`. You may also need to run `hardhat compile` with the same build profile to generate the correct artifacts.
