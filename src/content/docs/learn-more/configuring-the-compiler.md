@@ -33,7 +33,7 @@ solidity: {
 },
 ```
 
-Another use case is enabling the IR-based code generator. This compilation mode can be slower, but it enables more powerful optimizations:
+Another use case is enabling the [IR-based code generator](https://docs.soliditylang.org/en/latest/ir-breaking-changes.html). This compilation mode can be slower, but it enables more powerful optimizations:
 
 ```typescript
 solidity: {
@@ -48,7 +48,7 @@ The `settings` property accepts the same options supported by the chosen compile
 
 ## Using multiple solidity versions
 
-Some projects need to compile different files with different `solc` versions. To enable this, Hardhat lets you define multiple compiler configurations using an extended format of the `solidity` property:
+Some projects need to compile different files with different solc versions. To enable this, Hardhat lets you define multiple compiler configurations using an extended format of the `solidity` property:
 
 ```typescript
 solidity: {
@@ -69,7 +69,7 @@ solidity: {
 },
 ```
 
-Hardhat compiles each Solidity file in the project using the **latest configured solc version** that is compatible with its version pragma of the file and its dependencies.
+Hardhat compiles each Solidity file in the project using the **highest configured solc version** that is compatible with the version pragma of the file and its dependencies.
 
 For example, given the configuration above:
 
