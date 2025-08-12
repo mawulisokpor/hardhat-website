@@ -127,12 +127,12 @@ TODO—blocked until dependency resolution is finalized.
 
 ## Generating artifacts from npm dependencies
 
-By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project's npm dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `dependenciesToCompile` property:
+By default, Hardhat generates compilation artifacts for all the contracts in your project, but not for those in the project's npm dependencies. If you want to generate artifacts for a specific file in a dependency, you can use the `npmFilesToBuild` property:
 
 ```typescript
 solidity: {
   version: "0.8.29",
-  dependenciesToCompile: [
+  npmFilesToBuild: [
     "some-dependency/contracts/SomeContract.sol"
   ]
 },
