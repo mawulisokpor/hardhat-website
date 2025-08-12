@@ -46,7 +46,7 @@ Once you have a Hardhat project ready, open a terminal in its root directory, an
 :::tab{value="npm"}
 
 ```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
+npm install --save-dev @nomicfoundation/hardhat-ignition-viem
 ```
 
 :::
@@ -54,7 +54,7 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
 :::tab{value="pnpm"}
 
 ```sh
-pnpm add -D @nomicfoundation/hardhat-ignition-viem@next
+pnpm add -D @nomicfoundation/hardhat-ignition-viem
 ```
 
 :::

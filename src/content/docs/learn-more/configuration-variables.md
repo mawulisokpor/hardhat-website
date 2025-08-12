@@ -77,7 +77,7 @@ The `hardhat-keystore` plugin is part of the example project, but it can also be
    :::tab{value=npm}
 
    ```bash
-   npm install --save-dev @nomicfoundation/hardhat-keystore@next
+   npm install --save-dev @nomicfoundation/hardhat-keystore
    ```
 
    :::
@@ -85,7 +85,7 @@ The `hardhat-keystore` plugin is part of the example project, but it can also be
    :::tab{value=pnpm}
 
    ```bash
-   pnpm install --save-dev @nomicfoundation/hardhat-keystore@next
+   pnpm install --save-dev @nomicfoundation/hardhat-keystore
    ```
 
    :::

@@ -1,14 +1,19 @@
 # Writing unit tests in Solidity
 
-Hardhat supports writing tests in both TypeScript and Solidity. TypeScript is typically used for higher-level integration tests, whereas Solidity is better suited for unit tests. This guide explains how to add Solidity tests to a Hardhat project, run them, and configure how they are executed. It assumes familiarity with Solidity tests and isn't meant to serve as an introduction to them.
+Hardhat supports writing tests in both TypeScript and Solidity. TypeScript is typically used for higher-level integration tests, whereas Solidity is better suited for unit tests. This guide explains how to add Solidity tests to a Hardhat project, run them, and configure their execution. This isn't meant to serve as an introduction to Solidity tests and assumes familiarity with them.
 
 ## Writing Solidity tests
 
-A Solidity file is considered a test file if it's inside the `test/` directory, or if it's inside the `contracts/` directory and ends with `.t.sol`. Both of these directories can be changed in your Hardhat configuration, but these are the defaults.
+A Solidity file is considered a **test file** if:
 
-If a contract in a test file has at least a function that starts with `test`, it's considered a test contract. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
+- It's inside the `test/` directory
+- It's inside the `contracts/` directory and ends with `.t.sol`.
 
-For example, if you have a `contracts/CounterTest.t.sol` or `test/CounterTest.sol` file with the following contract:
+Both of these directories can be changed in your Hardhat configuration, but these are the default ones.
+
+If a contract in a test file has at least one function that starts with `test`, it's considered a **test contract**. When the tests are run, Hardhat deploys every test contract and calls each of its test functions.
+
+For example, if you have a file named `contracts/CounterTest.t.sol` or `test/CounterTest.sol` with the following contract:
 
 ```solidity
 contract CounterTest {
@@ -20,9 +25,9 @@ contract CounterTest {
 }
 ```
 
-the test runner deploys the `CounterTest` contract and calls its `testInc` function. If the function execution reverts, the test is considered failed.
+the test runner will deploy the `CounterTest` contract and call its `testInc` function. If the function execution reverts, the test is considered failed.
 
-Hardhat also supports fuzz tests, which are similar to regular tests but accept parameters. When the tests are executed, fuzz test functions are called multiple times with random values as arguments:
+Hardhat also supports **fuzz tests**, which are similar to regular tests but accept parameters. When the tests are executed, fuzz test functions are called multiple times with random values as arguments:
 
 ```solidity
 contract CounterTest {
@@ -60,7 +65,7 @@ pnpm install --save-dev github:foundry-rs/forge-std#v1.9.7
 
 ::::
 
-You can then import the `Test` base contract and extend your test contract from it. This lets you use helper functions like `assertEq`, which shows the mismatched values when the assertion fails:
+You can then import the `Test` base contract and extend your test contracts from it. This lets you use helper functions like `assertEq`, which shows the mismatched values when the assertion fails:
 
 ```solidity
 import { Test } from "forge-std/Test.sol";
@@ -76,13 +81,13 @@ contract CounterTest is Test {
 
 ### Setup functions
 
-Both the unit and fuzz test examples shown above create an instance of the `Counter` contract. You can share setup logic across tests using the `setup` function, which is called before each test execution:
+Both the unit and fuzz test examples shown above create an instance of the `Counter` contract. You can share setup logic like that across tests using the `setUp` function, which is called before each test execution:
 
 ```solidity
 contract CounterTest {
     Counter counter;
 
-    function setup() public {
+    function setUp() public {
       counter = new Counter();
     }
 
@@ -100,7 +105,7 @@ contract CounterTest {
 
 ## Running Solidity tests
 
-You can run all the tests in your hardhat project using the `test` task:
+You can run all the tests in your Hardhat project using the `test` task:
 
 ::::tabsgroup{options=npm,pnpm}
 
@@ -184,20 +189,24 @@ paths: {
 
 ### Configuring the tests execution
 
-To configure how Solidity tests are executed, use the `solidityTest` property in the Hardhat configuration.
+To configure how Solidity tests are executed, use the `test.solidity` object in the Hardhat configuration.
 
 For example, the `ffi` cheatcode is disabled by default for security reasons, but you can enable it:
 
 ```typescript
-solidityTest: {
-  ffi: true
+test: {
+  solidity: {
+    ffi: true,
+  },
 },
 ```
 
 It's also possible to modify the execution environment of the tests. For example, you can modify the address that is returned by `msg.sender`:
 
 ```typescript
-solidityTest: {
-  sender: "0x1234567890123456789012345678901234567890"
+test: {
+  solidity: {
+    sender: "0x1234567890123456789012345678901234567890",
+  },
 },
 ```

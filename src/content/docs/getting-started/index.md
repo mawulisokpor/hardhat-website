@@ -40,7 +40,7 @@ npx hardhat --init
 :::tab{value=pnpm}
 
 ```bash
-pnpm dlx hardhat@next --init
+pnpm dlx hardhat --init
 ```
 
 :::
