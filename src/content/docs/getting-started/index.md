@@ -144,7 +144,7 @@ Hardhat will automatically detect it, and compile it with the correct version of
 :::tab{value=npm}
 
 ```bash
-npx hardhat compile
+npx hardhat build
 ```
 
 :::
@@ -152,7 +152,7 @@ npx hardhat compile
 :::tab{value=pnpm}
 
 ```bash
-pnpm hardhat compile
+pnpm hardhat build
 ```
 
 :::

@@ -1369,7 +1369,7 @@ The bytecode at the specified address did not match the expected contract.
 
 Possible causes:
 
-- Your artifacts are outdated or missing; try running `npx hardhat compile --force --buildProfile production`.
+- Your artifacts are outdated or missing; try running `npx hardhat build --force --buildProfile production`.
 - The contract code was modified after deployment.
 - Compiler settings (optimizer, EVM version, etc.) changed after deployment.
 - The provided address is incorrect.
