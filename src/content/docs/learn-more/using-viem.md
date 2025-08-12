@@ -186,7 +186,7 @@ When using viem on its own, you need to explicitly use the contract's ABI to get
 
 ### Troubleshooting contract type errors
 
-Contract types are updated when the project is compiled. If you are getting a compilation error that you don't expect, make sure you've run `hardhat compile`.
+Contract types are updated when the project is compiled. If you are getting a compilation error that you don't expect, make sure you've run `hardhat build`.
 
 Note that VSCode may not always pick up the type updates automatically. If you are still getting unexpected TypeScript errors after compiling the project, open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and run `TypeScript: Reload Project`.
 

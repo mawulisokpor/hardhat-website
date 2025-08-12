@@ -137,7 +137,7 @@ npx hardhat verify etherscan ...
 
 They have the same interface, but verify on a different block explorer.
 
-Running `verify` without any subtask will verify on Etherscan.
+Running `verify` without any subtask will verify on both Etherscan and Blockscout.
 
 ## Verifying on a block explorer of a different network
 
@@ -172,4 +172,4 @@ Your verification might fail for a variety of reasons. Here are some common issu
 - **Verifying immediately after deploying**. Your contracts may not have been indexed by the block explorer yet, causing the verification to fail. Normally, waiting a minute is enough for it to work.
 - **Wrong constructor arguments**. Double-check that your constructor arguments are correct.
 - **Using code that is different from the one used for deployment**. If you are trying to verify a contract that you have deployed weeks ago, then chances are that the code has changed in the meantime. Double-check that you are using the correct code.
-- **Using a different build profile**. If you are using a different build profile than the one used for deployment, then the bytecode will be different, causing the verification to fail. Try using `--build-profile` with other profiles to verify your contract, beginning with `default`. You may also need to run `hardhat compile` with the same build profile to generate the correct artifacts.
+- **Using a different build profile**. If you are using a different build profile than the one used for deployment, then the bytecode will be different, causing the verification to fail. Try using `--build-profile` with other profiles to verify your contract, beginning with `default`. You may also need to run `hardhat build` with the same build profile to generate the correct artifacts.
