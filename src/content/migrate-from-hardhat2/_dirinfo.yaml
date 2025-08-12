@@ -4,3 +4,5 @@ order:
   - title: Overview
     href: "#overview"
   - /missing-plugins
+  - title: Migrating Mocha tests
+    href: /mocha-tests

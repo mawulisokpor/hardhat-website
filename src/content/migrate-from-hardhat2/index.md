@@ -7,12 +7,12 @@ description: How to migrate from Hardhat 2 to Hardhat 3
 
 ## Overview
 
-Hardhat 3 is a complete rewrite of Hardhat 2. While many features are familiar, several fundamental changes mean HH3 is not compatible with HH2 projects out of the box:
+Hardhat 3 is a complete rewrite of Hardhat 2. While many features are familiar, several fundamental changes mean the new version is not compatible with Hardhat 2 projects out of the box:
 
 - **ESM-first**: Your Hardhat config must be an ES module. Scripts and JavaScript/TypeScript tests can still be CommonJS, but ESM is the default.
 - **Declarative config**: Plugins, tasks, and other extensions are configured explicitly in your config file instead of being registered by side effects.
-- **Explicit network connections**: You create and manage network connections yourself, allowing multiple concurrent connections in one process, but meaning that globals like `hre.ethers` and `hre.network` don't exist anymore.
-- **Extensibility through hooks**: In Hardhat 3, hooks are the main way to extend functionality. Features like `extendConfig`, `extendEnvironment`, and subtask overriding are no longer available.
+- **Explicit network connections**: You create and manage network connections yourself, allowing multiple concurrent connections in one process, but meaning that `hre.network` no longer represents a single network connection that is immediately available.
+- **Extensibility through hooks**: Features like `extendConfig` and subtask overriding were replaced by the new hooks system. Adding new fields to the Hardhat Runtime Environment with `extendEnvironment` is no longer possible, but the typical use cases for extending it can be covered by other mechanisms.
 
 Because these changes are significant, this guide recommends starting with a clean config and migrating features step by step, rather than trying to adapt an Hardhat 2 project in place.
 
@@ -106,7 +106,31 @@ Before making any changes, prepare your project so that installing and running H
 
 The first step is to create a minimal config that’s just enough to compile your contracts.
 
-1. **Create an empty config file**
+1. **Install Hardhat 3**
+
+   Run the following command to install Hardhat 3:
+
+   ::::tabsgroup{options=npm,pnpm}
+
+   :::tab{value=npm}
+
+   ```bash
+   npm install --save-dev hardhat@3
+   ```
+
+   :::
+
+   :::tab{value=pnpm}
+
+   ```bash
+   pnpm install --save-dev hardhat@3
+   ```
+
+   :::
+
+   ::::
+
+2. **Create an empty config file**
 
    Create a `hardhat.config.ts` file with the following content:
 
@@ -118,7 +142,7 @@ The first step is to create a minimal config that’s just enough to compile you
    export default config;
    ```
 
-2. **Run the help command**
+3. **Run the help command**
 
    Verify that Hardhat 3 is working by running the help command:
 
@@ -142,7 +166,7 @@ The first step is to create a minimal config that’s just enough to compile you
 
    ::::
 
-3. **Add a `solidity` entry**
+4. **Add a `solidity` entry**
 
    Copy the `solidity` entry from your old config as-is. The format is backwards-compatible in Hardhat 3, so it should just work:
 
@@ -154,7 +178,7 @@ The first step is to create a minimal config that’s just enough to compile you
    };
    ```
 
-4. **Compile your contracts**
+5. **Compile your contracts**
 
    Run the `build` task to verify that your config is working:
 
@@ -177,3 +201,106 @@ The first step is to create a minimal config that’s just enough to compile you
    :::
 
    ::::
+
+## Migrating tests
+
+This section assumes that your Hardhat 2 project uses Mocha as its tests runner, which is the default experience.
+
+1. **Install and include the `hardhat-mocha` plugin**
+
+   Install the plugin:
+
+   ::::tabsgroup{options=npm,pnpm}
+
+   :::tab{value=npm}
+
+   ```bash
+   npm install --save-dev @nomicfoundation/hardhat-mocha
+   ```
+
+   :::
+
+   :::tab{value=pnpm}
+
+   ```bash
+   pnpm install --save-dev @nomicfoundation/hardhat-mocha
+   ```
+
+   :::
+
+   ::::
+
+   Then in your Hardhat config, import the plugin and add it to the list of plugins:
+
+   ```ts
+   import hardhatMocha from "@nomicfoundation/hardhat-mocha";
+
+   const config: HardhatUserConfig = {
+     plugins: [hardhatMocha],
+     solidity: {
+       /* your solidity config */
+     },
+   };
+   ```
+
+   Notice that, unlike Hardhat 2, it's not enough to just import the plugin in the config. You also have to add it to the list of plugins.
+
+2. **Update your test files**
+
+   This is usually the most involved part of the migration, and so it has [its own page](/migrate-from-hardhat2/mocha-tests) with the details.
+
+   You can start by migrating a single test and run it individually to verify that it works as expected:
+
+   ::::tabsgroup{options=npm,pnpm}
+
+   :::tab{value=npm}
+
+   ```bash
+   npx hardhat test test/some-test.ts
+   ```
+
+   :::
+
+   :::tab{value=pnpm}
+
+   ```bash
+   pnpm hardhat test test/some-test.ts
+   ```
+
+   :::
+
+   ::::
+
+## Migrating tasks
+
+In Hardhat 2, tasks are created just by calling the `task` function and defining the task. As a side-effect, this task gets registered in the Hardhat Runtime Environment. In Hardhat 3 the config is fully declarative, meaning that tasks must be included in the `tasks` array:
+
+```ts
+import { HardhatUserConfig, task } from "hardhat/config";
+
+const myTask = task("my-task", "Description of the task")
+  .setAction(async (args, hre) => {
+    // Task implementation
+  })
+  .build();
+
+const config: HardhatUserConfig = {
+  tasks: [myTask],
+};
+
+export default config;
+```
+
+Notice that we are also calling a `.build` function on the task. This is necessary in Hardhat 3 to finalize the task definition and make it available for use.
+
+## Migrating scripts
+
+TODO
+
+## Migrating `extendConfig`
+
+TODO
+
+## Migrating `extendEnvironment`
+
+TODO
