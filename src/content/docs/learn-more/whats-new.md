@@ -30,6 +30,10 @@ A Hardhat 2 task has access to a single, fixed connection for its entire duratio
 
 In Hardhat 2, JavaScript tests are always run with a bundled version of Mocha. In Hardhat 3, the test runner is just another plugin and you can choose which one to use. We have official plugins for Mocha and for [Node.js's built-in test runner](https://nodejs.org/api/test.html). The recommended option is the Node.js test runner, because it's fast and has no external dependencies.
 
+### Built-in Solidity code coverage
+
+Hardhat 3 comes with built-in Solidity code coverage, which works out of the box both in Solidity and TypeScript tests. All you need to do is run your tests with `--coverage`.
+
 ### Declarative Configuration
 
 Hardhat 3 configuration is now fully declarative. This contrasts with Hardhat 2, where part of the configuration came from the side effects of importing plugins or calling configuration functions like `task`.
