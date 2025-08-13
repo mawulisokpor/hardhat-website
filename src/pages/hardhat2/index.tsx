@@ -56,9 +56,9 @@ export default Docs;
 
 export const getStaticProps: GetStaticProps = async () => {
   createLayouts();
-  const source = `This website contains the documentation for Hardhat 3, the new major version of Hardhat.
+  const source = `We encourage everyone to migrate to Hardhat 3, but if you need to keep using Hardhat 2, we got you covered.
 
-You can find the documentation for [Hardhat 2 here](https://v2.hardhat.org).`;
+You can find the documentation for [Hardhat 2 here](https://v2.hardhat.org/docs).`;
 
   const { mdxSource } = await prepareMdContent(source);
   const { layout } = getLayout("docs/getting-started/index.md");
