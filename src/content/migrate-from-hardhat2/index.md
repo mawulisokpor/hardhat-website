@@ -232,7 +232,7 @@ To learn more about the updated config format, and continue with your migration,
 
 This section assumes that your Hardhat 2 project uses Mocha as its tests runner, which is the default experience.
 
-1. **Install and include the `hardhat-mocha` plugin**
+1. **Install the recommended toolbox for Mocha and Ethers.js**
 
    Install the plugin:
 
@@ -241,7 +241,7 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
    :::tab{value=npm}
 
    ```bash
-   npm install --save-dev @nomicfoundation/hardhat-mocha
+   npm install --save-dev @nomicfoundation/hardhat-toolbox-mocha-ethers
    ```
 
    :::
@@ -249,7 +249,7 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
    :::tab{value=pnpm}
 
    ```bash
-   pnpm install --save-dev @nomicfoundation/hardhat-mocha
+   pnpm install --save-dev @nomicfoundation/hardhat-toolbox-mocha-ethers
    ```
 
    :::
@@ -259,10 +259,11 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
    Then in your Hardhat config, import the plugin and add it to the list of plugins:
 
    ```ts
-   import hardhatMocha from "@nomicfoundation/hardhat-mocha";
+   import type { HardhatUserConfig } from "hardhat/config";
+   import hardhatToolboxMochaEthers from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
 
    const config: HardhatUserConfig = {
-     plugins: [hardhatMocha],
+     plugins: [hardhatToolboxMochaEthers],
      solidity: {
        /* your solidity config */
      },
