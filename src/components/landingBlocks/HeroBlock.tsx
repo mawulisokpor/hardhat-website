@@ -313,8 +313,8 @@ const HeroBlock = ({ content }: Props) => {
             <BlockTitle>Ready to use out of the box</BlockTitle>
             <BlockText>
               Hardhat includes everything you need for Solidity smart contract
-              development. Testing, deployment, gas analysis, code coverage,
-              code verification, and more.
+              development. Testing, deployment, code coverage, code
+              verification, and more.
             </BlockText>
           </Block>
         </LandingContainer>
