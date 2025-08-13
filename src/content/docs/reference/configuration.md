@@ -8,7 +8,7 @@ The entirety of your Hardhat setup (i.e. your config, plugins and custom tasks) 
 
 To set up your config, you have to export an object from `hardhat.config.ts`.
 
-The config options available will depend on the Hardhat plugins you have installed. However, there are some [standard options](#standard-options) that come from builtin Hardhat plugins and are always available. Additionally, regardless of which of our `hardhat-toolbox` plugins you have installed, there are some [toolbox options](#toolbox-options) that are common to both of them, while other options are specifically available in either the [Viem](#viem-toolbox-options) or [Ethers](#ethers-toolbox-options) toolbox plugins.
+The config options available will depend on the Hardhat plugins you have installed. However, there are some [standard options](#standard-options) that come from built-in Hardhat plugins and are always available. Additionally, regardless of which of our `hardhat-toolbox` plugins you have installed, there are some [toolbox options](#toolbox-options) that are common to both of them, while other options are specifically available in either the [Viem](#viem-toolbox-options) or [Ethers](#ethers-toolbox-options) toolbox plugins.
 
 ## Standard options
 
@@ -90,7 +90,7 @@ The `solidity` config is an optional field that can be one of the following:
 
 #### Default EVM Version
 
-The default EVM version changes based on the compiler version. To specify a different EVM version, modify your `hardhat.config.js`:
+The default EVM version changes based on the compiler version. To specify a different EVM version, modify your `hardhat.config.ts`:
 
 ```js
 export default {
@@ -155,7 +155,7 @@ The following options are specific to simulated networks:
 The following options are specific to JSON-RPC networks:
 
 - `accounts`: This field controls which accounts Hardhat uses. It can use the node's accounts (by setting it to `"remote"`), a list of local accounts (by setting it to an array of [configuration variables](../learn-more/configuration-variables.md)), or use an [HD Wallet](#hd-wallet-config). Default value: `"remote"`.
-- `url`: The url of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
+- `url`: The URL of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
 - `httpHeaders`: An optional object with headers to be sent in every request to the node. This can be useful for authentication or other purposes.
 - `timeout`: An optional number that specifies the timeout for requests to the node, in milliseconds.
 
@@ -209,7 +209,7 @@ const config = {
 
 The following options are available for configuring Solidity tests:
 
-- `ffi`: A boolean that enables the `ffi` cheatcode. Enabling this cheatcodes allows tests to call external programs and it's disabled by default for security reasons. Default value: `false`.
+- `ffi`: A boolean that enables the `ffi` cheatcode. Enabling this cheatcode allows tests to call external programs and it's disabled by default for security reasons. Default value: `false`.
 - `fsPermissions`: An object used to configure the file system permissions for cheatcodes. It can have the following fields:
   - `readFile`: An array of file paths that can be read.
   - `writeFile`: An array of file paths that can be written.
