@@ -2,7 +2,7 @@
 prev: true
 ---
 
-# Getting started with Hardhat 3 Beta
+# Getting started with Hardhat 3
 
 :::tip
 
