@@ -10,7 +10,7 @@ description: How to migrate from Hardhat 2 to Hardhat 3
 Hardhat 3 is a complete rewrite of Hardhat 2. While many features are familiar, several fundamental changes mean the new version is not compatible with Hardhat 2 projects out of the box:
 
 - **ESM-first**: Your Hardhat config must be an ES module. Scripts and JavaScript/TypeScript tests can still be CommonJS, but ESM is the default.
-- **Declarative config**: Plugins, tasks, and other extensions are configured explicitly in your config file instead of being registered by side effects.
+- **Declarative config**: Plugins, tasks, and other extensions are configured explicitly in your config instead of being registered by side effects.
 - **Explicit network connections**: You create and manage network connections yourself, allowing multiple concurrent connections in one process, but meaning that `hre.network` no longer represents a single network connection that is immediately available.
 - **Extensibility through hooks**: Features like `extendConfig` and subtask overriding were replaced by the new hooks system. Adding new fields to the Hardhat Runtime Environment with `extendEnvironment` is no longer possible, but the typical use cases for extending it can be covered by other mechanisms.
 
