@@ -1,6 +1,6 @@
 # Hardhat 3 Beta status
 
-Hardhat 3 is production-read and you can migrate today!
+Hardhat 3 is production-ready and you can migrate today!
 
 We'll keep it in beta status as we work in missing features and stabilize it in the near future.
 
