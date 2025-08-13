@@ -16,7 +16,9 @@ Check [this guide](https://deno.com/blog/convert-cjs-to-esm) to learn how to con
 
 ### Changing the extension to .cjs
 
-Alternatively, you can rename your test files so that they have a `.cjs` extension. This way, they will be treated as CommonJS modules and you won't have to change any syntax. However, this has a limitation: you can't require Hardhat as a top-level module. This code:
+Alternatively, you can rename your test files so that they have a `.cjs` extension. This way, they will be treated as CommonJS modules and you won't have to change any syntax. **That said, we still recommend writing new tests in ESM** to take advantage of modern JavaScript features and match Hardhat 3's defaults.
+
+If you go with the `.cjs` approach, note that you can't require Hardhat as a top-level module. This code:
 
 ```js
 const hre = require("hardhat");
