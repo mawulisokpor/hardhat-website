@@ -21,6 +21,11 @@ const customRedirects = [
     destination: "/docs",
     permanent: false,
   },
+  {
+    source: "/hardhat3-alpha",
+    destination: "/docs",
+    permanent: false,
+  },
 
   // Top level redirects
   {
