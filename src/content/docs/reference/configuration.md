@@ -62,13 +62,10 @@ You can find more info about using Hardhat configuration variables in the [confi
 
 You can customize the different paths that Hardhat uses by providing an object to the `paths` field with the following keys:
 
-- `sources`: The directory where your contracts are stored. This path is resolved from the project's root. Default value: `'./contracts'`.
-
-- `tests`: The directory where your tests are located, or an object containing fields for each installed test runner that points to their respective test locations. This path is resolved from the project's root. Default value: `'./test'`.
-
-- `cache`: The directory used by Hardhat to cache its internal stuff. This path is resolved from the project's root. Default value: `'./cache'`.
-
-- `artifacts`: The directory where the compilation artifacts are stored. This path is resolved from the project's root. Default value: `'./artifacts'`.
+- `sources`: The directory where your contracts are stored. This path is resolved relative to your Hardhat config file. Default value: `'./contracts'`.
+- `tests`: The directory where your tests are located, or an object containing fields for each installed test runner that points to their respective test locations. This path is resolved relative to your Hardhat config file. Default value: `'./test'`.
+- `cache`: The directory used by Hardhat to cache its internal stuff. This path is resolved relative to your Hardhat config file. Default value: `'./cache'`.
+- `artifacts`: The directory where the compilation artifacts are stored. This path is resolved relative to your Hardhat config file. Default value: `'./artifacts'`.
 
 ### Solidity configuration
 
