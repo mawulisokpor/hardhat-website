@@ -2,19 +2,13 @@
 prev: true
 ---
 
-# Getting started with Hardhat 3
+# Getting started with Hardhat 3 Beta
 
 Hardhat is a flexible and extensible development environment for Ethereum software. It helps you write, test, debug and deploy your smart contracts with ease, whether you're building a simple prototype or a complex production system.
 
 This guide will walk you through the installation of our recommended setup, but as most of Hardhat's functionality comes from plugins, you are free to customize it or choose a completely different path.
 
 ## Installation
-
-:::tip
-
-[Hardhat for Visual Studio Code](../hardhat-vscode/) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
-
-:::
 
 To get started with Hardhat 3, you'll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
 
@@ -113,6 +107,12 @@ Here's a quick overview of these files and directories:
 - `scripts`: A place for any custom scripts that automate parts of your workflow. Scripts have full access to Hardhat's runtime and can use plugins, connect to networks, deploy contracts, and more.
 
 ## Writing a smart contract
+
+:::tip
+
+[Hardhat for Visual Studio Code](../hardhat-vscode/) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
+
+:::
 
 Writing a smart contract with Hardhat is as easy as writing a Solidity file inside the `contracts` directory. For example, your `contracts/Counter.sol` should look like this:
 
