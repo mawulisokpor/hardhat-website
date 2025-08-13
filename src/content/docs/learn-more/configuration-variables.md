@@ -41,7 +41,7 @@ By default, configuration variables get their values from environment variables.
 :::tab{value=npm}
 
 ```bash
-SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat ignition deploy ignition/modules/Counter.ts --network sepolia
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat run ./my-script.ts --network sepolia
 ```
 
 :::
@@ -49,12 +49,14 @@ SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat i
 :::tab{value=pnpm}
 
 ```bash
-SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat ignition deploy ignition/modules/Counter.ts --network sepolia
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat run ./my-script.ts --network sepolia
 ```
 
 :::
 
 ::::
+
+> The command is just an example, the `SEPOLIA_PRIVATE_KEY` must be also defined and `my-script.ts` implemented.
 
 But configuration variables are **extensible**: plugins can define alternative ways to obtain their values. This means you’re not limited to environment variables—you can plug in other sources, such as encrypted storage, cloud secrets managers, or any custom logic.
 
@@ -278,7 +280,7 @@ One common use case is **overriding a keystore value with an environment variabl
 :::tab{value=npm}
 
 ```bash
-SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat ignition deploy ignition/modules/Counter.ts --network sepolia
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat run ./my-script.ts --network sepolia
 ```
 
 :::
@@ -286,7 +288,7 @@ SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat i
 :::tab{value=pnpm}
 
 ```bash
-SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat ignition deploy ignition/modules/Counter.ts --network sepolia
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat run ./my-script.ts --network sepolia
 ```
 
 :::
