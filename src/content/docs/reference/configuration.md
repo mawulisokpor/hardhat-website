@@ -23,19 +23,9 @@ export default {
     artifacts: "./artifacts",
   },
   solidity: {
-    profiles: {
-      default: {
-        version: "0.8.28",
-      },
-      production: {
-        version: "0.8.28",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-          },
-        },
-      },
+    version: "{RECOMMENDED_SOLC_VERSION}",
+    settings: {
+      /* solc settings */
     },
   },
   networks: {
