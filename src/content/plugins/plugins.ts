@@ -22,7 +22,16 @@ export interface IPlugin {
   slug?: string;
 }
 
-const communityPlugins: IPlugin[] = [];
+const communityPlugins: IPlugin[] = [
+  {
+    name: "hardhat-deploy",
+    author: "Ronan Sandford",
+    authorUrl: "https://twitter.com/wighawag",
+    description:
+      "A Hardhat Plugin For Replicable Deployments And Easy Testing",
+    tags: ["Deployment", "Testing", "Scripts"],
+  },
+];
 
 const officialPlugins: IPlugin[] = [
   {
