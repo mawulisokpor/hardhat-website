@@ -116,6 +116,10 @@ Before making any changes, prepare your project so that installing and running H
 
    ::::
 
+6. **(Optional) Adapt your `tsconfig.json`**
+
+   If you have a `tsconfig.json` file, make sure that `compilerOptions.module` is set to an ESM-compatible value like `"esnext"`.
+
 ## Migrating compilation settings
 
 The first step is to create a minimal config that’s just enough to compile your contracts.
