@@ -2,7 +2,7 @@
 prev: false
 ---
 
-# Differences with Hardhat 2
+# What's new in Hardhat 3
 
 Hardhat 3 comes with many new features and improvements. Most of these changes are backwards-compatible or easy to adapt to existing projects.
 
