@@ -47,6 +47,7 @@ export default {
   test: {
     solidity: {
       timeout: 40000,
+      // other solidity tests options
     },
   },
 };
@@ -72,9 +73,7 @@ You can customize the different paths that Hardhat uses by providing an object t
 The `solidity` config is an optional field that can be one of the following:
 
 - A solc version to use, e.g. `"{RECOMMENDED_SOLC_VERSION}"`.
-
-- An array of solc versions to use, e.g. `["{RECOMMENDED_SOLC_VERSION}"]`.
-
+- An array of solc versions to use, e.g. `["0.7.6", "{RECOMMENDED_SOLC_VERSION}"]`.
 - An object which describes the configuration for a single compiler. It contains the following keys:
   - `version`: The solc version to use.
   - `settings`: An object with the same schema as the `settings` entry in the [Input JSON](https://docs.soliditylang.org/en/latest/using-the-compiler.html#input-description).
