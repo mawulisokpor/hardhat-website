@@ -18,7 +18,7 @@ The following options are available even if you don't include any plugins:
 export default {
   paths: {
     sources: "./contracts",
-    tests: "./test/solidity",
+    tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts",
   },
