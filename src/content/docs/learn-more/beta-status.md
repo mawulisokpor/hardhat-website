@@ -2,7 +2,7 @@
 
 Hardhat 3 is production-ready and you can migrate today!
 
-We'll keep it in beta status as we work in missing features and stabilize it in the near future.
+We'll keep it in beta status as we work on missing features and stabilize it in the near future.
 
 ## Migration readiness
 
