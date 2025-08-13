@@ -48,6 +48,18 @@ describe("suite", function () {
 
 Notice that this can only be done inside async functions.
 
+If you migrated to ESM instead, that would be:
+
+```js
+import hre from "hardhat";
+
+describe("suite", function () {
+  it("some test", async function () {
+    // use the hre
+  });
+});
+```
+
 ## Network connections
 
 In Hardhat 3, you don't have a single, global network connection. Instead, you create and manage network connections explicitly. For example, if you have a test that uses the JSON-RPC provider:
