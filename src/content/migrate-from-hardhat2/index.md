@@ -297,6 +297,8 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
 
    ::::
 
+<!-- Commented out until we have setInlineAction(...)
+
 ## Migrating tasks
 
 In Hardhat 2, tasks are created just by calling the `task` function and defining the task. As a side-effect, this task gets registered in the Hardhat Runtime Environment. In Hardhat 3 the config is fully declarative, meaning that tasks must be included in the `tasks` array:
@@ -318,6 +320,8 @@ export default config;
 ```
 
 Notice that we are also calling a `.build` function on the task. This is necessary in Hardhat 3 to finalize the task definition and make it available for use.
+
+-->
 
 ## Migrating `extendConfig` and `extendEnvironment`
 
