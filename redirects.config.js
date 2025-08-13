@@ -96,6 +96,11 @@ const customRedirects = [
     permanent: false,
   },
   {
+    source: "/hardhat3-beta-telegram-group",
+    destination: "https://t.me/+nx5My-pzR0piMjU5",
+    permanent: false,
+  },
+  {
     source: "/release/:version",
     destination:
       "https://github.com/NomicFoundation/hardhat/releases/tag/hardhat%40:version",
