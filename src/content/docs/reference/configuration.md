@@ -12,7 +12,7 @@ The config options available will depend on the Hardhat plugins you have install
 
 ## Standard options
 
-There are several plugins that come built-in with Hardhat, so if you've installed Hardhat, but no other plugins, then your exported config object might look like this:
+The following options are available even if you don't include any plugins:
 
 ```ts
 export default {
