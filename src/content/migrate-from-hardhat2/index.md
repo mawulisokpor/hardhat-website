@@ -120,9 +120,9 @@ Before making any changes, prepare your project so that installing and running H
 
    If you have a `tsconfig.json` file, make sure that `compilerOptions.module` is set to an ESM-compatible value like `"esnext"`.
 
-## Migrating compilation settings
+## Setting up Hardhat 3
 
-The first step is to create a minimal config that’s just enough to compile your contracts.
+With your npm project ready, you can start setting up Hardhat 3.
 
 1. **Install Hardhat 3**
 
@@ -184,7 +184,13 @@ The first step is to create a minimal config that’s just enough to compile you
 
    ::::
 
-4. **Add a `solidity` entry**
+## Progresively migrating your config
+
+With a minimal version of Hardhat 3 working, you can migrate your config bit by bit.
+
+Let's start with the minimal settings required to compile your contracts.
+
+1. **Add a `solidity` entry**
 
    Copy the `solidity` entry from your old config as-is. The format is backwards-compatible in Hardhat 3, so it should just work:
 
@@ -196,7 +202,7 @@ The first step is to create a minimal config that’s just enough to compile you
    };
    ```
 
-5. **Compile your contracts**
+2. **Compile your contracts**
 
    Run the `build` task to verify that your config is working:
 
@@ -219,6 +225,8 @@ The first step is to create a minimal config that’s just enough to compile you
    :::
 
    ::::
+
+To learn more about the updated config format, and continue with your migration, please take a look at [this section](../docs/reference/configuration.md).
 
 ## Migrating tests
 
