@@ -5,6 +5,12 @@ description: How to migrate from Hardhat 2 to Hardhat 3
 
 # Migrate from Hardhat 2
 
+:::tip
+
+Hardhat 3 is production-ready and you can migrate today! We'll keep it in beta status as we work on missing features and stabilize it in the near future.
+
+:::
+
 ## Overview
 
 Hardhat 3 is a complete rewrite of Hardhat 2. While many features are familiar, several fundamental changes mean the new version is not compatible with Hardhat 2 projects out of the box:

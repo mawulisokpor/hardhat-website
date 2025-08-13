@@ -1,5 +1,11 @@
 # Configuration
 
+:::tip
+
+Hardhat 3 is production-ready and you can migrate today! We'll keep it in beta status as we work on missing features and stabilize it in the near future.
+
+:::
+
 When Hardhat is run, it searches for the closest `hardhat.config.ts` file starting from the Current Working Directory. This file normally lives in the root of your project. An empty `hardhat.config.ts` is enough for Hardhat to work.
 
 The entirety of your Hardhat setup (i.e. your config, plugins and custom tasks) is contained in this file.
