@@ -94,13 +94,27 @@ Before making any changes, prepare your project so that installing and running H
 
 5. **Make your project ESM**
 
-   Add this to your package.json:
+   Run the following command to set the correct `type` field in your `package.json`:
 
-   ```json
-   {
-     "type": "module"
-   }
+   ::::tabsgroup{options=npm,pnpm}
+
+   :::tab{value=npm}
+
+   ```bash
+   npm pkg set type=module
    ```
+
+   :::
+
+   :::tab{value=pnpm}
+
+   ```bash
+   pnpm pkg set type=module
+   ```
+
+   :::
+
+   ::::
 
 ## Migrating compilation settings
 
