@@ -107,17 +107,17 @@ module.exports = {
 
 The `networks` config field is an optional object where network names map to their configuration.
 
-There are two kinds of networks in Hardhat: [JSON-RPC](https://eth.wiki/json-rpc/API) based networks, and built-in, in-memory simulated networks. You can use either of these by setting the `type` field in the network configuration to either `http` or `edr-simulated`, respectively.
+There are two kinds of networks in Hardhat: in-memory simulated networks and [JSON-RPC](https://eth.wiki/json-rpc/API) based networks. You can use either of these by setting the `type` field in the network configuration to either `edr-simulated` or `http`, respectively.
 
-Additionally, simulated networks can be used to test your contracts in different environments, such as Optimism or layer 1 Ethereum, by setting the `chainType` field to either `op` or `l1`, respectively.`
+Additionally, simulated networks can be used to test your contracts in different environments, such as Optimism or layer 1 Ethereum, by setting the `chainType` field to either `op` or `l1`, respectively.
 
 There are a number of options that both network types share, as well as some that are specific to each type.
 
 #### Shared network options
 
-The following options are available for both JSON-RPC and simulated networks:
+The following options are available for both simulated and JSON-RPC networks:
 
-- `type`: The type of the network. This can be either `http` for JSON-RPC networks or `edr-simulated` for simulated networks.
+- `type`: The type of the network. This can be either `edr-simulated` for simulated networks or `http` for JSON-RPC networks.
 - `accounts`: This field controls which accounts Hardhat uses. It can use the node's accounts (by setting it to `"remote"`), a list of local accounts (by setting it to an array of [configuration variables](../learn-more/configuration-variables.md)), or use an [HD Wallet](#hd-wallet-config). Default value: `"remote"`.
 - `chainId`: An optional number, used to validate the network Hardhat connects to. If not present, this validation is omitted.
 - `chainType`: Determines the type of chain for this network. This can be either `l1` for layer 1 networks like Ethereum, `op` for layer 2 networks like Optimism, or `generic` for other types of networks. Default value: `generic`.
@@ -125,14 +125,6 @@ The following options are available for both JSON-RPC and simulated networks:
 - `gas`: Its value should be `"auto"` or a number or bigint. If a number or bigint is used, it will be the gas limit used by default in every transaction. If `"auto"` is used, the gas limit will be automatically estimated. Default value: `"auto"`.
 - `gasMultiplier`: A number used to multiply the results of gas estimation to give it some slack due to the uncertainty of the estimation process. Default value: `1`.
 - `gasPrice`: Its value should be `"auto"` or a number or bigint. This parameter behaves like `gas`. Default value: `"auto"`.
-
-#### JSON-RPC network options
-
-The following options are specific to JSON-RPC networks:
-
-- `url`: The url of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
-- `httpHeaders`: An optional object with headers to be sent in every request to the node. This can be useful for authentication or other purposes.
-- `timeout`: An optional number that specifies the timeout for requests to the node, in milliseconds.
 
 #### Simulated network options
 
@@ -152,6 +144,14 @@ The following options are specific to simulated networks:
 - `networkId`: <!-- todo -->
 - `throwOnCallFailures`: <!-- todo -->
 - `throwOnTransactionFailures`: <!-- todo -->
+
+#### JSON-RPC network options
+
+The following options are specific to JSON-RPC networks:
+
+- `url`: The url of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
+- `httpHeaders`: An optional object with headers to be sent in every request to the node. This can be useful for authentication or other purposes.
+- `timeout`: An optional number that specifies the timeout for requests to the node, in milliseconds.
 
 #### HD Wallet config
 
