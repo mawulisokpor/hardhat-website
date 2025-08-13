@@ -307,14 +307,10 @@ export default config;
 
 Notice that we are also calling a `.build` function on the task. This is necessary in Hardhat 3 to finalize the task definition and make it available for use.
 
-## Migrating scripts
+## Migrating `extendConfig` and `extendEnvironment`
 
-TODO
+These extensibility points were replaced by the hook system. We'll add details on how to migrate them soon.
 
-## Migrating `extendConfig`
+## Migration blockers
 
-TODO
-
-## Migrating `extendEnvironment`
-
-TODO
+If your migration is blocked by a missing feature or plugin, please let us know [in this issue](https://github.com/NomicFoundation/hardhat/issues/7207).
