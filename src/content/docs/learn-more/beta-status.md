@@ -1,4 +1,4 @@
-# Hardhat 3 Beta status
+# Hardhat 3: beta status
 
 Hardhat 3 is production-ready and you can migrate today!
 
