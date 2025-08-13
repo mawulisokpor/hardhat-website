@@ -3,6 +3,6 @@ section-title: Migrating from Hardhat 2
 order:
   - title: Overview
     href: "#overview"
-  - /missing-plugins
+  - /missing-functionality
   - title: Migrating Mocha tests
     href: /mocha-tests

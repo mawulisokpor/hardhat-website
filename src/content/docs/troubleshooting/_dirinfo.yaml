@@ -3,5 +3,5 @@ section-title: Troubleshooting
 order:
   - href: /getting-help
     title: Getting help
-  - href: /../../../migrate-from-hardhat2/missing-plugins
-    title: Missing plugins
+  - href: /../../../migrate-from-hardhat2/missing-functionality
+    title: Missing functionality
