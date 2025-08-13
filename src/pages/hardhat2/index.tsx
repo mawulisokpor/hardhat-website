@@ -58,15 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
   createLayouts();
   const source = `This website contains the documentation for Hardhat 3, the new major version of Hardhat.
 
-You can find the documentation for [Hardhat 2 here](https://v2.hardhat.org).
-
-### Hardhat 2 support
-
-We encourage everyone to migrate to Hardhat 3, but if you need to keep using Hardhat 2, we got you covered.
-
-Hardhat 2 will continue to be supported throughout the [Fusaka hardfork](https://forkcast.org/upgrade/fusaka). We will continue fixing bugs and security issues, but we will limit investment into new features.
-
-Hardhat 2 will be supported until the 1st September 2026 or [Glamsterdam hardfork](https://forkcast.org/upgrade/glamsterdam) gets activated on Ethereum Mainnet, whichever comes first. We will cease supporting Hardhat 2 once it reaches the end of life.`;
+You can find the documentation for [Hardhat 2 here](https://v2.hardhat.org).`;
 
   const { mdxSource } = await prepareMdContent(source);
   const { layout } = getLayout("docs/getting-started/index.md");
