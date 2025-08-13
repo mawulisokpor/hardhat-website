@@ -55,24 +55,6 @@ const linariaConfig = withLinaria({
     dangerouslyAllowSVG: true,
     domains: ["img.shields.io", "hardhat.org"],
   },
-  async headers() {
-    const headers = [];
-    if (
-      process.env.NEXT_PUBLIC_VERCEL_ENV === "preview" ||
-      process.env.NEXT_PUBLIC_VERCEL_ENV === "hardhat3"
-    ) {
-      headers.push({
-        headers: [
-          {
-            key: "X-Robots-Tag",
-            value: "noindex",
-          },
-        ],
-        source: "/:path*",
-      });
-    }
-    return headers;
-  },
 });
 
 module.exports = withPlugins([linariaConfig, withBundleAnalyzer]);
