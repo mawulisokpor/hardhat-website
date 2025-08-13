@@ -56,8 +56,6 @@ SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat 
 
 ::::
 
-> The command is just an example, the `SEPOLIA_PRIVATE_KEY` must be also defined and `my-script.ts` implemented.
-
 But configuration variables are **extensible**: plugins can define alternative ways to obtain their values. This means you’re not limited to environment variables—you can plug in other sources, such as encrypted storage, cloud secrets managers, or any custom logic.
 
 Another important detail is that configuration variables are **lazy**, meaning that they’re only resolved when actually needed. For example, if you define a network that uses a configuration variable for its RPC URL, and that variable isn’t set, it won’t cause any issues unless you actually try to connect to that network. Running tasks like `compile`, or executing tests that don’t use the network, will work just fine.
