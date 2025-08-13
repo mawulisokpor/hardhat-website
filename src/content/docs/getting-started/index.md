@@ -96,7 +96,6 @@ ignition
     └── Counter.ts
 
 scripts
-├── check-predeploy.ts
 └── send-op-tx.ts
 ```
 
