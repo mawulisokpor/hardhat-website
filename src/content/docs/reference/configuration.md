@@ -193,11 +193,31 @@ export default {
 };
 ```
 
-### Test configuration
+### Solidity tests configuration
 
-By default, Hardhat includes support for tests written in Solidity to test your contracts. There are many ways to configure the test environment, as described below.
+By default, Hardhat includes support for tests written in Solidity to test your contracts. You can use the `test.solidity` entry to configure how they behave. For example, the following config enables the `ffi` cheatcode:
 
-<!-- todo: there are **a lot** of fields under SolidityTestUserConfig, do we want them all here right now? if not, which ones do we prioritize? -->
+```js
+const config = {
+  test: {
+    solidity: {
+      ffi: true,
+    },
+  },
+};
+```
+
+The following options are available for configuring Solidity tests:
+
+- `ffi`: A boolean that enables the `ffi` cheatcode. Enabling this cheatcodes allows tests to call external programs and it's disabled by default for security reasons. Default value: `false`.
+- `fsPermissions`: An object used to configure the file system permissions for cheatcodes. It can have the following fields:
+  - `readFile`: An array of file paths that can be read.
+  - `writeFile`: An array of file paths that can be written.
+  - `readWriteFile`: An array of file paths that can be both read and written.
+  - `readDirectory`: An array of directory paths. All files and directories inside these directories can be read.
+  - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. This is a dangerous option, as it allows writing to any file in the specified directories, so it should be used with caution.
+  - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. This is a dangerous option, as it allows writing to any file in the specified directories, so it should be used with caution.
+- `isolate`: A boolean that enables running tests in isolated mode. Default value: `false`.
 
 ## Toolbox options
 
