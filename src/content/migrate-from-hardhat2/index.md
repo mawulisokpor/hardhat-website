@@ -226,7 +226,7 @@ Let's start with the minimal settings required to compile your contracts.
 
    ::::
 
-To learn more about the updated config format, and continue with your migration, please take a look at [this section](../docs/reference/configuration.md).
+To learn more about the updated config format, and continue with your migration, please take a look at [this section](../docs/reference/configuration.md#solidity-configuration).
 
 ## Migrating tests
 
