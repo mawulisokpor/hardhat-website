@@ -18,7 +18,7 @@ There are some features that are still in development, and should be released so
 
 - Gas reporting: Hardhat 3 will have a built-in alternative for the [`hardhat-gas-reporter`](https://www.npmjs.com/package/hardhat-gas-reporter) plugin, which will work with Solidity and Typescript tests.
 
-- Gas snapshots: The ability to take gas snapshots and compared them is still under development.
+- Gas snapshots: The ability to take gas snapshots and compare them is still under development.
 
 - `hardhat-deploy` support: We are working on porting over the [`hardhat-deploy`](https://www.npmjs.com/package/hardhat-deploy) plugin to Hardhat 3.
 
