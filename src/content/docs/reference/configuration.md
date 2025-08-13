@@ -90,7 +90,7 @@ The `solidity` config is an optional field that can be one of the following:
 
 #### Default EVM Version
 
-The default EVM version is determined by solc's choice for a given compiler version. To specify a different EVM version, modify your `hardhat.config.js`:
+The default EVM version changes based on the compiler version. To specify a different EVM version, modify your `hardhat.config.js`:
 
 ```js
 module.exports = {
@@ -102,8 +102,6 @@ module.exports = {
   },
 };
 ```
-
-Since version `0.8.20`, solc's EVM default is `shanghai`, which can lead to issues in chains that don't support the `PUSH0` opcode. To address this, starting from `0.8.20` Hardhat defaults to `paris`. This value can be overridden by using the above configuration.
 
 ### Network configuration
 
