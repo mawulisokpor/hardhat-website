@@ -141,3 +141,14 @@ describe("suite", function () {
   });
 });
 ```
+
+## Chai matchers changes
+
+Some of the Chai matchers have changed in Hardhat 3, to make them work with multiple network connections.
+
+These changes are:
+
+- Some matchers take an instance of `HardhatEthers` (i.e. the `ethers` object from the network connection), as shown in this list.
+- `.reverted` is now `.revert(ethers)`
+- `.revertedWithoutReason()` is now `.revertedWithoutReason(ethers)`
+- `changeEtherBalance`, `changeEtherBalances`, `changeTokenBalance`, and `changeTokenBalances` now take an instance of `HardhatEthers` as the first argument.
