@@ -120,19 +120,12 @@ There are a number of options that both network types share, as well as some tha
 The following options are available for both JSON-RPC and simulated networks:
 
 - `type`: The type of the network. This can be either `http` for JSON-RPC networks or `edr-simulated` for simulated networks.
-
 - `accounts`: This field controls which accounts Hardhat uses. It can use the node's accounts (by setting it to `"remote"`), a list of local accounts (by setting it to an array of [configuration variables](../learn-more/configuration-variables.md)), or use an [HD Wallet](#hd-wallet-config). Default value: `"remote"`.
-
 - `chainId`: An optional number, used to validate the network Hardhat connects to. If not present, this validation is omitted.
-
 - `chainType`: Determines the type of chain for this network. This can be either `l1` for layer 1 networks like Ethereum, `op` for layer 2 networks like Optimism, or `generic` for other types of networks. Default value: `generic`.
-
 - `from`: The address to use as default sender. If not present the first account of the node is used.
-
 - `gas`: Its value should be `"auto"` or a number or bigint. If a number or bigint is used, it will be the gas limit used by default in every transaction. If `"auto"` is used, the gas limit will be automatically estimated. Default value: `"auto"`.
-
 - `gasMultiplier`: A number used to multiply the results of gas estimation to give it some slack due to the uncertainty of the estimation process. Default value: `1`.
-
 - `gasPrice`: Its value should be `"auto"` or a number or bigint. This parameter behaves like `gas`. Default value: `"auto"`.
 
 #### JSON-RPC network options
@@ -140,9 +133,7 @@ The following options are available for both JSON-RPC and simulated networks:
 The following options are specific to JSON-RPC networks:
 
 - `url`: The url of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
-
 - `httpHeaders`: An optional object with headers to be sent in every request to the node. This can be useful for authentication or other purposes.
-
 - `timeout`: An optional number that specifies the timeout for requests to the node, in milliseconds.
 
 #### Simulated network options
@@ -150,31 +141,18 @@ The following options are specific to JSON-RPC networks:
 The following options are specific to simulated networks:
 
 - `allowBlocksWithSameTimestamp`: <!-- todo -->
-
 - `allowUnlimitedContractSize`: <!-- todo -->
-
 - `blockGasLimit`: <!-- todo -->
-
 - `coinbase`: <!-- todo -->
-
 - `forking`: <!-- todo -->
-
 - `hardfork`: <!-- todo -->
-
 - `initialBaseFeePerGas`: <!-- todo -->
-
 - `initialDate`: <!-- todo -->
-
 - `loggingEnabled`: <!-- todo -->
-
 - `minGasPrice`: <!-- todo -->
-
 - `mining`: <!-- todo -->
-
 - `networkId`: <!-- todo -->
-
 - `throwOnCallFailures`: <!-- todo -->
-
 - `throwOnTransactionFailures`: <!-- todo -->
 
 #### HD Wallet config
@@ -182,15 +160,10 @@ The following options are specific to simulated networks:
 To use an [HD Wallet](https://github.com/ethereumbook/ethereumbook/blob/develop/05wallets.asciidoc#hd_wallets) with Hardhat you should set your network's `accounts` field to an object with the following fields:
 
 - `mnemonic`: A required string with the mnemonic phrase of the wallet. Passed in via [configuration variable](../learn-more/configuration-variables.md).
-
 - `path`: The HD parent of all the derived keys. Default value: `"m/44'/60'/0'/0"`.
-
 - `initialIndex`: The initial index to derive. Default value: `0`.
-
 - `count`: The number of accounts to derive. Default value: `20`.
-
 - `passphrase`: The passphrase for the wallet, passed in via [configuration variable](../learn-more/configuration-variables.md). Default value: empty string.
-
 - `accountsBalance`: **Only available in simulated networks.** The balance of the accounts derived from the HD wallet.
 
 For example:
