@@ -133,7 +133,7 @@ With your npm project ready, you can start setting up Hardhat 3.
    :::tab{value=npm}
 
    ```bash
-   npm install --save-dev hardhat@3
+   npm install --save-dev hardhat
    ```
 
    :::
@@ -141,7 +141,7 @@ With your npm project ready, you can start setting up Hardhat 3.
    :::tab{value=pnpm}
 
    ```bash
-   pnpm install --save-dev hardhat@3
+   pnpm install --save-dev hardhat
    ```
 
    :::
