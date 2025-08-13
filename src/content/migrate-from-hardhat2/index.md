@@ -22,7 +22,7 @@ Before making any changes, prepare your project so that installing and running H
 
 1. **Check node.js version**
 
-   Make sure you are using Node.js v22 or later:
+   Make sure you are using Node.js v22.10.0 or later:
 
    ```bash
    node --version
