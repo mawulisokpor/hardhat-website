@@ -93,7 +93,7 @@ The `solidity` config is an optional field that can be one of the following:
 The default EVM version changes based on the compiler version. To specify a different EVM version, modify your `hardhat.config.js`:
 
 ```js
-module.exports = {
+export default {
   solidity: {
     version: "0.8.21",
     settings: {
@@ -230,7 +230,7 @@ Both toolboxes include the `hardhat-ignition` and `hardhat-verify` plugins, and 
 
 ## Viem Toolbox options
 
-The Viem toolbox makes the [Node.js test runner](https://nodejs.org/api/test.html) available for use in your Hardhat project. You can tell Hardhat where your tests are located by setting the `paths.tests.nodejs` field in your config, like this:
+The Viem toolbox makes the [Node.js test runner](https://nodejs.org/api/test.html) available for use in your Hardhat project. You can tell Hardhat where your tests are located by setting the `paths.tests.nodejs` field in your config:
 
 ```ts
 export default {
@@ -244,7 +244,7 @@ export default {
 
 ## Ethers Toolbox options
 
-The Ethers toolbox makes the [Mocha test runner](https://mochajs.org/) available for use in your Hardhat project. You can tell Hardhat where your tests are located by setting the `paths.tests.mocha` field in your config, like this:
+The Ethers toolbox makes the [Mocha test runner](https://mochajs.org/) available for use in your Hardhat project. You can tell Hardhat where your tests are located by setting the `paths.tests.mocha` field in your config:
 
 ```ts
 export default {
@@ -262,7 +262,7 @@ Additionally, you can configure Mocha itself by providing an object to the `test
 export default {
   test: {
     mocha: {
-      timeout: 20000, // Set the timeout for tests to 20 seconds
+      timeout: 20_000, // Set the timeout for tests to 20 seconds
     },
   },
 };
@@ -270,7 +270,7 @@ export default {
 
 :::tip
 
-All options available in Mocha can be used here. You can find more information in the [Mocha documentation](https://mochajs.org/#configuring-mocha-nodejs).
+All options available in Mocha can be used here. You can find more information in the [Mocha documentation](https://mochajs.org/).
 
 :::
 
