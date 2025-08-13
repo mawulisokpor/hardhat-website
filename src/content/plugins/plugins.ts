@@ -47,7 +47,7 @@ const officialPlugins: IPlugin[] = [
     authorUrl: "https://twitter.com/NomicFoundation",
     description:
       "This plugin adds an encrypted keystore to Hardhat, to handle secret values (e.g. API keys and private keys) in your config securely.",
-    tags: ["Secrets", "Kesytore", "Key management"],
+    tags: ["Secrets", "Keystore", "Key management"],
   },
   {
     name: "@nomicfoundation/hardhat-verify",
