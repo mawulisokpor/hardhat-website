@@ -89,29 +89,17 @@ The `solidity` config is an optional field that can be one of the following:
 - An array of solc versions to use, e.g. `["{RECOMMENDED_SOLC_VERSION}"]`.
 
 - An object which describes the configuration for a single compiler. It contains the following keys:
-
   - `version`: The solc version to use.
-
   - `settings`: An object with the same schema as the `settings` entry in the [Input JSON](https://docs.soliditylang.org/en/latest/using-the-compiler.html#input-description).
-
   - `preferWasm`: <!-- todo -->
-
   - `npmFilesToBuild`: <!-- todo -->
-
 - An object which describes multiple compilers and their respective configurations. It contains the following:
-
   - `compilers`: A list of compiler configuration objects like the one above.
-
   - `overrides`: An optional map of compiler configuration override objects. This maps file names to compiler configuration objects.
-
   - `preferWasm`: <!-- todo -->
-
   - `npmFilesToBuild`: <!-- todo -->
-
 - An object which describes multiple build profiles and their respective configurations. It contains the following:
-
   - `profiles`: A map of build profile names to compiler configuration objects like the one above.
-
   - `npmFilesToBuild`: <!-- todo -->
 
 #### Default EVM Version
