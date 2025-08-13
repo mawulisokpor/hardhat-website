@@ -20,7 +20,7 @@ From the root directory of your Hardhat project run:
 :::tab{value="npm"}
 
 ```shell
-npm install --save-dev @nomicfoundation/hardhat-ignition-ethers@next
+npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
 ```
 
 :::
@@ -28,7 +28,7 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-ethers@next
 :::tab{value="pnpm"}
 
 ```shell
-pnpm add -D @nomicfoundation/hardhat-ignition-ethers@next ethers
+pnpm add -D @nomicfoundation/hardhat-ignition-ethers ethers
 ```
 
 :::

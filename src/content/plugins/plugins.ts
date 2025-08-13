@@ -31,7 +31,7 @@ const officialPlugins: IPlugin[] = [
     authorUrl: "https://twitter.com/NomicFoundation",
     description:
       "Nomic Foundation's recommended bundle of Hardhat plugins (viem based)",
-    tags: ["Hardhat", "Setup", "viem"],
+    tags: ["Hardhat setup", "template", "viem"],
   },
   {
     name: "@nomicfoundation/hardhat-toolbox-mocha-ethers",
@@ -39,29 +39,102 @@ const officialPlugins: IPlugin[] = [
     authorUrl: "https://twitter.com/NomicFoundation",
     description:
       "Nomic Foundation's recommended bundle of Hardhat plugins (ethers based)",
-    tags: ["Hardhat", "Setup", "Ethers.js"],
+    tags: ["Hardhat setup", "template", "Ethers.js"],
   },
-
-  // Add the rest of the plugins:
-  // hardhat-viem
-  // hardhat-viem-assertions
-
-  // hardhat-ethers
-  // hardhat-ethers-chai-matchers
-  // hardhat-typechain
-
-  // hardhat-ignition
-  // hardhat-ignition-ethers
-  // hardhat-ignition-viem
-
-  // hardhat-keystore
-  // hardhat-network-helpers
-  // hardhat-verify
-
-  // hardhat-mocha
-  // hardhat-node-test-runner
-
-  // Ledger plugin?
+  {
+    name: "@nomicfoundation/hardhat-keystore",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description:
+      "This plugin adds an encrypted keystore to Hardhat, to handle secret values (e.g. API keys and private keys) in your config securely.",
+    tags: ["Secrets", "Keystore", "Key management"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-verify",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Automatically verify contracts",
+    tags: ["Verification", "Etherscan", "Blockscout"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-network-helpers",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description:
+      "A plugin that provides a set of utility functions to interact with locally simulated networks.",
+    tags: ["Network", "Simulation", "Helpers", "Testing"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-viem",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Integrates viem into a Hardhat project",
+    tags: ["viem", "Testing", "Tasks", "Scripts"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-viem-assertions",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Adds a set of viem-based testing assertions to Hardhat",
+    tags: ["viem", "Testing", "Assertions"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-ethers",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Integrates Ethers.js into a Hardhat project",
+    tags: ["Ethers.js", "Testing", "Tasks", "Scripts"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-ethers-chai-matchers",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Adds a set of ethers-based matchers to chai",
+    tags: ["Ethers.js", "chai", "Testing", "Assertions"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-typechain",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Generates TypeChain bindings for smart contracts",
+    tags: ["TypeChain", "TypeScript", "Bindings", "Contracts"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-ignition",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Hardhat's official deployment solution",
+    tags: ["Ignition", "Deployment"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-ignition-viem",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Adds support for viem to Hardhat Ignition",
+    tags: ["Ignition", "viem", "Deployment", "Testing"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-ignition-ethers",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Adds support for Ethers.js to Hardhat Ignition",
+    tags: ["Ignition", "Ethers.js", "Deployment", "Testing"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-mocha",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description: "Integrates Mocha into a Hardhat project",
+    tags: ["Mocha", "Testing", "Test runner"],
+  },
+  {
+    name: "@nomicfoundation/hardhat-node-test-runner",
+    author: "Nomic Foundation",
+    authorUrl: "https://twitter.com/NomicFoundation",
+    description:
+      "Integrates Node.js' builtin test runner into a Hardhat project",
+    tags: ["Node.js test runner", "node:test", "Test runner"],
+  },
 
   // Don't add community plugins here. They should be placed in the other array.
 ];

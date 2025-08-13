@@ -25,10 +25,12 @@ If you don't have a Hardhat project yet, or if you want to create a new one to t
 
 ## Installation
 
+> Hardhat Ignition is part of the [Viem Hardhat Toolbox](/v-next/hardhat-toolbox-viem/). If you are using this toolbox, there's nothing else you need to do.
+
 To install Hardhat Ignition in an existing Hardhat project, you will need:
 
 - Hardhat version 3.0.0 or higher
-- [Node.js](https://nodejs.org/) version 22.0.0 or higher
+- [Node.js](https://nodejs.org/) version 22.10.0 or higher
 - A package manager like [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
 
 You can also follow [Hardhat's Quick Start guide](../../../docs/getting-started/index.md) to create a new project from scratch to follow this guide.
@@ -46,7 +48,7 @@ Once you have a Hardhat project ready, open a terminal in its root directory, an
 :::tab{value="npm"}
 
 ```sh
-npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
+npm install --save-dev @nomicfoundation/hardhat-ignition-viem
 ```
 
 :::
@@ -54,7 +56,7 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-viem@next
 :::tab{value="pnpm"}
 
 ```sh
-pnpm add -D @nomicfoundation/hardhat-ignition-viem@next
+pnpm add -D @nomicfoundation/hardhat-ignition-viem
 ```
 
 :::
@@ -64,14 +66,12 @@ pnpm add -D @nomicfoundation/hardhat-ignition-viem@next
 Finally, add this to your config file to enable the plugin:
 
 ```typescript
-import hardhatViemPlugin '@nomicfoundation/hardhat-ignition-viem'
+import hardhatIgnitionViemPlugin from "@nomicfoundation/hardhat-ignition-viem";
 
 export default {
-  plugins: [
-    hardhatViemPlugin,
-  ],
+  plugins: [hardhatIgnitionViemPlugin],
   // ... rest of your config
-}
+};
 ```
 
 ## Quick start
@@ -148,25 +148,9 @@ npx hardhat node
 
 Next, in a terminal in the root of your Hardhat project, run:
 
-::::tabsgroup{options="TypeScript,JavaScript"}
-
-:::tab{value="TypeScript"}
-
 ```sh
 npx hardhat ignition deploy ignition/modules/Apollo.ts --network localhost
 ```
-
-:::
-
-:::tab{value="JavaScript"}
-
-```sh
-npx hardhat ignition deploy ignition/modules/Apollo.js --network localhost
-```
-
-:::
-
-::::
 
 Hardhat Ignition will execute every `Future` that we defined in the right order, and display the results:
 

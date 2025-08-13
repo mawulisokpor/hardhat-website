@@ -2,19 +2,19 @@
 prev: true
 ---
 
-# Getting started with Hardhat 3
+# Getting started with Hardhat 3 Beta
+
+:::tip
+
+Hardhat 3 is production-ready and you can migrate today! We'll keep it in beta status as we work on missing features and stabilize it in the near future.
+
+:::
 
 Hardhat is a flexible and extensible development environment for Ethereum software. It helps you write, test, debug and deploy your smart contracts with ease, whether you're building a simple prototype or a complex production system.
 
 This guide will walk you through the installation of our recommended setup, but as most of Hardhat's functionality comes from plugins, you are free to customize it or choose a completely different path.
 
 ## Installation
-
-:::tip
-
-[Hardhat for Visual Studio Code](../hardhat-vscode/) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
-
-:::
 
 To get started with Hardhat 3, you'll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
 
@@ -40,7 +40,7 @@ npx hardhat --init
 :::tab{value=pnpm}
 
 ```bash
-pnpm dlx hardhat@next --init
+pnpm dlx hardhat --init
 ```
 
 :::
@@ -114,6 +114,12 @@ Here's a quick overview of these files and directories:
 
 ## Writing a smart contract
 
+:::tip
+
+[Hardhat for Visual Studio Code](../hardhat-vscode/) is the official Hardhat extension that adds advanced support for Solidity to VSCode. If you use Visual Studio Code, give it a try!
+
+:::
+
 Writing a smart contract with Hardhat is as easy as writing a Solidity file inside the `contracts` directory. For example, your `contracts/Counter.sol` should look like this:
 
 ```solidity
@@ -144,7 +150,7 @@ Hardhat will automatically detect it, and compile it with the correct version of
 :::tab{value=npm}
 
 ```bash
-npx hardhat compile
+npx hardhat build
 ```
 
 :::
@@ -152,7 +158,7 @@ npx hardhat compile
 :::tab{value=pnpm}
 
 ```bash
-pnpm hardhat compile
+pnpm hardhat build
 ```
 
 :::
