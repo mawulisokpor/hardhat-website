@@ -152,3 +152,14 @@ These changes are:
 - `.reverted` is now `.revert(ethers)`
 - `.revertedWithoutReason()` is now `.revertedWithoutReason(ethers)`
 - `changeEtherBalance`, `changeEtherBalances`, `changeTokenBalance`, and `changeTokenBalances` now take an instance of `HardhatEthers` as the first argument.
+
+## Hardhat network helper changes
+
+The `@nomicfoundation/hardhat-network-helpers` package is now a plugin. Instead of importing its functions directly, now you get the helpers as part of the network connection:
+
+```ts
+import { network } from "hardhat";
+const { networkHelpers } = await network.connect();
+
+await networkHelpers.mine(5);
+```
