@@ -118,7 +118,6 @@ There are a number of options that both network types share, as well as some tha
 The following options are available for both simulated and JSON-RPC networks:
 
 - `type`: The type of the network. This can be either `edr-simulated` for simulated networks or `http` for JSON-RPC networks.
-- `accounts`: This field controls which accounts Hardhat uses. It can use the node's accounts (by setting it to `"remote"`), a list of local accounts (by setting it to an array of [configuration variables](../learn-more/configuration-variables.md)), or use an [HD Wallet](#hd-wallet-config). Default value: `"remote"`.
 - `chainId`: An optional number, used to validate the network Hardhat connects to. If not present, this validation is omitted.
 - `chainType`: Determines the type of chain for this network. This can be either `l1` for layer 1 networks like Ethereum, `op` for layer 2 networks like Optimism, or `generic` for other types of networks. Default value: `generic`.
 - `from`: The address to use as default sender. If not present the first account of the node is used.
@@ -130,6 +129,7 @@ The following options are available for both simulated and JSON-RPC networks:
 
 The following options are specific to simulated networks:
 
+- `accounts`: This field controls which accounts Hardhat uses. It can use a list of local accounts (by setting it to an array of `{privateKey, balance}` objects) or an [HD Wallet](#hd-wallet-config). Default value: an HD Wallet with 20 unlocked accounts and a balance of 10,000 ETH each.
 - `allowBlocksWithSameTimestamp`: <!-- todo -->
 - `allowUnlimitedContractSize`: <!-- todo -->
 - `blockGasLimit`: <!-- todo -->
@@ -149,6 +149,7 @@ The following options are specific to simulated networks:
 
 The following options are specific to JSON-RPC networks:
 
+- `accounts`: This field controls which accounts Hardhat uses. It can use the node's accounts (by setting it to `"remote"`), a list of local accounts (by setting it to an array of [configuration variables](../learn-more/configuration-variables.md)), or use an [HD Wallet](#hd-wallet-config). Default value: `"remote"`.
 - `url`: The url of the node, passed in via [configuration variable](../learn-more/configuration-variables.md). This argument is required for HTTP networks.
 - `httpHeaders`: An optional object with headers to be sent in every request to the node. This can be useful for authentication or other purposes.
 - `timeout`: An optional number that specifies the timeout for requests to the node, in milliseconds.
