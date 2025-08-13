@@ -130,20 +130,25 @@ The following options are available for both simulated and JSON-RPC networks:
 The following options are specific to simulated networks:
 
 - `accounts`: This field controls which accounts Hardhat uses. It can use a list of local accounts (by setting it to an array of `{privateKey, balance}` objects) or an [HD Wallet](#hd-wallet-config). Default value: an HD Wallet with 20 unlocked accounts and a balance of 10,000 ETH each.
-- `allowBlocksWithSameTimestamp`: <!-- todo -->
-- `allowUnlimitedContractSize`: <!-- todo -->
-- `blockGasLimit`: <!-- todo -->
-- `coinbase`: <!-- todo -->
-- `forking`: <!-- todo -->
-- `hardfork`: <!-- todo -->
-- `initialBaseFeePerGas`: <!-- todo -->
-- `initialDate`: <!-- todo -->
-- `loggingEnabled`: <!-- todo -->
-- `minGasPrice`: <!-- todo -->
-- `mining`: <!-- todo -->
-- `networkId`: <!-- todo -->
-- `throwOnCallFailures`: <!-- todo -->
-- `throwOnTransactionFailures`: <!-- todo -->
+- `allowBlocksWithSameTimestamp`: A boolean to allow mining blocks that have the same timestamp. This is not allowed by default because Ethereum's consensus rules specify that each block should have a different timestamp. Default value: `false`.
+- `allowUnlimitedContractSize`: An optional boolean that disables the contract size limit imposed by [EIP-170](https://eips.ethereum.org/EIPS/eip-170). Default value: `false`.
+- `blockGasLimit`: The block gas limit to use in Hardhat Network's blockchain. Default value: `30_000_000`.
+- `coinbase`: The address used as coinbase in new blocks. Default value: `"0xc014ba5ec014ba5ec014ba5ec014ba5ec014ba5e"`.
+- `forking`: An object that describes the forking configuration and can have the following fields:
+  - `url`: a URL that points to a JSON-RPC node with state that you want to fork off. There's no default value for this field. It must be provided for the fork to work.
+  - `blockNumber`: an optional number to pin which block to fork from. If no value is provided, the latest block is used.
+  - `enabled`: an optional boolean to switch on or off the fork functionality. Default value: `true` if `url` is set, `false` otherwise.
+- `hardfork`: This setting changes how Hardhat Network works, to mimic Ethereum's mainnet at a given hardfork. It must be one of `"byzantium"`, `"constantinople"`, `"petersburg"`, `"istanbul"`, `"muirGlacier"`, `"berlin"`, `"london"`, `"arrowGlacier"`, `"grayGlacier"`, `"merge"`, `"shanghai"`, `"cancun"` and `"prague"`. Default value: `"prague"`.
+- `initialBaseFeePerGas`: The `baseFeePerGas` of the first block. Note that when forking a remote network, the "first block" is the one immediately after the block you forked from. This field must not be present if `hardfork` is not `"london"` or a later one. Default value: `"1000000000"` if not forking. When forking a remote network, if the remote network uses EIP-1559, the first local block will use the right baseFeePerGas according to the EIP, otherwise `"10000000000"` is used.
+- `initialDate`: An optional string setting the date of the blockchain. Valid values are [Javascript's date time strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format). Default value: the current date and time if not forking another network. When forking another network, the timestamp of the block you forked from, plus one second, is used.
+- `loggingEnabled`: A boolean that controls if a simulated network logs every request or not. Default value: `false` for in-process simulated networks, `true` for the simulated network used by the `node` task.
+- `minGasPrice`: The minimum `gasPrice` that a transaction must have. This field must not be present if the `hardfork` is `"london"` or a later one. Default value: `"0"`.
+- `mining`: An object that configures the mining behavior and can have the following fields:
+  - `auto`: a boolean used to enable automine. Default value: `true`.
+  - `interval`: a number or an array with two numbers to enable interval mining. If the value is a number, blocks will be automatically mined every `interval` milliseconds. If the value is an array, blocks will be mined at random intervals between the two numbers.
+  - `mempool`: an object with an `order` field that can be set to `"fifo"` or `"priority"`. When set to `"fifo"`, transactions in the mempool are mined in FIFO order. When set to `"priority"`, they will be mined based on the fees paid to the miner. Default value: `"priority"`.
+- `throwOnCallFailures`: A boolean that controls if simulated networks throw on call failures. If this value is `true`, Hardhat will throw combined JavaScript and Solidity stack traces when a call fails. If it is `false`, it will return the call's return data, which can contain a revert reason. Default value: `true`.
+- `throwOnTransactionFailures`: A boolean that controls if simulated networks throw on transaction failures. If this value is `true`, Hardhat will throw combined JavaScript and Solidity stack traces on transaction failures. If it is `false`, it will return the failing transaction hash. In both cases the transactions are added into the blockchain. Default value: `true`.
 
 #### JSON-RPC network options
 
