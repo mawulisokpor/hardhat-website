@@ -24,8 +24,8 @@ const SOCIALS_LINKS = {
 export const PRIVACY_POLICY_PATH = "/privacy-policy.html";
 
 export const bannerContent: DefaultBannerContent = {
-  text: "Hardhat 3 Beta is now available! Get started with it now!",
-  shortText: "Hardhat 3 Beta is here!",
+  text: "Hardhat 3 is now production ready. Migrate now",
+  shortText: "Hardhat 3 is now production ready. Migrate now",
   href: "/docs",
 };
 
