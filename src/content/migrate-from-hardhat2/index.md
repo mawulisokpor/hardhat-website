@@ -57,7 +57,7 @@ Before making any changes, prepare your project so that installing and running H
    Start by removing these packages from your `package.json`:
 
    - `hardhat`
-   - Any packages starting with `hardhat-`, `@nomicfoundation/`, or `@nomiclabs`
+   - Any packages starting with `hardhat-`, `@nomicfoundation/`, or `@nomiclabs/`
    - `solidity-coverage`
 
    Then reinstall and check for remaining packages that depend on Hardhat:
