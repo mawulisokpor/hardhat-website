@@ -186,7 +186,7 @@ export default {
         count: 20,
         passphrase: configVariable("ACCOUNTS_PASSPHRASE"),
         // only available when network type === "edr-simulated"
-        accountsBalance: 1000000000000000000n, // 1 ETH in wei
+        accountsBalance: 10n ** 18n, // 1 ETH in wei
       },
     },
   },
@@ -221,15 +221,12 @@ The following options are available for configuring Solidity tests:
 
 ## Toolbox options
 
-As mentioned above, there are a number of options that are common to both toolboxes, such as those added by the [`hardhat-ignition`](#hardhat-ignition-configuration) and [`hardhat-verify`](#hardhat-verify-configuration) plugins. These options are available regardless of which toolbox you are using.
+Hardhat provides two official toolboxes, each with a set of plugins meant to simplify setup: [`hardhat-toolbox-viem`](/plugins/nomicfoundation-hardhat-toolbox-viem) and [`hardhat-toolbox-mocha-ethers`](/plugins/nomicfoundation-hardhat-toolbox-mocha-ethers).
 
-### Hardhat Ignition configuration
+Both toolboxes include the `hardhat-ignition` and `hardhat-verify` plugins, and their configuration is documented elsewhere:
 
-Please refer to the [Hardhat Ignition documentation](../../ignition/docs/config/index.md) for more details on how to configure Hardhat Ignition.
-
-### Hardhat Verify configuration
-
-Please refer to the [verification guide](../learn-more/smart-contract-verification.md) for more details on how to configure the `hardhat-verify` plugin.
+- `hardhat-ignition`: see the [Hardhat Ignition documentation](/ignition/docs/config/index.md).
+- `hardhat-verify`: see the [verification guide](/docs/learn-more/smart-contract-verification.md).
 
 ## Viem Toolbox options
 
