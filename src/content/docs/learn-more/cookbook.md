@@ -1,4 +1,4 @@
-# The Hardhat 3 Cookbook
+# Hardhat 3 Cookbook
 
 This section contains a collection of recipes for common tasks.
 
