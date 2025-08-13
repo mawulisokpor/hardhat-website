@@ -13,6 +13,7 @@ Check [this guide](https://deno.com/blog/convert-cjs-to-esm) to learn how to con
 - Convert statements like `const x = require("x")` to `import x from "x"`.
 - When importing a relative path, you always have to include the file extension. For example, `const x = require("./x")` becomes `import x from "./x.js"`, not `import x from "./x"`.
 - Convert `module.exports = x` to `export default x` and `module.exports.x = 1` to `export const x = 1`.
+- `__dirname` and `__filename` are now available as `import.meta.dirname` and `import.meta.filename`.
 
 ### Changing the extension to .cjs
 
