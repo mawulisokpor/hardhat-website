@@ -30,6 +30,27 @@ const communityPlugins: IPlugin[] = [
     description: "A Hardhat Plugin For Replicable Deployments And Easy Testing",
     tags: ["Deployment", "Testing", "Scripts"],
   },
+  {
+    name: "@solidstate/hardhat-abi-exporter",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Export Ethereum smart contract ABIs",
+    tags: ["abi"],
+  },
+  {
+    name: "@solidstate/hardhat-contract-sizer",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Output Solidity contract sizes with Hardhat",
+    tags: ["bytecode"],
+  },
+  {
+    name: "@solidstate/hardhat-git",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Git-rev-based HRE execution",
+    tags: ["git", "hre"],
+  },
 ];
 
 const officialPlugins: IPlugin[] = [
