@@ -246,7 +246,6 @@ If write access to a directory is needed, please make sure that it doesn't conta
   - `forkBlockNumber`: Pins the block number for the global state fork.
   - `rpcEndpoints`: Map of RPC endpoints from chain name to RPC urls for fork cheat codes, e.g. `{ "optimism": "https://optimism.alchemyapi.io/v2/..." }`
 - `rpcStorageCaching`: What RPC endpoints are cached. Defaults to all.
-- `timeout`: The maximum time in milliseconds to wait for all the test suites to finish. Optional, defaults to none.
 - `fuzz`: Optional fuzz testing configuration object.
   - `failurePersistDir`: Optional path where fuzz failures are recorded and replayed if set.
   - `failurePersistFile`: Name of the file to record fuzz failures, defaults to `failures`.
