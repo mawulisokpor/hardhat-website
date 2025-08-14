@@ -24,6 +24,13 @@ export interface IPlugin {
 
 const communityPlugins: IPlugin[] = [
   {
+    name: "hardhat-deploy",
+    author: "Ronan Sandford",
+    authorUrl: "https://twitter.com/wighawag",
+    description: "A Hardhat Plugin For Replicable Deployments And Easy Testing",
+    tags: ["Deployment", "Testing", "Scripts"],
+  },
+  {
     name: "@solidstate/hardhat-abi-exporter",
     author: "Nick Barry",
     authorUrl: "https://github.com/ItsNickBarry",
