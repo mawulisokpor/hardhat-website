@@ -228,8 +228,8 @@ If write access to a directory is needed, please make sure that it doesn't conta
   - `writeFile`: An array of file paths that can be written.
   - `readWriteFile`: An array of file paths that can be both read and written.
   - `readDirectory`: An array of directory paths. All files and directories inside these directories can be read.
-  - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. See warning above why it's dangerous.
-  - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. See warning above why it's dangerous.
+  - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. See warning above to understand why it's dangerous.
+  - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. See warning above to understand why it's dangerous.
 - `isolate`: Whether to enable isolation of calls. In isolation mode all top-level calls are executed as a separate transaction in a separate EVM context, enabling more precise gas accounting and transaction state changes. Defaults to false.
 - `ffi`: Whether or not to enable the ffi cheatcode. Warning: Enabling this cheatcode has security implications, as it allows tests to execute arbitrary programs on your computer. Defaults to false.
 - `allowInternalExpectRevert`: Allow expecting reverts with `expectRevert` at the same callstack depth as the test. Defaults to false.
@@ -241,7 +241,7 @@ If write access to a directory is needed, please make sure that it doesn't conta
 - `coinbase`: The value of `block.coinbase` in tests. Defaults to `0x0000000000000000000000000000000000000000`.
 - `blockTimestamp`: The value of `block.timestamp` in tests. Defaults to 1.
 - `blockGasLimit`: The `block.gaslimit` value during EVM execution. Set it to false to disable the block gas limit. Defaults to none.
-- `forkConfig`: The global fork configuration options object. If this is set, all tests are ran in fork mode. Defaults to none.
+- `forkConfig`: The global fork configuration options object. If this is set, all tests are run in fork mode. Defaults to none.
   - `url`: If set, all tests are run in fork mode using this url or remote name. Defaults to none.
   - `forkBlockNumber`: Pins the block number for the global state fork.
   - `rpcEndpoints`: Map of RPC endpoints from chain name to RPC urls for fork cheat codes, e.g. `{ "optimism": "https://optimism.alchemyapi.io/v2/..." }`
@@ -249,7 +249,7 @@ If write access to a directory is needed, please make sure that it doesn't conta
 - `fuzz`: Optional fuzz testing configuration object.
   - `failurePersistDir`: Optional path where fuzz failures are recorded and replayed if set.
   - `failurePersistFile`: Name of the file to record fuzz failures, defaults to `failures`.
-  - `runs`: The amount of fuzz runs to perform for each fuzz test case. Higher values gives more confidence in results at the cost of testing speed. Defaults to 256.
+  - `runs`: The amount of fuzz runs to perform for each fuzz test case. Higher values give more confidence in results at the cost of testing speed. Defaults to 256.
   - `maxTestRejects`: The maximum number of combined inputs that may be rejected before the test as a whole aborts. "Global" filters apply to the whole test case. If the test case is rejected, the whole thing is regenerated. Defaults to 65536.
   - `seed`: Hexadecimal string. Optional seed for the fuzzing RNG algorithm. Defaults to None.
   - `dictionaryWeight`: Integer between 0 and 100. The weight of the dictionary. A higher dictionary weight will bias the fuzz inputs towards "interesting" values, e.g. boundary values like type(uint256).max or contract addresses from your environment. Defaults to 40.
@@ -264,7 +264,7 @@ If write access to a directory is needed, please make sure that it doesn't conta
   - `dictionaryWeight`: Integer between 0 and 100. The weight of the dictionary. A higher dictionary weight will bias the fuzz inputs towards "interesting" values, e.g. boundary values like type(uint256).max or contract addresses from your environment. Defaults to 40.
   - `includeStorage`: The flag indicating whether to include values from storage. Defaults to true.
   - `includePushBytes`: The flag indicating whether to include push bytes values. Defaults to true.
-  - `shrinkRunLimit`: The maximum number of attempts to shrink a failed the sequence. Shrink process is disabled if set to 0. Defaults to 5000.
+  - `shrinkRunLimit`: The maximum number of attempts to shrink a failed sequence. The shrink process is disabled if set to 0. Defaults to 5000.
 
 ## Toolbox options
 
