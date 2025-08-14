@@ -66,6 +66,14 @@ const communityPlugins: IPlugin[] = [
     tags: ["git", "hre"],
   },
   {
+    name: "@solidstate/hardhat-license-identifier",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description:
+      "Prepend local Solidity source files with an SPDX License Identifier",
+    tags: ["solidity", "license", "spdx"],
+  },
+  {
     name: "@solidstate/hardhat-linearization",
     author: "Nick Barry",
     authorUrl: "https://github.com/ItsNickBarry",
