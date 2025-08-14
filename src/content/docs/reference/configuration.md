@@ -231,7 +231,7 @@ If write access to a directory is needed, please make sure that it doesn't conta
   - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. See warning above to understand why it's dangerous.
   - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. See warning above to understand why it's dangerous.
 - `isolate`: Whether to enable isolation of calls. In isolation mode all top-level calls are executed as a separate transaction in a separate EVM context, enabling more precise gas accounting and transaction state changes. Defaults to false.
-- `ffi`: Whether or not to enable the ffi cheatcode. Warning: Enabling this cheatcode has security implications, as it allows tests to execute arbitrary programs on your computer. Defaults to false.
+- `ffi`: Whether or not to enable the ffi cheatcode. **Warning**: Enabling this cheatcode has security implications, as it allows tests to execute arbitrary programs on your computer. Defaults to false.
 - `allowInternalExpectRevert`: Allow expecting reverts with `expectRevert` at the same callstack depth as the test. Defaults to false.
 - `from`: The value of `msg.sender` in tests as hex string. Defaults to `0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38`.
 - `txOrigin`: The value of `tx.origin` in tests as hex string. Defaults to `0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38`.
