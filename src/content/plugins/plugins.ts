@@ -22,7 +22,29 @@ export interface IPlugin {
   slug?: string;
 }
 
-const communityPlugins: IPlugin[] = [];
+const communityPlugins: IPlugin[] = [
+  {
+    name: "@solidstate/hardhat-abi-exporter",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Export Ethereum smart contract ABIs",
+    tags: ["abi"],
+  },
+  {
+    name: "@solidstate/hardhat-contract-sizer",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Output Solidity contract sizes with Hardhat",
+    tags: ["bytecode"],
+  },
+  {
+    name: "@solidstate/hardhat-git",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Git-rev-based HRE execution",
+    tags: ["git", "hre"],
+  },
+];
 
 const officialPlugins: IPlugin[] = [
   {
