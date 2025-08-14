@@ -35,7 +35,21 @@ const communityPlugins: IPlugin[] = [
     author: "Nick Barry",
     authorUrl: "https://github.com/ItsNickBarry",
     description: "Export Ethereum smart contract ABIs",
-    tags: ["abi"],
+    tags: ["abi", "compilation"],
+  },
+  {
+    name: "@solidstate/hardhat-accounts",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Display connected accounts and balances",
+    tags: ["accounts", "signers", "balance"],
+  },
+  {
+    name: "@solidstate/hardhat-bytecode-exporter",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Export Ethereum smart contract bytecode",
+    tags: ["bytecode", "compilation"],
   },
   {
     name: "@solidstate/hardhat-contract-sizer",
@@ -50,6 +64,36 @@ const communityPlugins: IPlugin[] = [
     authorUrl: "https://github.com/ItsNickBarry",
     description: "Git-rev-based HRE execution",
     tags: ["git", "hre"],
+  },
+  {
+    name: "@solidstate/hardhat-linearization",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Calculate Solidity contract inheritance order",
+    tags: ["solidity", "inheritance"],
+  },
+  {
+    name: "@solidstate/hardhat-log-remover",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description:
+      "Remove Hardhat console.log imports and calls from Solidity source files",
+    tags: ["console", "log"],
+  },
+  {
+    name: "@solidstate/hardhat-selector-uploader",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description:
+      "Upload local function selectors to the Ethereum Selector Database",
+    tags: ["selector", "4byte"],
+  },
+  {
+    name: "@solidstate/hardhat-storage-layout-inspector",
+    author: "Nick Barry",
+    authorUrl: "https://github.com/ItsNickBarry",
+    description: "Compare storage layouts between contracts and revisions",
+    tags: ["storage"],
   },
 ];
 
