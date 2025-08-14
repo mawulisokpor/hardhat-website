@@ -241,11 +241,10 @@ If write access to a directory is needed, please make sure that it doesn't conta
 - `coinbase`: The value of `block.coinbase` in tests. Defaults to `0x0000000000000000000000000000000000000000`.
 - `blockTimestamp`: The value of `block.timestamp` in tests. Defaults to 1.
 - `blockGasLimit`: The `block.gaslimit` value during EVM execution. Set it to false to disable the block gas limit. Defaults to none.
-- `forkConfig`: The global fork configuration options object. If this is set, all tests are run in fork mode. Defaults to none.
+- `forking`: Optional fork configuration options object. Defaults to none.
   - `url`: If set, all tests are run in fork mode using this url or remote name. Defaults to none.
-  - `forkBlockNumber`: Pins the block number for the global state fork.
+  - `blockNumber`: Optional block number to pin the global state fork. If `url` is set, defaults to the latest block number.
   - `rpcEndpoints`: Map of RPC endpoints from chain name to RPC urls for fork cheat codes, e.g. `{ "optimism": "https://optimism.alchemyapi.io/v2/..." }`
-- `rpcStorageCaching`: What RPC endpoints are cached. Defaults to all.
 - `fuzz`: Optional fuzz testing configuration object.
   - `failurePersistDir`: Optional path where fuzz failures are recorded and replayed if set.
   - `failurePersistFile`: Name of the file to record fuzz failures, defaults to `failures`.
