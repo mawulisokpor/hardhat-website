@@ -27,8 +27,7 @@ const communityPlugins: IPlugin[] = [
     name: "hardhat-deploy",
     author: "Ronan Sandford",
     authorUrl: "https://twitter.com/wighawag",
-    description:
-      "A Hardhat Plugin For Replicable Deployments And Easy Testing",
+    description: "A Hardhat Plugin For Replicable Deployments And Easy Testing",
     tags: ["Deployment", "Testing", "Scripts"],
   },
 ];
