@@ -217,13 +217,13 @@ The following options are available for configuring Solidity tests:
 
 :::warning
 
-Giving write access to configuration files, source files or executables in a project is considered dangerous, because it can be used by malicious Solidity dependencies to escape the EVM sandbox. 
-It is therefore recommended to give write access to specific safe files only. 
+Giving write access to configuration files, source files or executables in a project is considered dangerous, because it can be used by malicious Solidity dependencies to escape the EVM sandbox.
+It is therefore recommended to give write access to specific safe files only.
 If write access to a directory is needed, please make sure that it doesn't contain configuration files, source files or executables neither in the top level directory, nor in any subdirectories.
 
 :::
 
-- `fsPermissions`:  An optional object to configure file system permissions for cheatcodes. Defaults to no permissions. Exact path matching is used for file permissions. Prefix matching is used for directory permissions.
+- `fsPermissions`: An optional object to configure file system permissions for cheatcodes. Defaults to no permissions. Exact path matching is used for file permissions. Prefix matching is used for directory permissions.
   - `readFile`: An array of file paths that can be read.
   - `writeFile`: An array of file paths that can be written.
   - `readWriteFile`: An array of file paths that can be both read and written.
