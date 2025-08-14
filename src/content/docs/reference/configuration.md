@@ -201,13 +201,13 @@ export default {
 
 ### Solidity tests configuration
 
-By default, Hardhat includes support for tests written in Solidity to test your contracts. You can use the `test.solidity` entry to configure how they behave. For example, the following config enables the `ffi` cheatcode:
+By default, Hardhat includes support for tests written in Solidity to test your contracts. You can use the `test.solidity` entry to configure how they behave. For example, the following config enables `isolate` mode:
 
 ```js
 const config = {
   test: {
     solidity: {
-      ffi: true,
+      isolate: true,
     },
   },
 };
@@ -215,15 +215,57 @@ const config = {
 
 The following options are available for configuring Solidity tests:
 
-- `ffi`: A boolean that enables the `ffi` cheatcode. Enabling this cheatcode allows tests to call external programs and it's disabled by default for security reasons. Default value: `false`.
-- `fsPermissions`: An object used to configure the file system permissions for cheatcodes. It can have the following fields:
+:::warning
+
+Giving write access to configuration files, source files or executables in a project is considered dangerous, because it can be used by malicious Solidity dependencies to escape the EVM sandbox. 
+It is therefore recommended to give write access to specific safe files only. 
+If write access to a directory is needed, please make sure that it doesn't contain configuration files, source files or executables neither in the top level directory, nor in any subdirectories.
+
+:::
+
+- `fsPermissions`:  An optional object to configure file system permissions for cheatcodes. Defaults to no permissions. Exact path matching is used for file permissions. Prefix matching is used for directory permissions.
   - `readFile`: An array of file paths that can be read.
   - `writeFile`: An array of file paths that can be written.
   - `readWriteFile`: An array of file paths that can be both read and written.
   - `readDirectory`: An array of directory paths. All files and directories inside these directories can be read.
-  - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. This is a dangerous option, as it allows writing to any file in the specified directories, so it should be used with caution.
-  - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. This is a dangerous option, as it allows writing to any file in the specified directories, so it should be used with caution.
-- `isolate`: A boolean that enables running tests in isolated mode. Default value: `false`.
+  - `dangerouslyWriteDirectory`: An array of directory paths. All files and directories inside these directories can be written. See warning above why it's dangerous.
+  - `dangerouslyReadWriteDirectory`: An array of directory paths. All files and directories inside these directories can be both read and written. See warning above why it's dangerous.
+- `isolate`: Whether to enable isolation of calls. In isolation mode all top-level calls are executed as a separate transaction in a separate EVM context, enabling more precise gas accounting and transaction state changes. Defaults to false.
+- `ffi`: Whether or not to enable the ffi cheatcode. Warning: Enabling this cheatcode has security implications, as it allows tests to execute arbitrary programs on your computer. Defaults to false.
+- `allowInternalExpectRevert`: Allow expecting reverts with `expectRevert` at the same callstack depth as the test. Defaults to false.
+- `from`: The value of `msg.sender` in tests as hex string. Defaults to `0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38`.
+- `txOrigin`: The value of `tx.origin` in tests as hex string. Defaults to `0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38`.
+- `initialBalance`: The initial balance of the sender in tests. Defaults to `0xffffffffffffffffffffffff`.
+- `blockGasLimit`: The gas limit for each test case. Defaults to `9_223_372_036_854_775_807` (`i64::MAX`).
+- `blockBaseFeePerGas`: The base fee per gas (in wei) in tests. Defaults to `0`.
+- `coinbase`: The value of `block.coinbase` in tests. Defaults to `0x0000000000000000000000000000000000000000`.
+- `blockTimestamp`: The value of `block.timestamp` in tests. Defaults to 1.
+- `blockGasLimit`: The `block.gaslimit` value during EVM execution. Set it to false to disable the block gas limit. Defaults to none.
+- `forkConfig`: The global fork configuration options object. If this is set, all tests are ran in fork mode. Defaults to none.
+  - `url`: If set, all tests are run in fork mode using this url or remote name. Defaults to none.
+  - `forkBlockNumber`: Pins the block number for the global state fork.
+  - `rpcEndpoints`: Map of RPC endpoints from chain name to RPC urls for fork cheat codes, e.g. `{ "optimism": "https://optimism.alchemyapi.io/v2/..." }`
+- `rpcStorageCaching`: What RPC endpoints are cached. Defaults to all.
+- `timeout`: The number of seconds to wait before `vm.prompt` reverts with a timeout. Defaults to 120.
+- `fuzz`: Optional fuzz testing configuration object.
+  - `failurePersistDir`: Optional path where fuzz failures are recorded and replayed if set.
+  - `failurePersistFile`: Name of the file to record fuzz failures, defaults to `failures`.
+  - `runs`: The amount of fuzz runs to perform for each fuzz test case. Higher values gives more confidence in results at the cost of testing speed. Defaults to 256.
+  - `maxTestRejects`: The maximum number of combined inputs that may be rejected before the test as a whole aborts. "Global" filters apply to the whole test case. If the test case is rejected, the whole thing is regenerated. Defaults to 65536.
+  - `seed`: Hexadecimal string. Optional seed for the fuzzing RNG algorithm. Defaults to None.
+  - `dictionaryWeight`: Integer between 0 and 100. The weight of the dictionary. A higher dictionary weight will bias the fuzz inputs towards "interesting" values, e.g. boundary values like type(uint256).max or contract addresses from your environment. Defaults to 40.
+  - `includeStorage`: The flag indicating whether to include values from storage. Defaults to true.
+  - `includePushBytes`: The flag indicating whether to include push bytes values. Defaults to true.
+- `invariant`: Optional invariant testing configuration object. If an invariant config setting is not set, but a corresponding fuzz config value is set, then the fuzz config value will be used.
+  - `failurePersistDir`: Optional path where invariant failures are recorded and replayed if set.
+  - `runs`: The number of runs that must execute for each invariant test group. Defaults to 256.
+  - `depth`: The number of calls executed to attempt to break invariants in one run. Defaults to 500.
+  - `failOnRevert`: Fails the invariant fuzzing if a revert occurs. Defaults to false.
+  - `callOverride`: Overrides unsafe external calls when running invariant tests, useful for e.g. performing reentrancy checks. Defaults to false.
+  - `dictionaryWeight`: Integer between 0 and 100. The weight of the dictionary. A higher dictionary weight will bias the fuzz inputs towards "interesting" values, e.g. boundary values like type(uint256).max or contract addresses from your environment. Defaults to 40.
+  - `includeStorage`: The flag indicating whether to include values from storage. Defaults to true.
+  - `includePushBytes`: The flag indicating whether to include push bytes values. Defaults to true.
+  - `shrinkRunLimit`: The maximum number of attempts to shrink a failed the sequence. Shrink process is disabled if set to 0. Defaults to 5000.
 
 ## Toolbox options
 
