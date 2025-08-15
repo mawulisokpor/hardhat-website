@@ -294,7 +294,7 @@ const HeroBlock = ({ content }: Props) => {
             <TagLine dangerouslySetInnerHTML={{ __html: content.tagline }} />
             <Title>{content.title}</Title>
 
-            <CTA href={content.cta.url} variant='lg'>
+            <CTA href={content.cta.url} variant="lg">
               {content.cta.title}
             </CTA>
           </Content>
@@ -302,24 +302,44 @@ const HeroBlock = ({ content }: Props) => {
           <Block>
             <BlockTitle>Ready to use out of the box</BlockTitle>
             <BlockText>
-              Hardhat includes everything you need for Solidity smart contract development. Testing, deployment, code
-              coverage, code verification, and more.
+              Hardhat includes everything you need for Solidity smart contract
+              development. Testing, deployment, code coverage, code
+              verification, and more.
             </BlockText>
           </Block>
         </LandingContainer>
-        <GraphicContainer className='light'>
+        <GraphicContainer className="light">
           <picture>
-            <source media='(max-width: 767px)' srcSet={heroGraphicMobile.src} />
-            <source media='(max-width: 1199px)' srcSet={heroGraphicTablet.src} />
+            <source media="(max-width: 767px)" srcSet={heroGraphicMobile.src} />
+            <source
+              media="(max-width: 1199px)"
+              srcSet={heroGraphicTablet.src}
+            />
 
-            <img src={heroGraphicDesktop.src} alt='' role='presentation' {...({ fetchpriority: "high" } as any)} />
+            <img
+              src={heroGraphicDesktop.src}
+              alt=""
+              role="presentation"
+              {...({ fetchpriority: "high" } as any)}
+            />
           </picture>
         </GraphicContainer>
-        <GraphicContainer className='dark'>
+        <GraphicContainer className="dark">
           <picture>
-            <source media='(max-width: 767px)' srcSet={heroGraphicDarkMobile.src} />
-            <source media='(max-width: 1199px)' srcSet={heroGraphicDarkTablet.src} />
-            <img src={heroGraphicDesktopDark.src} alt='' role='presentation' {...({ fetchpriority: "high" } as any)} />
+            <source
+              media="(max-width: 767px)"
+              srcSet={heroGraphicDarkMobile.src}
+            />
+            <source
+              media="(max-width: 1199px)"
+              srcSet={heroGraphicDarkTablet.src}
+            />
+            <img
+              src={heroGraphicDesktopDark.src}
+              alt=""
+              role="presentation"
+              {...({ fetchpriority: "high" } as any)}
+            />
           </picture>
         </GraphicContainer>
       </Container>
