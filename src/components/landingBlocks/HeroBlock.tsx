@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { styled } from "linaria/react";
 import Image from "next/image";
 import Section from "../Section";
@@ -7,13 +7,13 @@ import { media, tm, tmDark, tmSelectors } from "../../themes";
 import { CTAType } from "../ui/types";
 
 import LandingContainer from "../LandingContainer";
-import heroGraphicDesktop from "../../assets/hero/hero.png";
-import heroGraphicTablet from "../../assets/hero/heroTablet.png";
-import heroGraphicMobile from "../../assets/hero/heroMobile.png";
+import heroGraphicDesktop from "../../assets/hero/hero.webp";
+import heroGraphicTablet from "../../assets/hero/heroTablet.webp";
+import heroGraphicMobile from "../../assets/hero/heroMobile.webp";
 
-import heroGraphicDesktopDark from "../../assets/hero/heroDark.png";
-import heroGraphicDarkTablet from "../../assets/hero/heroDarkTablet.png";
-import heroGraphicDarkMobile from "../../assets/hero/heroDarkMobile.png";
+import heroGraphicDesktopDark from "../../assets/hero/heroDark.webp";
+import heroGraphicDarkTablet from "../../assets/hero/heroDarkTablet.webp";
+import heroGraphicDarkMobile from "../../assets/hero/heroDarkMobile.webp";
 
 import heroTexture from "../../assets/hero/hero-texture.svg";
 import heroDarkTexture from "../../assets/hero/heroDark-texture.svg";
@@ -128,6 +128,14 @@ const GraphicContainer = styled.div`
 
   &.dark {
     display: none;
+  }
+  picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    width: 100%;
   }
   ${tmSelectors.dark} {
     &.dark {
@@ -281,21 +289,6 @@ const BlockText = styled.p`
 `;
 
 const HeroBlock = ({ content }: Props) => {
-  const { width } = useWindowSize();
-
-  let imageSrc;
-  let imageDarkSrc;
-  if (width > 1279) {
-    imageSrc = heroGraphicDesktop;
-    imageDarkSrc = heroGraphicDesktopDark;
-  } else if (width < 768) {
-    imageSrc = heroGraphicMobile;
-    imageDarkSrc = heroGraphicDarkMobile;
-  } else {
-    imageSrc = heroGraphicTablet;
-    imageDarkSrc = heroGraphicDarkTablet;
-  }
-
   return (
     <Section clearPadding>
       <Container bgImage={heroTexture.src} bgImageDark={heroDarkTexture.src}>
@@ -304,7 +297,7 @@ const HeroBlock = ({ content }: Props) => {
             <TagLine dangerouslySetInnerHTML={{ __html: content.tagline }} />
             <Title>{content.title}</Title>
 
-            <CTA href={content.cta.url} variant="lg">
+            <CTA href={content.cta.url} variant='lg'>
               {content.cta.title}
             </CTA>
           </Content>
@@ -312,31 +305,25 @@ const HeroBlock = ({ content }: Props) => {
           <Block>
             <BlockTitle>Ready to use out of the box</BlockTitle>
             <BlockText>
-              Hardhat includes everything you need for Solidity smart contract
-              development. Testing, deployment, code coverage, code
-              verification, and more.
+              Hardhat includes everything you need for Solidity smart contract development. Testing, deployment, code
+              coverage, code verification, and more.
             </BlockText>
           </Block>
         </LandingContainer>
-        <GraphicContainer className="light">
-          <Image
-            src={imageSrc}
-            alt=""
-            role="presentation"
-            quality={100}
-            layout="intrinsic"
-            priority
-          />
+        <GraphicContainer className='light'>
+          <picture>
+            <source media='(max-width: 767px)' srcSet={heroGraphicMobile.src} />
+            <source media='(max-width: 1199px)' srcSet={heroGraphicTablet.src} />
+
+            <img src={heroGraphicDesktop.src} alt='' role='presentation' {...({ fetchpriority: "high" } as any)} />
+          </picture>
         </GraphicContainer>
-        <GraphicContainer className="dark">
-          <Image
-            src={imageDarkSrc}
-            alt=""
-            role="presentation"
-            quality={100}
-            layout="intrinsic"
-            priority
-          />
+        <GraphicContainer className='dark'>
+          <picture>
+            <source media='(max-width: 767px)' srcSet={heroGraphicDarkMobile.src} />
+            <source media='(max-width: 1199px)' srcSet={heroGraphicDarkTablet.src} />
+            <img src={heroGraphicDesktopDark.src} alt='' role='presentation' {...({ fetchpriority: "high" } as any)} />
+          </picture>
         </GraphicContainer>
       </Container>
     </Section>

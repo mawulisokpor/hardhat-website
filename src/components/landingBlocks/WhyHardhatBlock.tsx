@@ -68,7 +68,7 @@ function ImageMask(width: number, dark?: boolean): string {
   if (width >= 1700) {
     return dark ? ImageMaskDarkDesktop.src : ImageMaskDesktop.src;
   }
-  if (width >= 1280) {
+  if (width >= 1199) {
     return dark ? ImageMaskDarkLaptop.src : ImageMaskLaptop.src;
   }
   if (width >= 768) {
@@ -121,28 +121,12 @@ const WhyHardhatBlock = ({ content }: Props) => {
                   return (
                     <Fragment key={index}>
                       <ImageWrapper
-                        className={`light image-wrapper-${index}  ${
-                          activeIndex === index ? "active" : ""
-                        }`}
+                        className={`light image-wrapper-${index}  ${activeIndex === index ? "active" : ""}`}
                       >
-                        <Image
-                          src={lightImage}
-                          alt="Feature card picture"
-                          quality={100}
-                          layout="intrinsic"
-                        />
+                        <Image src={lightImage} alt='Feature card picture' quality={100} layout='intrinsic' />
                       </ImageWrapper>
-                      <ImageWrapper
-                        className={`dark image-wrapper-${index}  ${
-                          activeIndex === index ? "active" : ""
-                        }`}
-                      >
-                        <Image
-                          src={darkImage}
-                          alt="Feature card picture"
-                          quality={100}
-                          layout="intrinsic"
-                        />
+                      <ImageWrapper className={`dark image-wrapper-${index}  ${activeIndex === index ? "active" : ""}`}>
+                        <Image src={darkImage} alt='Feature card picture' quality={100} layout='intrinsic' />
                       </ImageWrapper>
                     </Fragment>
                   );
