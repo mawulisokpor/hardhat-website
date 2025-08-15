@@ -1,6 +1,5 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import { styled } from "linaria/react";
-import Image from "next/image";
 import Section from "../Section";
 import CTA from "../ui/CTA";
 import { media, tm, tmDark, tmSelectors } from "../../themes";
@@ -17,8 +16,6 @@ import heroGraphicDarkMobile from "../../assets/hero/heroDarkMobile.webp";
 
 import heroTexture from "../../assets/hero/hero-texture.svg";
 import heroDarkTexture from "../../assets/hero/heroDark-texture.svg";
-
-import useWindowSize from "../../hooks/useWindowSize";
 
 interface Props {
   content: {
