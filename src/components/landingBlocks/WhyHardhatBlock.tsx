@@ -68,7 +68,7 @@ function ImageMask(width: number, dark?: boolean): string {
   if (width >= 1700) {
     return dark ? ImageMaskDarkDesktop.src : ImageMaskDesktop.src;
   }
-  if (width >= 1280) {
+  if (width >= 1199) {
     return dark ? ImageMaskDarkLaptop.src : ImageMaskLaptop.src;
   }
   if (width >= 768) {
