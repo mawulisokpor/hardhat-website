@@ -440,10 +440,10 @@ Your deployment was successfully executed in a network simulated by Hardhat! To 
 
 To learn more about Hardhat, check out these other guides:
 
+- [What's new in Hardhat 3](/docs/learn-more/whats-new.md)
 - [Writing Solidity tests](/docs/learn-more/writing-solidity-tests.md)
 - [Using Viem with Hardhat](/docs/learn-more/using-viem.md)
 - [Deploying contracts](/docs/learn-more/deploying-contracts.md)
 - [Configuring the compiler](/docs/learn-more/configuring-the-compiler.md)
-- [Differences with Hardhat 2](/docs/learn-more/comparison.md)
 
-and join our [Hardhat 3 Alpha](https://hardhat.org/hardhat3-alpha-telegram-group) Telegram group to share feedback and stay updated on new releases.
+and join our [Hardhat 3](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group to share feedback and stay updated on new releases.
