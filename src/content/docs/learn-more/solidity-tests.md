@@ -18,8 +18,6 @@ All contracts in a test file are considered test contracts. The functions in the
 
 All the debugging features of Hardhat, such as console.log debugging, Solidity stack traces, and error inference, are fully compatible with Solidity tests. This ensures you get the same comprehensive insights into your tests as you would with TypeScript-based tests.
 
-Moreover, multichain workflows (a major feature of Hardhat 3) will eventually extend to Solidity tests, allowing you to test across multiple chain types. However, this functionality is not yet available in the alpha version.
-
 ## Differences between Hardhat and Foundry-style Solidity tests
 
 While Hardhat and Foundry share many similarities in their Solidity testing frameworks, there are a few differences:
