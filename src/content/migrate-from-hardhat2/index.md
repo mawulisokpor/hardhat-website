@@ -38,7 +38,7 @@ Before making any changes, prepare your project so that installing and running H
 
    Run the `clean` task to avoid issues with stale artifacts or caches:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -56,6 +56,14 @@ Before making any changes, prepare your project so that installing and running H
 
    :::
 
+   :::tab{value=yarn}
+
+   ```bash
+   yarn hardhat clean
+   ```
+
+   :::
+
    ::::
 
 3. **Remove Hardhat 2 dependencies**
@@ -68,7 +76,7 @@ Before making any changes, prepare your project so that installing and running H
 
    Then reinstall and check for remaining packages that depend on Hardhat:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -82,6 +90,14 @@ Before making any changes, prepare your project so that installing and running H
 
    ```bash
    pnpm install && pnpm why hardhat
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn install && yarn why hardhat
    ```
 
    :::
@@ -102,7 +118,7 @@ Before making any changes, prepare your project so that installing and running H
 
    Run the following command to set the correct `type` field in your `package.json`:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -116,6 +132,15 @@ Before making any changes, prepare your project so that installing and running H
 
    ```bash
    pnpm pkg set type=module
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   # yarn doesn't have a direct command to set the type,
+   # so you'll have to manually add it to your package.json
    ```
 
    :::
@@ -134,7 +159,7 @@ With your npm project ready, you can start setting up Hardhat 3.
 
    Run the following command to install Hardhat 3:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -148,6 +173,14 @@ With your npm project ready, you can start setting up Hardhat 3.
 
    ```bash
    pnpm install --save-dev hardhat
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn add --dev hardhat
    ```
 
    :::
@@ -170,7 +203,7 @@ With your npm project ready, you can start setting up Hardhat 3.
 
    Verify that Hardhat 3 is working by running the help command:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -184,6 +217,14 @@ With your npm project ready, you can start setting up Hardhat 3.
 
    ```bash
    pnpm hardhat --help
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn hardhat --help
    ```
 
    :::
@@ -212,7 +253,7 @@ Let's start with the minimal settings required to compile your contracts.
 
    Run the `build` task to verify that your config is working:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -230,6 +271,14 @@ Let's start with the minimal settings required to compile your contracts.
 
    :::
 
+   :::tab{value=yarn}
+
+   ```bash
+   yarn hardhat build
+   ```
+
+   :::
+
    ::::
 
 To learn more about the updated config format, and continue with your migration, please take a look at [this section](../docs/reference/configuration.md#solidity-configuration).
@@ -242,7 +291,7 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
 
    Install the plugin:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -256,6 +305,14 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
 
    ```bash
    pnpm install --save-dev @nomicfoundation/hardhat-toolbox-mocha-ethers
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn add --dev @nomicfoundation/hardhat-toolbox-mocha-ethers
    ```
 
    :::
@@ -284,7 +341,7 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
 
    You can start by migrating a single test and run it individually to verify that it works as expected:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -298,6 +355,14 @@ This section assumes that your Hardhat 2 project uses Mocha as its tests runner,
 
    ```bash
    pnpm hardhat test test/some-test.ts
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn hardhat test test/some-test.ts
    ```
 
    :::

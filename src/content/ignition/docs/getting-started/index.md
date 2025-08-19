@@ -31,7 +31,7 @@ To install Hardhat Ignition in an existing Hardhat project, you will need:
 
 - Hardhat version 3.0.0 or higher
 - [Node.js](https://nodejs.org/) version 22.10.0 or higher
-- A package manager like [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
+- A package manager like [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), or [yarn](https://yarnpkg.com/)
 
 You can also follow [Hardhat's Quick Start guide](../../../docs/getting-started/index.md) to create a new project from scratch to follow this guide.
 
@@ -43,7 +43,7 @@ If you prefer to use **Ethers** instead of **Viem**, check out the [Ethers.js gu
 
 Once you have a Hardhat project ready, open a terminal in its root directory, and run:
 
-::::tabsgroup{options="npm,pnpm"}
+::::tabsgroup{options="npm,pnpm,yarn"}
 
 :::tab{value="npm"}
 
@@ -57,6 +57,14 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-viem
 
 ```sh
 pnpm add -D @nomicfoundation/hardhat-ignition-viem
+```
+
+:::
+
+:::tab{value="yarn"}
+
+```sh
+yarn add -D @nomicfoundation/hardhat-ignition-viem
 ```
 
 :::

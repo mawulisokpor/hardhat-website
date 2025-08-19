@@ -12,6 +12,12 @@ If you want to add the plugin manually:
 
    ```bash
    npm install --save-dev @nomicfoundation/hardhat-viem
+
+   # or
+   pnpm install --save-dev @nomicfoundation/hardhat-viem
+
+   # or
+   yarn add --dev @nomicfoundation/hardhat-viem
    ```
 
 2. Add it to the list of plugins in your Hardhat configuration:

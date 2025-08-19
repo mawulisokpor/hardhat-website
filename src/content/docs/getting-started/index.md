@@ -16,7 +16,7 @@ This guide will walk you through the installation of our recommended setup, but 
 
 ## Installation
 
-To get started with Hardhat 3, you'll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/).
+To get started with Hardhat 3, you'll need [Node.js](https://nodejs.org/) v22 or later installed on your system, along with a package manager such as [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/), or [pnpm](https://pnpm.io/).
 
 First, create a new directory for your project:
 
@@ -27,7 +27,7 @@ cd hardhat-example
 
 Once that's done, initialize your Hardhat project by running:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options="npm,pnpm,yarn 1,yarn 4"}
 
 :::tab{value=npm}
 
@@ -45,6 +45,24 @@ pnpm dlx hardhat --init
 
 :::
 
+:::tab{value="yarn 1"}
+
+```bash
+yarn add -D hardhat
+yarn hardhat --init
+```
+
+:::
+
+:::tab{value="yarn 4"}
+
+```bash
+# Be sure to set `nodeLinker` to `node-modules` in your `.yarnrc.yml` file first
+yarn dlx hardhat --init
+```
+
+:::
+
 ::::
 
 This command will prompt you with a few configuration options. You can accept the default answers to quickly scaffold a working setup.
@@ -57,7 +75,7 @@ Using the defaults will:
 
 After the setup is complete, you'll have a fully working Hardhat 3 project with everything you need to get started. Run the Hardhat help to verify the project was set up correctly:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -71,6 +89,14 @@ npx hardhat --help
 
 ```bash
 pnpm hardhat --help
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat --help
 ```
 
 :::
@@ -144,7 +170,7 @@ contract Counter {
 
 Hardhat will automatically detect it, and compile it with the correct version of Solidity based on its `pragma` statement and your Hardhat configuration. All you need to do is run:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -158,6 +184,14 @@ npx hardhat build
 
 ```bash
 pnpm hardhat build
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat build
 ```
 
 :::
@@ -207,7 +241,7 @@ contract CounterTest is Test {
 
 You can run all the tests in your project—both Solidity and TypeScript—using the `test` task:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -225,11 +259,19 @@ pnpm hardhat test
 
 :::
 
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test
+```
+
+:::
+
 ::::
 
 If you only want to run your Solidity tests, you can use this instead:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -243,6 +285,14 @@ npx hardhat test solidity
 
 ```bash
 pnpm hardhat test solidity
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test solidity
 ```
 
 :::
@@ -328,7 +378,7 @@ Writing this same test in Solidity is possible, but less convenient, and the tes
 
 To run your TypeScript tests, use the `test nodejs` task:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -342,6 +392,14 @@ npx hardhat test nodejs
 
 ```bash
 pnpm hardhat test nodejs
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test nodejs
 ```
 
 :::
@@ -368,7 +426,7 @@ The sample project includes two scripts. One of them, `scripts/send-op-tx.ts`, s
 
 To run a script, you can use the `run` task:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -382,6 +440,14 @@ npx hardhat run scripts/send-op-tx.ts
 
 ```bash
 pnpm hardhat run scripts/send-op-tx.ts
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat run scripts/send-op-tx.ts
 ```
 
 :::
@@ -414,7 +480,7 @@ Inside a module you call functions, like `m.contract` and `m.call`, to describe 
 
 Modules are deployed with the `ignition deploy` task. To check that the deployment works correctly, let's run it in a simulated network:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -428,6 +494,14 @@ npx hardhat ignition deploy ignition/modules/Counter.ts
 
 ```bash
 pnpm hardhat ignition deploy ignition/modules/Counter.ts
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat ignition deploy ignition/modules/Counter.ts
 ```
 
 :::

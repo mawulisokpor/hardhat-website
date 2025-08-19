@@ -12,7 +12,7 @@ If you want to add the plugin manually:
 
 1. Install the plugin:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -26,6 +26,14 @@ If you want to add the plugin manually:
 
    ```bash
    pnpm install --save-dev @nomicfoundation/hardhat-verify
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn add --dev @nomicfoundation/hardhat-verify
    ```
 
    :::
