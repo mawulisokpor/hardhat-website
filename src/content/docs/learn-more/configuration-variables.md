@@ -112,7 +112,7 @@ yarn hardhat keystore set SEPOLIA_RPC_URL
 
 ::::
 
-When you run this task for the first time, you’ll be prompted to create a password for your keystore. After that you’ll need to enter that password to confirm the operation everytime you add a new value. The secret is then stored encrypted in a file in your home directory.
+When you run this task for the first time, you’ll be prompted to create a password for your keystore. After that you’ll need to enter that password to confirm the operation every time you add a new value. The secret is then stored encrypted in a file in your home directory.
 
 Once a value is stored in the keystore, you can use it in your configuration:
 
