@@ -1,6 +1,6 @@
 # Managing config values and secrets safely
 
-Hardhat projects often need values that shouldn’t be committed to shared repositoris, like private keys or API keys.
+Hardhat projects often need values that shouldn’t be committed to shared repositories, like private keys or API keys.
 
 Hardhat 3 offers _Config Variables_ to handle this in a secure way, either encrypted (using `hardhat-keystore`) or not, depending on what you need.
 
