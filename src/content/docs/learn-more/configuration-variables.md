@@ -36,7 +36,7 @@ This way, the actual value is never committed to your repository.
 
 By default, configuration variables get their values from environment variables. For example, in the snippet above, Hardhat will look for an environment variable named `SEPOLIA_RPC_URL` when it needs the value. You can define it inline when running a task:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -50,6 +50,14 @@ SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat r
 
 ```bash
 SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat run ./my-script.ts --network sepolia
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' yarn hardhat run ./my-script.ts --network sepolia
 ```
 
 :::
@@ -72,7 +80,7 @@ The `hardhat-keystore` plugin is part of the example project, but it can also be
 
 1. Install the plugin:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -86,6 +94,14 @@ The `hardhat-keystore` plugin is part of the example project, but it can also be
 
    ```bash
    pnpm install --save-dev @nomicfoundation/hardhat-keystore
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```bash
+   yarn add --dev @nomicfoundation/hardhat-keystore
    ```
 
    :::
@@ -112,7 +128,7 @@ The `hardhat-keystore` plugin is part of the example project, but it can also be
 
 To store an encrypted secret, use the `keystore set` task. For example, to store an Alchemy API key under the name `SEPOLIA_RPC_URL`, run:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -126,6 +142,14 @@ npx hardhat keystore set SEPOLIA_RPC_URL
 
 ```bash
 pnpm hardhat keystore set SEPOLIA_RPC_URL
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat keystore set SEPOLIA_RPC_URL
 ```
 
 :::
@@ -159,7 +183,7 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
 - To view the value of a stored variable, use the `keystore get` task:
 
-  ::::tabsgroup{options=npm,pnpm}
+  ::::tabsgroup{options=npm,pnpm,yarn}
 
   :::tab{value=npm}
 
@@ -177,11 +201,19 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   :::
 
+  :::tab{value=yarn}
+
+  ```bash
+  yarn hardhat keystore get SEPOLIA_RPC_URL
+  ```
+
+  :::
+
   ::::
 
 - To delete a configuration variable from the keystore, use `keystore delete`:
 
-  ::::tabsgroup{options=npm,pnpm}
+  ::::tabsgroup{options=npm,pnpm,yarn}
 
   :::tab{value=npm}
 
@@ -199,11 +231,19 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   :::
 
+  :::tab{value=yarn}
+
+  ```bash
+  yarn hardhat keystore delete SEPOLIA_RPC_URL
+  ```
+
+  :::
+
   ::::
 
 - To list all stored variable names, use `keystore list`:
 
-  ::::tabsgroup{options=npm,pnpm}
+  ::::tabsgroup{options=npm,pnpm,yarn}
 
   :::tab{value=npm}
 
@@ -221,11 +261,19 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   :::
 
+  :::tab{value=yarn}
+
+  ```bash
+  yarn hardhat keystore list
+  ```
+
+  :::
+
   ::::
 
 - To find the path to the keystore file, use `keystore path`:
 
-  ::::tabsgroup{options=npm,pnpm}
+  ::::tabsgroup{options=npm,pnpm,yarn}
 
   :::tab{value=npm}
 
@@ -243,11 +291,19 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   :::
 
+  :::tab{value=yarn}
+
+  ```bash
+  yarn hardhat keystore path
+  ```
+
+  :::
+
   ::::
 
 - To change the keystore's password, use `keystore change-password`:
 
-  ::::tabsgroup{options=npm,pnpm}
+  ::::tabsgroup{options=npm,pnpm,yarn}
 
   :::tab{value=npm}
 
@@ -265,6 +321,14 @@ Besides `keystore set`, Hardhat provides several other tasks to help you manage 
 
   :::
 
+  :::tab{value=yarn}
+
+  ```bash
+  yarn hardhat keystore change-password
+  ```
+
+  :::
+
   ::::
 
 <!-- ## Combining environment and encrypted variables
@@ -273,7 +337,7 @@ The `hardhat-keystore` plugin extends how configuration variables are resolved, 
 
 One common use case is **overriding a keystore value with an environment variable**. For example, you might store a default value in the keystore but temporarily override it by setting an environment variable in your shell:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -287,6 +351,14 @@ SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' npx hardhat r
 
 ```bash
 SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' pnpm hardhat run ./my-script.ts --network sepolia
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+SEPOLIA_RPC_URL='<https://eth-sepolia.g.alchemy.com/v2/ABC123>...' yarn hardhat run ./my-script.ts --network sepolia
 ```
 
 :::

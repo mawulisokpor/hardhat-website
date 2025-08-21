@@ -45,7 +45,7 @@ In the previous example, the error message doesn't show the actual value of `by`
 
 To use `forge-std` in a Hardhat project, first install it:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -59,6 +59,14 @@ npm install --save-dev github:foundry-rs/forge-std#v1.9.7
 
 ```bash
 pnpm install --save-dev github:foundry-rs/forge-std#v1.9.7
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn add --dev github:foundry-rs/forge-std#v1.9.7
 ```
 
 :::
@@ -107,7 +115,7 @@ contract CounterTest {
 
 You can run all the tests in your Hardhat project using the `test` task:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -125,11 +133,19 @@ pnpm hardhat test
 
 :::
 
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test
+```
+
+:::
+
 ::::
 
 If you only want to run your Solidity tests, use the `test solidity` task instead:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -147,11 +163,19 @@ pnpm hardhat test solidity
 
 :::
 
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test solidity
+```
+
+:::
+
 ::::
 
 You can also pass one or more paths as arguments to these tasks, in which case only those files are executed:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -164,7 +188,15 @@ npx hardhat test <test-file-1> <test-file-2> ...
 :::tab{value=pnpm}
 
 ```bash
-npx hardhat test <test-file-1> <test-file-2> ...
+pnpm hardhat test <test-file-1> <test-file-2> ...
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn hardhat test <test-file-1> <test-file-2> ...
 ```
 
 :::

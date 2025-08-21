@@ -21,9 +21,33 @@ This plugin is part of [Viem Hardhat Toolbox](/v-next/hardhat-toolbox-viem/) and
 
 To install this plugin, run the following command:
 
+::::tabsgroup{options=npm,pnpm,yarn}
+
+:::tab{value=npm}
+
 ```bash
 npm install --save-dev @nomicfoundation/hardhat-network-helpers
 ```
+
+:::
+
+:::tab{value=pnpm}
+
+```bash
+pnpm install --save-dev @nomicfoundation/hardhat-network-helpers
+```
+
+:::
+
+:::tab{value=yarn}
+
+```bash
+yarn add --dev @nomicfoundation/hardhat-network-helpers
+```
+
+:::
+
+::::
 
 In your `hardhat.config.ts` file, import the plugin and add it to the `plugins` array:
 

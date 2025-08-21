@@ -6,9 +6,9 @@ While there are several different proxy patterns, each with their own tradeoffs,
 
 ## Installation
 
-Before we get started, make sure you have the OpenZeppelin Contracts library installed in your project. You can install it using npm or yarn:
+Before we get started, make sure you have the OpenZeppelin Contracts library installed in your project. You can install it using npm, pnpm, or yarn:
 
-::::tabsgroup{options="npm,pnpm"}
+::::tabsgroup{options="npm,pnpm,yarn"}
 
 :::tab{value="npm"}
 
@@ -22,6 +22,14 @@ npm install @openzeppelin/contracts
 
 ```sh
 pnpm add @openzeppelin/contracts
+```
+
+:::
+
+:::tab{value="yarn"}
+
+```sh
+yarn add @openzeppelin/contracts
 ```
 
 :::

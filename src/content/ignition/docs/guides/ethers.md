@@ -15,7 +15,7 @@ You can also follow [Hardhat's Quick Start guide](../../../docs/getting-started/
 
 From the root directory of your Hardhat project run:
 
-::::tabsgroup{options="npm,pnpm"}
+::::tabsgroup{options="npm,pnpm,yarn"}
 
 :::tab{value="npm"}
 
@@ -29,6 +29,14 @@ npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
 
 ```shell
 pnpm add -D @nomicfoundation/hardhat-ignition-ethers ethers
+```
+
+:::
+
+:::tab{value="yarn"}
+
+```shell
+yarn add -D @nomicfoundation/hardhat-ignition-ethers ethers
 ```
 
 :::

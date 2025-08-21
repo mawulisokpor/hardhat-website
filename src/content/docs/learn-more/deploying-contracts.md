@@ -8,7 +8,7 @@ The sample project includes an Ignition Module as an example. To learn more abou
 
 To deploy the example module in a simulated network, run the following command:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -26,14 +26,22 @@ pnpm hardhat ignition deploy ignition/modules/Counter.ts
 
 :::
 
+:::tab{value=yarn}
+
+```
+yarn hardhat ignition deploy ignition/modules/Counter.ts
+```
+
+:::
+
 ::::
 
 This deployment is executed on the default network, which lasts only for the duration of the task. To simulate a deployment on a persistent network, follow these steps:
 
-1. Start a Hardhat node with `npx hardhat node` or `pnpm hardhat node`.
+1. Start a Hardhat node with `npx hardhat node`, `pnpm hardhat node`, or `yarn hardhat node`.
 2. Open another terminal and deploy the module to the Hardhat node:
 
-   ::::tabsgroup{options=npm,pnpm}
+   ::::tabsgroup{options=npm,pnpm,yarn}
 
    :::tab{value=npm}
 
@@ -47,6 +55,14 @@ This deployment is executed on the default network, which lasts only for the dur
 
    ```
    pnpm hardhat ignition deploy --network localhost ignition/modules/Counter.ts
+   ```
+
+   :::
+
+   :::tab{value=yarn}
+
+   ```
+   yarn hardhat ignition deploy --network localhost ignition/modules/Counter.ts
    ```
 
    :::
@@ -87,7 +103,7 @@ networks: {
 
 Run the following tasks to add these secrets:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -107,6 +123,15 @@ pnpm hardhat keystore set SEPOLIA_PRIVATE_KEY
 
 :::
 
+:::tab{value=yarn}
+
+```
+yarn hardhat keystore set SEPOLIA_RPC_URL
+yarn hardhat keystore set SEPOLIA_PRIVATE_KEY
+```
+
+:::
+
 ::::
 
 ::::tip
@@ -117,7 +142,7 @@ If you don't have an RPC URL for Sepolia, you can use a public one like `https:/
 
 Once the secrets are set, you can deploy the Ignition module to Sepolia:
 
-::::tabsgroup{options=npm,pnpm}
+::::tabsgroup{options=npm,pnpm,yarn}
 
 :::tab{value=npm}
 
@@ -131,6 +156,14 @@ npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
 
 ```
 pnpm hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
+```
+
+:::
+
+:::tab{value=yarn}
+
+```
+yarn hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
 ```
 
 :::
