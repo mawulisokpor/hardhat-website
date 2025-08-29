@@ -51,6 +51,12 @@ If set to `true`, Hardhat Ignition will not bump the fee for unconfirmed transac
 
 Default value: false
 
+### `explorerUrl`
+
+The default block explorer to use.
+
+Default value: undefined
+
 ## Network configuration options
 
 You can use the `ignition` field under specific network configurations to customize deployments on a per-network basis:
@@ -67,6 +73,7 @@ export default {
         maxPriorityFeePerGas: 2_000_000_000n, // 2 gwei
         gasPrice: 50_000_000_000n, // 50 gwei
         disableFeeBumping: false,
+        explorerUrl: "https://sepolia.etherscan.io"
       },
       // ...
     },
@@ -105,3 +112,9 @@ Default value: undefined
 If set to `true`, Hardhat Ignition will not bump the fee for unconfirmed transactions on this network. Is overridden by the top-level `disableFeeBumping` option.
 
 Default value: false
+
+### `explorerUrl`
+
+The default block explorer to use.
+
+Default value: undefined
