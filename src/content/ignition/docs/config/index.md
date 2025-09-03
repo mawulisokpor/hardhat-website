@@ -73,7 +73,7 @@ export default {
         maxPriorityFeePerGas: 2_000_000_000n, // 2 gwei
         gasPrice: 50_000_000_000n, // 50 gwei
         disableFeeBumping: false,
-        explorerUrl: "https://sepolia.etherscan.io"
+        explorerUrl: "https://sepolia.etherscan.io",
       },
       // ...
     },
