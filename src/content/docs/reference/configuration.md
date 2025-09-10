@@ -85,6 +85,7 @@ The `solidity` config is an optional field that can be one of the following:
   - `settings`: An object with the same schema as the `settings` entry in the [Input JSON](https://docs.soliditylang.org/en/latest/using-the-compiler.html#input-description).
   - `preferWasm`: If true, forces Hardhat to use the WebAssembly (wasm) build of solc instead of a native binary. This can improve build reproducibility across platforms, at the cost of slower compilation times.
   - `npmFilesToBuild`: A list of source names for which Hardhat should generate artifacts in addition to your project's own sources.
+  - `path`: An optional path to a local Solidity compiler. If provided, this will be used instead of downloading a solc version.
 - An object which describes multiple compilers and their respective configurations. It contains the following:
   - `compilers`: A list of compiler configuration objects like the one above.
   - `overrides`: An optional map of compiler configuration override objects. This maps file names to compiler configuration objects.
