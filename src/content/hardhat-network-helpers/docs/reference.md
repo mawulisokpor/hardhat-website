@@ -317,10 +317,15 @@ It executes the given fixture function, which should set up the blockchain state
 **Do not pass anonymous functions as the fixture function.**
 Passing an anonymous function like `loadFixture(async () => { ... })` will bypass the snapshot mechanism and result in the fixture being executed each time. Instead, always pass a named function, like `loadFixture(deployTokens)`.
 
+**The connection object is automatically available in the fixture function**
+When you pass a fixture function to loadFixture, it automatically injects a `connection` object into that function. This means all the `Hardhat connection properties` will be accessible within your fixture function as well.
+
 Type:
 
 ```ts
-loadFixture<T>(fixture: Fixture<T>): Promise<T>
+loadFixture<T, ChainTypeT extends ChainType | string = "generic">(
+  fixture: Fixture<T, ChainTypeT>
+): Promise<T>
 ```
 
 Parameters:
@@ -332,7 +337,7 @@ Returns: A promise that resolves to the data returned by the fixture, either fro
 Example:
 
 ```ts
-async function setupContracts() { ... }
+async function setupContracts(connection: NetworkConnection) { ... }
 const fixtureData = await loadFixture(setupContracts);
 ```
 
