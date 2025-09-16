@@ -308,24 +308,22 @@ clearSnapshots();
 
 ### `loadFixture`
 
-Loads a fixture and restores the blockchain to a snapshot state for repeated tests.
+Executes a fixture function and restores the state to a snapshot on subsequent calls.
 
 The `loadFixture` function is useful in tests where you need to set up the blockchain to a desired state (like deploying contracts, minting tokens, etc.) and then run multiple tests based on that state.
 
 It executes the given fixture function, which should set up the blockchain state, and takes a snapshot of the blockchain. On subsequent calls to `loadFixture` with the same fixture function, the blockchain is restored to that snapshot rather than executing the fixture function again.
 
-**Do not pass anonymous functions as the fixture function.**
-Passing an anonymous function like `loadFixture(async () => { ... })` will bypass the snapshot mechanism and result in the fixture being executed each time. Instead, always pass a named function, like `loadFixture(deployTokens)`.
+The fixture function receives the connection object as its only argument, allowing you to interact with the network.
 
-**The connection object is automatically available in the fixture function**
-When you pass a fixture function to loadFixture, it automatically injects a `connection` object into that function. This means all the `Hardhat connection properties` will be accessible within your fixture function as well.
+**Do not pass anonymous functions as the fixture function.** Passing an anonymous function like `loadFixture(async () => { ... })` will bypass the snapshot mechanism and result in the fixture being executed each time. Instead, always pass a named function, like `loadFixture(deployTokens)`.
 
 Type:
 
 ```ts
-loadFixture<T, ChainTypeT extends ChainType | string = "generic">(
-  fixture: Fixture<T, ChainTypeT>
-): Promise<T>
+type Fixture<T> = (connection: NetworkConnection) => Promise<T>;
+
+loadFixture(fixture: Fixture<T>): Promise<T>
 ```
 
 Parameters:
@@ -337,8 +335,13 @@ Returns: A promise that resolves to the data returned by the fixture, either fro
 Example:
 
 ```ts
-async function setupContracts(connection: NetworkConnection) { ... }
-const fixtureData = await loadFixture(setupContracts);
+async function setupContracts({ viem }: NetworkConnection) {
+  const contractA = await viem.deployContract("ContractA");
+  const contractB = await viem.deployContract("ContractB");
+  return { contractA, contractB };
+}
+
+const { contractA, contractB } = await loadFixture(setupContracts);
 ```
 
 ## Manipulating blocks
