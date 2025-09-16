@@ -129,34 +129,26 @@ TODO—blocked until dependency resolution is finalized.
 
 Hardhat supports custom compilers like [solx](https://solx.zksync.io). You need to manually download the compiler binary (e.g. [solx releases page](https://github.com/matter-labs/solx/releases)) and reference it in the Solidity settings of the `hardhat.config.ts` file.
 
-You can either configure it using profiles:
+You can configure the path to the custom compiler binary using the `path` property. This property can be used in both the simple and extended formats of the `solidity` property. For example, using the simple format:
 
 ```typescript
 solidity: {
-  profiles: {
-      default: {
-        version: "0.8.30",
-        // To use solx, point to the correct path of your solx binary
-        path: "./solx-macosx-v0.1.2",
-      },
-    },
+  version: "0.8.29",
+  path: "/path/to/solx" // Replace with the actual path to the solx binary
 },
 ```
 
-Or the compilers list:
+Or using the extended format:
 
 ```typescript
 solidity: {
-    compilers: [
-      {
-        version: "0.8.30",
-        path: "./solx-macosx", // solx compiler binary
-      },
-      {
-        version: "0.8.29". // default solc compiler
-      }
-    ],
-}
+  compilers: [
+    {
+      version: "0.8.29",
+      path: "/path/to/solx"
+    }
+  ]
+},
 ```
 
 ## Generating artifacts from npm dependencies
