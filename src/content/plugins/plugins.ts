@@ -103,6 +103,13 @@ const communityPlugins: IPlugin[] = [
     description: "Compare storage layouts between contracts and revisions",
     tags: ["storage"],
   },
+  {
+    name: "hashscan-verify",
+    author: "LimeChain",
+    authorUrl: "https://github.com/LimeChain",
+    description: "Verify contracts on Hashscan",
+    tags: ["verification", "hashscan"],
+  },
 ];
 
 const officialPlugins: IPlugin[] = [
