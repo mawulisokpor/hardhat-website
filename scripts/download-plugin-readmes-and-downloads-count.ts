@@ -6,7 +6,7 @@ import {
 } from "../src/content/plugins/plugins";
 import type { IPlugin } from "../src/model/types";
 
-const NPM_TAG = `next`;
+const NPM_TAG = `latest`;
 
 const PLUGINS_FOLDER = path.join(__dirname, "../src/content/plugins");
 

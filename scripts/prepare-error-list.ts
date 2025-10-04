@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-const HARDHAT_ERRORS_TAG = "next";
+const HARDHAT_ERRORS_TAG = "latest";
 const ERROR_DESCRIPTORS_URL = `https://unpkg.com/@nomicfoundation/hardhat-errors@${HARDHAT_ERRORS_TAG}/dist/src/descriptors.js`;
 const ERROR_DESCRIPTORS_FILE = path.join(
   __dirname,
