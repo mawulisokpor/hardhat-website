@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const HARDHAT3_NPM_TAG = "next";
+const HARDHAT3_NPM_TAG = "latest";
 
 const REAPLACEMENT_VALUES_JSON = path.join(
   __dirname,
