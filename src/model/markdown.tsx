@@ -314,15 +314,12 @@ export const getMDFiles = (): string[] =>
       (pathname) =>
         /\.mdx?$/.test(pathname) && !pathname.includes("plugins/index.md")
     )
+    .filter((pathname) => !pathname.endsWith(".ignore.md"))
     .map((pathname) => pathname.replace(DOCS_PATH, ""));
 
 const getPathParamsByFile = (pathname: string): string[] => {
   const fileBase = pathname.replace(/\.mdx?$/, "");
   return withIndexURL(fileBase);
-};
-
-const getPathParamsByFileMd = (pathname: string): string[] => {
-  return withIndexURL(pathname);
 };
 
 export const getHrefByFile = (pathname: string): string => {
@@ -336,11 +333,6 @@ export const getMDPaths = (): Array<{ params: { docPath: string[] } }> =>
       {
         params: {
           docPath: getPathParamsByFile(pathname),
-        },
-      },
-      {
-        params: {
-          docPath: getPathParamsByFileMd(pathname),
         },
       },
     ])
