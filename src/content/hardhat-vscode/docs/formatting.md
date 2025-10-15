@@ -44,3 +44,5 @@ To override the settings, add a `prettierrc` configuration file at the root of y
   ]
 }
 ```
+
+<!-- Auto-update: 2025-10-15T14:15:27.325492 -->
